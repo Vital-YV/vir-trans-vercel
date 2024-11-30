@@ -53,17 +53,17 @@ export default function TopMenu() {
 const handleToggleClick = () => {
 	setIsVisible(!isVisible)
 	if (isVisible==false){
-		setHiddenMenu('w-full');
-		setChangeUl('xl:pl-0 cursor-pointer backdrop-blur-sm pr-96 xl:pr-0 xl:backdrop-blur-none p-20 xl:p-0 pb-60 xl:pb-0 w-full xl:h-auto h-screen xl:block')
+		setHiddenMenu('w-full')
+		setChangeUl('xl:pl-0 cursor-pointer backdrop-blur-sm xl:pr-0 xl:backdrop-blur-none p-20 xl:p-0 pb-60 xl:pb-0 w-full xl:h-auto h-screen xl:block')
 	}else{
-		setHiddenMenu('');
+		setHiddenMenu('')
 		setChangeUl('xl:pl-60 p-20 xl:p-0 pb-60 xl:pb-0 xl:block hidden')
 	}
 };
 if(window.innerWidth>1280 && isVisible==true){
     setIsVisible(false)
-	setHiddenMenu('transition-all ease-in-out -translate-x-96');
-	setChangeUl('list-style-none xl:flex xl:mt-1 xl:flex-row xl:ml-80 xl:pl-60 mt-20 ml-4 grid gap-6 font-medium text-base dark:text-white text-black xl:text-white p-20 xl:p-0 pb-60 xl:pb-0 xl:block hidden')
+	setHiddenMenu('transition-all ease-in-out -translate-x-60');
+	setChangeUl('list-style-none xl:flex xl:mt-1 xl:flex-row xl:ml-80 xl:pl-60 mt-20 ml-4 grid gap-4 font-medium text-base dark:text-white text-black xl:text-white p-20 xl:p-0 pb-60 xl:pb-0 xl:block hidden')
 }
 
 const disappearingMenu = () => {
@@ -71,7 +71,7 @@ const disappearingMenu = () => {
 			setIsVisible(!isVisible)
 		if (isVisible==true){
 			setHiddenMenu('transition-all ease-in-out -translate-x-60');
-			setChangeUl('list-style-none xl:flex xl:mt-1 xl:flex-row xl:ml-80 xl:pl-96 mt-20 ml-4 grid gap-6 font-medium text-base dark:text-white text-black xl:text-white p-20 xl:p-0 pb-96 xl:pb-0 xl:block hidden xl:bg-black/0 dark:bg-black/0')
+			setChangeUl('list-style-none xl:flex xl:mt-1 xl:flex-row xl:ml-80 xl:pl-60 mt-20 ml-4 grid gap-4 font-medium text-base dark:text-white text-black xl:text-white p-20 xl:p-0 pb-96 xl:pb-0 xl:block hidden')
 		}
 	}
 }
@@ -93,7 +93,7 @@ const disappearingMenu = () => {
 				</div>
 			</div>
 			<div className={`${hiddenMenu} transition-all ease-in-out `}>
-			<ul className={`${changeUl} list-style-none xl:flex xl:mt-1 xl:flex-row xl:ml-80 mt-20 grid gap-4 font-medium text-base dark:text-white text-black xl:text-white z-50`}>
+			<ul className={`${changeUl} list-style-none xl:flex xl:mt-1 xl:flex-row xl:ml-40 mt-20 grid gap-4 font-medium text-base dark:text-white text-black xl:text-white z-50`}>
             {menuItems.map((item, index) => (
                 <div key={index}>
 				<Link href='' onClick={disappearingMenu} ><li className='xl:pb-12 xl:px-6 transition-transform ease-in-out delay-100 hover:-translate-y-0.5 duration-300 hover:xl:text-cyan-800 hover:text-cyan-400 hover:dark:text-fuchsia-600 xl:dark:hover:text-cyan-400 cursor-pointer' onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>
