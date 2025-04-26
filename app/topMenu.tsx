@@ -1,120 +1,146 @@
 "use client";
-import './globals.css'
-import Link from 'next/link'
-import React, { useState, useEffect } from "react"
+import './globals.css';
+import Link from 'next/link';
+import React, { useState, useEffect } from "react";
 import { useLayout } from './LayoutContext';
 
 export default function TopMenu() {
-	const { isVisible, setIsVisible } = useLayout(true);
-	const [hiddenMenu, setHiddenMenu] = useState('');
-	const [changeUl, setChangeUl] = useState('xl:block hidden');
+    const { isVisible, setIsVisible } = useLayout();
+    const [changeUl, setChangeUl] = useState('hidden');
     const [openMenu, setOpenMenu] = useState<number | null>(null);
-    const [subMenu, setSubMenu] = useState('absolute left-0 mt-7 bg-white/50 text-gray-800 shadow-lg rounded-lg py-2');
+    const [mobileMenu, setMobileMenu] = useState<boolean>(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setMobileMenu(window.innerWidth <= 1280);
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     const menuItems = [
-        {
-            title: "Услуги грузоперевозок",
-            submenu: ["Наливные и опасные грузы", "Негабаритные грузы / мультимодальные доставки", "Обычные грузы"],
-        },
-        {
-            title: "Нам ДОВЕРЯЮТ",
-            submenu: [],
-        },
-        {
-            title: "Задать вопрос/Контакты",
-            submenu: [],
-        },
-        {
-            title: "Заказчикам и Перевозчикам",
-            submenu: ["Преимущества работы с нами", "Вопросы - ответы", "География перевозок", "Примеры перевозок"],
-        },
-        {
-            title: "Отзывы",
-            submenu: [],
-        },
-        {
-            title: "Вакансии",
-            submenu: [],
-        },
-        {
-            title: "Дайджест",
-            submenu: [],
-        },
-    ]
+        { title: "Услуги грузоперевозок", submenu: ["Наливные и опасные грузы", "Негабаритные грузы / мультимодальные доставки", "Обычные грузы"] },
+        { title: "Заказчикам и Перевозчикам", submenu: ["Преимущества работы с нами", "Вопросы - ответы", "География перевозок", "Примеры перевозок"] },
+        { title: "Нам ДОВЕРЯЮТ", submenu: [] },
+        { title: "Задать вопрос/Контакты", submenu: [] },
+        { title: "Отзывы", submenu: [] },
+        { title: "Вакансии", submenu: [] },
+        { title: "Дайджест", submenu: [] },
+    ];
 
-     const handleMouseEnter = (index: number) => {
-    setOpenMenu(index);
-  };
+    const handleToggleClick = () => {
+        setIsVisible((prev) => !prev);
+        setChangeUl(isVisible ? 'hidden' : '');
+    };
 
-  const handleMouseLeave = () => {
-    setOpenMenu(null);
-  };
+    const handleMouseEnter = (index: number) => {
+        setOpenMenu(index);
+    };
 
-const handleToggleClick = () => {
-	setIsVisible(!isVisible)
-	if (isVisible==false){
-		setHiddenMenu('w-full')
-		setChangeUl('xl:pl-0 cursor-pointer backdrop-blur-sm xl:pr-0 xl:backdrop-blur-none p-20 xl:p-0 pb-60 xl:pb-0 w-full xl:h-auto h-screen xl:block')
-	}else{
-		setHiddenMenu('')
-		setChangeUl('xl:pl-60 p-20 xl:p-0 pb-60 xl:pb-0 xl:block hidden')
-	}
-};
-if(window.innerWidth>1280 && isVisible==true){
-    setIsVisible(false)
-	setHiddenMenu('transition-all ease-in-out -translate-x-60');
-	setChangeUl('list-style-none xl:flex xl:mt-1 xl:flex-row xl:ml-80 xl:pl-60 mt-20 ml-4 grid gap-4 font-medium text-base dark:text-white text-black xl:text-white p-20 xl:p-0 pb-60 xl:pb-0 xl:block hidden')
-}
+    const handleMouseLeave = () => {
+        setOpenMenu(null);
+    };
 
-const disappearingMenu = () => {
-	if(window.innerWidth<1280){
-			setIsVisible(!isVisible)
-		if (isVisible==true){
-			setHiddenMenu('transition-all ease-in-out -translate-x-60');
-			setChangeUl('list-style-none xl:flex xl:mt-1 xl:flex-row xl:ml-80 xl:pl-60 mt-20 ml-4 grid gap-4 font-medium text-base dark:text-white text-black xl:text-white p-20 xl:p-0 pb-96 xl:pb-0 xl:block hidden')
-		}
-	}
-}
-  return (
-	<div className='fixed flex flex-col w-full bg-gradient-to-r dark:from-fuchsia-600 dark:to-cyan-400 from-cyan-400 to-cyan-800 h-32 text-white z-50'>
-		<div className='mt-12 !flex basis-auto'>
-			<div className='absolute w-40 z-50 flex flex-row place-content-center'>
-				<div className='cursor-pointer px-auto w-max text-2xl font-medium z-40 font-russo'>
-					<Link href='/' onClick={disappearingMenu}>
-					Vir trans
-					</Link>
-				</div>
-				<div className='pt-forButton ml-2 z-50'>
-					<button className='w-3 h-3 xl:hidden' onClick={handleToggleClick} >
-						<div className='w-3 h-0.5 bg-slate-50'/>
-						<div className='w-3 h-0.5 mt-0.5 bg-slate-50'/>
-						<div className='w-3 h-0.5 mt-0.5 bg-slate-50'/>
-					</button>
-				</div>
-			</div>
-			<div className={`${hiddenMenu} transition-all ease-in-out `}>
-			<ul className={`${changeUl} list-style-none xl:flex xl:mt-1 xl:flex-row xl:ml-40 mt-20 grid gap-4 font-medium text-base dark:text-white text-black xl:text-white z-50`}>
-            {menuItems.map((item, index) => (
-                <div key={index}>
-				<Link href='' onClick={disappearingMenu} ><li className='xl:pb-12 xl:px-6 transition-transform ease-in-out delay-100 hover:-translate-y-0.5 duration-300 hover:xl:text-cyan-800 hover:text-cyan-400 hover:dark:text-fuchsia-600 xl:dark:hover:text-cyan-400 cursor-pointer' onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave}>
-				<button className="hover:text-gray-300" >{item.title}</button>
-                
-                {item.submenu.length > 0 && openMenu === index && (
-                    
-                    <ul className={`${subMenu}`}>
-                    {item.submenu.map((subItem, subIndex) => (
-                        <div key={subIndex}>
-                        <Link href='' onClick={disappearingMenu}><li className='xl:pb-12 xl:px-6 transition-transform ease-in-out delay-100 hover:-translate-y-0.5 duration-300 hover:xl:text-cyan-500 hover:text-cyan-400 hover:dark:text-fuchsia-600 xl:dark:hover:text-cyan-400 cursor-pointer'>
-                            {subItem}
-                        </li></Link></div>
-                    ))}
-                    </ul>
-                    )}
-                </li></Link></div>
-                ))}	
-            </ul>
-		    </div>
-		</div>
-</div>
-  )
+    const disappearingMenu = () => {
+        setIsVisible((prev) => !prev);
+        setChangeUl(isVisible ? 'hidden' : '');
+        setOpenMenu(null);
+    };
+
+    return (
+        <div className="w-full h-24 fixed flex flex-col bg-gradient-to-b from-[#023047] from-95% to-[#023047]/0">
+            {mobileMenu ? (
+                <div className="relative">
+                    <div className="z-50 fixed top-5 left-5 flex items-center text-white">
+                        <div className="text-lg font-semibold">Vir trans</div>
+                        <div className="ml-4">
+                            <button className="w-3 h-3" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                <div className="w-3 h-0.5 bg-slate-50" />
+                                <div className="w-3 h-0.5 mt-0.5 bg-slate-50" />
+                                <div className="w-3 h-0.5 mt-0.5 bg-slate-50" />
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        className={`fixed inset-0 transition-all duration-300 ${isMenuOpen ? "backdrop-blur-md bg-black/50" : "pointer-events-none"
+                            }`}
+                        onClick={() => setIsMenuOpen(false)}
+                    ></div>
+
+                    <div
+                        className={`fixed top-0 right-0 h-svh w-64 bg-[#023047] shadow-lg transform transition-transform duration-300 
+                     ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+                    >
+                        <ul className="mt-20 pl-4 text-white">
+                            {menuItems.map((item, index) => (
+                                <li key={index} className="mb-4">
+                                    <button className="cursor-pointer hover:text-[#FB8500] transition-colors text-lg text-left w-full">
+                                        <a href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`} onClick={() => setIsMenuOpen(false)}>{item.title}</a>
+                                    </button>
+
+                                    {item.submenu.length > 0 && (
+                                        <ul className="mt-2 ml-4 space-y-1">
+                                            {item.submenu.map((subItem, subIndex) => (
+                                                <li
+                                                    key={subIndex}
+                                                    className="text-sm flex items-center gap-2 hover:text-[#FB8500] cursor-pointer transition-colors"
+                                                >
+                                                    <span className="before:content-['•'] text-[#FB8500]"></span>
+                                                    <a href={`#${subItem.replace(/\s+/g, '-').toLowerCase()}`} onClick={() => setIsMenuOpen(false)}>{subItem}</a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+
+            ) : (
+                <div className="grid grid-cols-[max-content_auto] h-full">
+                    <div className="max-w-max flex items-center px-4 text-white">
+                        Vir trans
+                    </div>
+                    <div className={`flex items-center flex-1`}>
+                        <ul className={`h-full list-none flex mt-0 flex-row gap-4`}>
+                            {menuItems.map((item, index) => (
+                                <li
+                                    key={index}
+                                    className="grid-cols-1 relative flex items-center justify-center h-full px-6 text-white"
+                                    onMouseEnter={() => handleMouseEnter(index)}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    <button className="cursor-pointer hover:text-[#FB8500]">
+                                        <a href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`}>{item.title}</a>
+                                    </button>
+
+                                    {item.submenu.length > 0 && (
+                                        <ul
+                                            className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b from-[#023047] via-[#022947b1] to-[#023047]/0 from-70% via-90% to-95% backdrop-blur-md p-4 pb-16 transform transition-all
+                                            ${openMenu === index ? "opacity-100 translate-y-0 duration-500 ease-out" : "opacity-0 -translate-y-4 pointer-events-none"}`}
+                                        >
+                                            {item.submenu.map((subItem, subIndex) => (
+                                                <li key={subIndex} className="py-2 hover:text-[#FB8500] cursor-pointer">
+                                                    <a href={`#${subItem.replace(/\s+/g, '-').toLowerCase()}`}>{subItem}</a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 }
