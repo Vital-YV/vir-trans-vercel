@@ -2,8 +2,13 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
+type TransportIconProps = {
+  src: string;
+  alt: string;
+  label: string;
+};
 
-function TransportIcon({ src, alt, label }) {
+function TransportIcon({ src, alt, label }: TransportIconProps) {
   const [animate, setAnimate] = useState(false);
 
   return (
@@ -13,12 +18,12 @@ function TransportIcon({ src, alt, label }) {
         alt={alt}
         className={`w-20 h-20 transition-transform duration-300 ${animate ? 'animate-tilt' : ''}`}
         onMouseEnter={() => setAnimate(true)}
-        onAnimationEnd={() => setAnimate(false)} />
+        onAnimationEnd={() => setAnimate(false)}
+      />
       <span className="mt-2 text-base">
         {label}
       </span>
     </div>
-
   );
 }
 
