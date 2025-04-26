@@ -1,10 +1,16 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
 
-// Create a context
-export const LayoutContext = createContext(null);
+// Тип для контекста
+interface LayoutContextType {
+  isVisible: boolean;
+  setIsVisible: Dispatch<SetStateAction<boolean>>;
+}
 
-// Create a custom hook for easy access
+// Инициализируем контекст с типом LayoutContextType | null
+export const LayoutContext = createContext<LayoutContextType | null>(null);
+
+// Кастомный хук
 export const useLayout = () => {
   const context = useContext(LayoutContext);
   if (!context) {
@@ -12,7 +18,6 @@ export const useLayout = () => {
   }
   return context;
 };
-
 
 export const LayoutProvider = ({ children }: { children: ReactNode }) => {
   const [isVisible, setIsVisible] = useState(false);
