@@ -25,7 +25,7 @@ export default function TopMenu() {
     }, []);
 
     const menuItems = [
-        { title: "Услуги грузоперевозок", submenu: ["Наливные и опасные грузы", "Негабаритные грузы / мультимодальные доставки", "Обычные грузы"] },
+        { title: "Услуги грузоперевозок", submenu: ["Обычные грузы", "Наливные и опасные грузы", "Негабаритные грузы / мультимодальные доставки"] },
         { title: "Заказчикам и Перевозчикам", submenu: ["Преимущества работы с нами", "Вопросы - ответы", "География перевозок", "Примеры перевозок"] },
         { title: "Нам ДОВЕРЯЮТ", submenu: [] },
         { title: "Задать вопрос/Контакты", submenu: [] },
@@ -125,7 +125,7 @@ export default function TopMenu() {
 
                                     {item.submenu.length > 0 && (
                                         <ul
-                                            className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b from-[#023047] via-[#022947b1] to-[#023047]/0 from-70% via-90% to-95% backdrop-blur-md p-4 pb-16 transform transition-all
+                                            className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b from-[#023047] via-[#022947b1]  from-70% via-90% to-95% p-4 pb-16 transform transition-all
                                             ${openMenu === index ? "opacity-100 translate-y-0 duration-500 ease-out" : "opacity-0 -translate-y-4 pointer-events-none"}`}
                                         >
                                             {item.submenu.map((subItem, subIndex) => (
