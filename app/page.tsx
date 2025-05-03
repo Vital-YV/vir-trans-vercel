@@ -274,7 +274,7 @@ export default function Home() {
 
 
   return (
-    <main className="text-[#219EBC] drop-shadow-[0_0_4px_black]" >
+    <main className="text-[#219EBC] drop-shadow-[0_0_4px_black] overflow-x-clip" >
       {/* Титульная страница */}
       <div className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg px-5 sm:px-0">Грузоперевозки по РФ+</h1>
@@ -327,6 +327,8 @@ export default function Home() {
             транспорта!
           </p>
         </div>
+          
+          <div ref={targetRef}/>
 
         <div
           className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}
@@ -347,7 +349,7 @@ export default function Home() {
           </div>
 
         </div>
-        <div ref={targetRef}>
+        <div>
           <h4 className="text-xs md:text-base lg:text-lg font-semibold mt-4 dark:text-[#219EBC]">Приглашаем Вас к взаимовыгодному сотрудничеству!</h4>
         </div>
 
@@ -441,7 +443,7 @@ export default function Home() {
 
                   {/* Заголовок под кругом */}
                   <h3
-                    className={`mt-2 text-xs sm:text-sm font-semibold transition-all duration-500 delay-500 text-white 
+                    className={`mt-2 text-xs sm:text-sm font-semibold transition-all duration-500 text-white 
             ${hoveredIndex === index ? "-translate-y-4 opacity-0" : "translate-y-0 opacity-100"}`}
                   >
                     {item.title}
@@ -452,7 +454,7 @@ export default function Home() {
 
             {/* Блок с текстом */}
             <div className="relative w-full h-[calc(0.3*100svh)] flex justify-center text-white text-xs md:text-base lg:text-lg">
-              <div
+            <div
                 className={`text-center p-4 transition-all duration-500 transform ease-in-out 
           ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
               >
@@ -524,13 +526,13 @@ export default function Home() {
       </div>
 
       {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА*/}
-      <div id='негабаритные-грузы-/-мультимодальные-доставки' className="bg-white dark:bg-black text-[#023047] w-full md:min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 dark:text-[#219EBC]">
+      <div id='негабаритные-грузы-/-мультимодальные-доставки' className="bg-white dark:bg-black text-[#023047] w-full min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 dark:text-[#219EBC]">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ</h1>
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА</h1>
         <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2 text-[#FB8500] drop-shadow-md">РАЗМЕР ИМЕЕТ ЗНАЧЕНИЕ!</h2>
 
         <h3 className="text-base md:text-lg lg:text-xl font-semibold my-6">Мы предлагаем Вам:</h3>
-        <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[1] scale-[0.5] gap-3 min-w-max h-[calc(0.5*100svh)] sm:h-auto -mt-16 sm:mt-0">
+        <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[1] scale-[0.4] gap-3 min-w-max h-[calc(0.4*100svh)] sm:h-auto -mt-16 sm:mt-0">
 
           <div onMouseEnter={() => setHoverBlock3(0)}>
             <div onMouseEnter={() => setHoveredShipBlock3(true)} onMouseLeave={() => setHoveredShipBlock3(false)}>
@@ -610,7 +612,7 @@ export default function Home() {
         </div>
 
 
-        <div className="mt-4 text-left max-w-3xl min-h-[calc(0.2*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg">
+        <div className={`mt-4 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
           {hoverBlock3 !== null && (
             <div>
               {itemsBlock3[hoverBlock3].title}
