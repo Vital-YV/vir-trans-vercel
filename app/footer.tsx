@@ -4,7 +4,7 @@ import './globals.css'
 export default function Footer() {
 
 	return (
-		<div className="bg-gradient-to-t from-[#023047] from-95% to-white dark:to-black text-white min-h-[30vh] p-6 xl:px-32 flex items-center">
+		<div className="bg-gradient-to-t from-main dark:from-darkMain from-95% to-white dark:to-black text-white min-h-[30vh] p-6 xl:px-32 flex items-center">
 			<div className="container mx-auto grid md:grid-cols-3 gap-8 text-center md:text-left">
 
 				<div>

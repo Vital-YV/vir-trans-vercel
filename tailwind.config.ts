@@ -158,6 +158,26 @@ module.exports = {
 				eight: '0.8',
 				'0.25': '0.25'
 			},
+			colors:{
+				main: '#FB8500',
+				darkMain: '#023047',
+
+				textMain: '#219EFF',
+				textDarkMain: '#FB8500',
+
+				h1: '#023047',
+				h1Dark: '#FFB703',
+
+				h2: '#219EBC',
+				h2Dark: '#FB8500',
+
+				text1: 'black',
+				text1Dark: 'white',
+
+				text2: '#023047',
+				text2Dark: '#219EBC',
+
+			},
 			keyframes: {
 				floatUp: {
 					'0%': { bottom: '0', height: '0vh', opacity: '0.1' },

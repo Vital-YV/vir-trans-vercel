@@ -21,5 +21,18 @@ body {
 }
 
 h1 {
-  color: #FFB703;
+  color: #023047;
+}
+h2 {
+  
+  color: #219EBC;
+}
+@media (prefers-color-scheme: dark) {
+  h1 {
+    color: #FB8500;
+  }
+
+  h2 {
+    color: #FFB703;
+  }
 }
