@@ -186,7 +186,7 @@ export default function Home() {
         <p className='max-w-3xl mt-2'>
           Мы специализируемся на перевозке различных текучих веществ, будь то химические продукты или пищевые ингредиенты. Наши специалисты обладают высокой квалификацией и опытом, гарантируя безопасную доставку вашего груза.
         </p>,
-      color: 'bg-[#219EBC] hover:bg-slate-100',
+      color: 'bg-[#FB8500] hover:bg-slate-100',
     },
     {
       title: 'Специализированное оборудование',
@@ -194,7 +194,7 @@ export default function Home() {
         <p className="max-w-3xl mt-2">
           Для перевозки наливных грузов мы используем специальные автоцистерны. Все емкости проходят строгий санитарный контроль и регулярную проверку на техническое состояние, обеспечивая высокий уровень безопасности и качества доставки.
         </p>,
-      color: 'bg-[#219EBC] hover:bg-slate-100',
+      color: 'bg-[#FB8500] hover:bg-slate-100',
     },
     {
       title: 'Соблюдение стандартов',
@@ -202,7 +202,7 @@ export default function Home() {
         <p className="max-w-3xl mt-2">
           Мы строго следуем санитарно-эпидемиологическим нормам и стандартам безопасности при перевозке грузов. Перед каждой загрузкой емкости проходят тщательную очистку и обработку, а наши водители проходят профессиональную подготовку.
         </p>,
-      color: 'bg-[#219EBC] hover:bg-slate-100',
+      color: 'bg-[#FB8500] hover:bg-slate-100',
     },
     {
       title: 'В услуги входит',
@@ -215,7 +215,7 @@ export default function Home() {
             растворимые краски, моющие средства, концентраты и экстракты, вина, виноградное сусло, продукты питания и многое другое.
           </li>
         </ul>,
-      color: 'bg-[#219EBC] hover:bg-slate-100',
+      color: 'bg-[#FB8500] hover:bg-slate-100',
     },
   ];
 
@@ -274,11 +274,11 @@ export default function Home() {
 
 
   return (
-    <main className="dark:drop-shadow-[0_0_4px_black] drop-shadow-[0_0_4px_white] overflow-x-clip" >
+    <main className="overflow-x-clip" >
       {/* Титульная страница */}
       <div className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg px-5 sm:px-0">Грузоперевозки по РФ+</h1>
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2 drop-shadow-md">Автомобильные, морские, авиационные и железнодорожные</h2>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold   px-5 sm:px-0">Грузоперевозки по РФ+</h1>
+        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Автомобильные, морские, авиационные и железнодорожные</h2>
         <div className="mt-4 grid grid-cols-4 gap-2">
           <a
             href=""  // Замените на ссылку вашего канала в Telegram
@@ -315,7 +315,7 @@ export default function Home() {
 
       {/* О компании */}
       <div className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center bg-white dark:bg-black text-text2 text-xs sm:text-sm md:text-base overflow-hidden">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">О КОМПАНИИ</h1>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold ">О КОМПАНИИ</h1>
         <div
           className={`w-svw pr-20vw transform transition-transform duration-700 ease-out ${OKompanii === "translate-x-full" ? "-translate-x-full" : OKompanii}`}
         >
@@ -357,14 +357,14 @@ export default function Home() {
 
       {/* Услуги */}
       <div id='услуги-грузоперевозок' className="w-full  flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">УСЛУГИ ГРУЗОПЕРЕВОЗОК</h1>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">УСЛУГИ ГРУЗОПЕРЕВОЗОК</h1>
         <div className="mt-4">(Здесь будет изображение)</div>
       </div>
 
       {/* Услуга 1 ДОСТАВКА «ТОЧКА – ТОЧКА»*/}
       <div id="обычные-грузы" className="relative w-full pt-20 md:pt-0 min-h-[100svh] bg-white dark:bg-black text-text2 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">ДОСТАВКА «ТОЧКА – ТОЧКА»</h1>
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2 drop-shadow-md">Любым видом транспорта!</h2>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ДОСТАВКА «ТОЧКА – ТОЧКА»</h1>
+        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Любым видом транспорта!</h2>
 
         {mobile ? (
           <div className="relative w-[300px] h-[200px] grid place-items-center">
@@ -419,10 +419,10 @@ export default function Home() {
 
       {/* Услуга 2 ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ*/}
       <div id='наливные-и-опасные-грузы' className="w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">
           ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ
         </h1>
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2 drop-shadow-md">
+        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">
           СВОЙСТВО ИМЕЕТ ЗНАЧЕНИЕ!
         </h2>
 
@@ -442,12 +442,12 @@ export default function Home() {
                   />
 
                   {/* Заголовок под кругом */}
-                  <h3
+                  <p
                     className={`mt-2 text-xs sm:text-sm font-semibold transition-all duration-500
             ${hoveredIndex === index ? "-translate-y-4 opacity-0" : "translate-y-0 opacity-100"}`}
                   >
                     {item.title}
-                  </h3>
+                  </p>
                 </div>
               ))}
             </div>
@@ -482,13 +482,13 @@ export default function Home() {
                   />
 
                   {/* Заголовки */}
-                  <h3
+                  <p
                     className={`text-xs sm:text-sm font-semibold transition-all duration-500 w-24 sm:w-32 md:w-40 break-words
             ${hoveredIndex === index ? "-translate-x-4 opacity-0" : "translate-x-0 opacity-100"} 
             left-[-55px] top-[-15px]`}
                   >
                     {item.title}
-                  </h3>
+                  </p>
                 </div>
               ))}
             </div>
@@ -527,9 +527,9 @@ export default function Home() {
 
       {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА*/}
       <div id='негабаритные-грузы-/-мультимодальные-доставки' className="bg-white dark:bg-black text-text2 w-full min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ</h1>
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА</h1>
-        <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2 drop-shadow-md">РАЗМЕР ИМЕЕТ ЗНАЧЕНИЕ!</h2>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ</h1>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА</h1>
+        <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2  ">РАЗМЕР ИМЕЕТ ЗНАЧЕНИЕ!</h2>
 
         <h3 className="text-base md:text-lg lg:text-xl font-semibold my-6">Мы предлагаем Вам:</h3>
         <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[1] scale-[0.4] gap-3 min-w-max h-[calc(0.4*100svh)] sm:h-auto -mt-16 sm:mt-0">
@@ -627,8 +627,8 @@ export default function Home() {
       </div>
 
       {/* Нам доверяют */}
-      <div className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">НАМ ДОВЕРЯЮТ</h1>
+      <div id='нам-доверяют' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">НАМ ДОВЕРЯЮТ</h1>
 
         <p className="mt-4 text-base md:text-lg lg:text-xl max-w-3xl">
           Нам доверяют крупнейшие компании из сфер нефтегазовой промышленности, металлургии, химического производства, электротехники и товаров народного потребления.
@@ -653,8 +653,8 @@ export default function Home() {
       </div>
 
       {/* Задать вопросы */}
-      <div className="w-full min-h-[100svh] bg-white dark:bg-black text-text2 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold drop-shadow-lg">ЗАДАТЬ ВОПРОС / КОНТАКТЫ</h1>
+      <div id='задать-вопрос/контакты' className="w-full min-h-[100svh] bg-white dark:bg-black text-text2 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ЗАДАТЬ ВОПРОС / КОНТАКТЫ</h1>
 
         <p className="mt-4 text-base md:text-lg lg:text-xl">Подберём транспорт под ваши потребности.</p>
         <p className="text-base md:text-lg lg:text-xl">Предупредим о возможных нюансах.</p>

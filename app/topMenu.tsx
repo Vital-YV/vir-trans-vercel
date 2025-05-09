@@ -61,9 +61,9 @@ export default function TopMenu() {
                         <div className="text-lg font-semibold">Vir trans</div>
                         <div className="ml-4">
                             <button className="w-3 h-3" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                <div className="w-3 h-0.5 bg-slate-50" />
-                                <div className="w-3 h-0.5 mt-0.5 bg-slate-50" />
-                                <div className="w-3 h-0.5 mt-0.5 bg-slate-50" />
+                                <div className="w-3 h-0.5 bg-slate-50 shadow-[0_1px_3px_rgba(0,0,0,0.4)]" />
+                                <div className="w-3 h-0.5 mt-0.5 bg-slate-50 shadow-[0_1px_3px_rgba(0,0,0,0.4)]" />
+                                <div className="w-3 h-0.5 mt-0.5 bg-slate-50 shadow-[0_1px_3px_rgba(0,0,0,0.4)]" />
                             </button>
                         </div>
                     </div>
@@ -82,7 +82,7 @@ export default function TopMenu() {
                             {menuItems.map((item, index) => (
                                 <li key={index} className="mb-4">
                                     <button className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain transition-colors text-lg text-left w-full">
-                                        <a href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`} onClick={() => setIsMenuOpen(false)}>{item.title}</a>
+                                        <a className=' text-shadow-[0_1px_3px_rgba(0,0,0,0.4)]' href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`} onClick={() => setIsMenuOpen(false)}>{item.title}</a>
                                     </button>
 
                                     {item.submenu.length > 0 && (
@@ -120,7 +120,7 @@ export default function TopMenu() {
                                     onMouseLeave={handleMouseLeave}
                                 >
                                     <button className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain">
-                                        <a href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`}>{item.title}</a>
+                                        <a className=' text-shadow-[0_1px_3px_rgba(0,0,0,0.4)]' href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`}>{item.title}</a>
                                     </button>
 
                                     {item.submenu.length > 0 && (

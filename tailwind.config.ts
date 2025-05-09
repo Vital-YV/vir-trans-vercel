@@ -141,7 +141,9 @@ module.exports = {
 				'playfair': ['Playfair Display'],
 				'montserrat': ['Montserrat'],
 				'russo': ['Russo One'],
-				'handjet': ['Handjet']
+				'handjet': ['Handjet'],
+				roboto: ['var(--font-roboto)', 'sans-serif'],
+        		garamond: ['var(--font-garamond)', 'serif'],
 			},
 			fontSize: {
 				'neonsign': '20vh',
@@ -162,7 +164,7 @@ module.exports = {
 				main: '#FB8500',
 				darkMain: '#023047',
 
-				textMain: '#219EFF',
+				textMain: '#1e3d98',
 				textDarkMain: '#FB8500',
 
 				h1: '#023047',
@@ -171,7 +173,7 @@ module.exports = {
 				h2: '#219EBC',
 				h2Dark: '#FB8500',
 
-				text1: 'black',
+				text1: 'white',
 				text1Dark: 'white',
 
 				text2: '#023047',

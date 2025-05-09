@@ -14,9 +14,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en">
 			<body className="relative bg-[url('/MainBG.jpg')] bg-cover bg-center bg-fixed ">
-				<div className="absolute inset-0 bg-[url('/MainBG.jpg')] bg-cover bg-center bg-fixed blur-sm z-[-1]" />
+				<div className="absolute inset-0 bg-[url('/MainBG.jpg')] bg-cover bg-center bg-fixed blur-md z-[-1]" />
 
-				<div className="absolute inset-0 bg-black/10 dark:bg-black/40  z-0"></div> {/* Затемняющий слой */}
+				<div className="absolute inset-0 bg-white/25 dark:bg-black/40  z-0"></div> {/* Затемняющий слой */}
 				<LayoutProvider>
 					<div className="relative z-20">
 						<TopMenu />
