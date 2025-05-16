@@ -82,7 +82,7 @@ function CircleMotion({
     >
       {/* Круг */}
       <div
-        className={`w-24 h-24 lg:w-28 lg:h-28 
+        className={`w-20 md:w-24 h-20 md:h-24 lg:w-28 lg:h-28 
           rounded-full bg-darkMain transition-transform duration-300 z-10 
           ${isActive ? '-translate-x-32 md:-translate-x-52' : ''}
         `}
@@ -94,16 +94,16 @@ function CircleMotion({
           absolute 
           -ml-32 md:-ml-52 
           w-[350px] md:w-[550px] lg:w-[650px] 
-          h-24 lg:h-28 
+          h-20 md:h-24 lg:h-28 
           pl-28 md:pl-32 
           rounded-l-full flex items-center 
           bg-gradient-to-r dark:from-darkMain from-main from-90% to-95% z-0 
           transition-opacity duration-300 ${isActive ? 'opacity-100 animate-slideIn' : 'opacity-0 pointer-events-none'}
           `}
       >
-        <div className="text-xs md:text-sm lg:text-base leading-snug">
-          <h3 className="font-bold mb-1">{title}</h3>
-          <p className="text-white text-[8px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
+        <div className="text-[10px] md:text-sm lg:text-base leading-snug">
+          <h3 className="font-bold md:mb-1">{title}</h3>
+          <p className="text-white text-[6px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
         </div>
       </div>
     </div>
@@ -772,7 +772,7 @@ export default function Home() {
       <div id='заказчикам-и-перевозчикам' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ</h1>
         <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Преимущества работы с нами:</h2>
-        <div className="flex flex-col space-y-8 md:space-y-12 lg:space-y-16 mt-10">
+        <div className="flex flex-col space-y-6 md:space-y-12 lg:space-y-16 mt-10">
           {circleData.map((item, index) => (
           <CircleMotion
             key={index}
