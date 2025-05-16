@@ -93,11 +93,11 @@ function CircleMotion({
         className={`
           absolute 
           -ml-32 md:-ml-52 
-          w-[350px] md:w-[550px] lg:w-[650px] 
+          w-[330px] md:w-[550px] lg:w-[650px] 
           h-20 md:h-24 lg:h-28 
-          pl-28 md:pl-32 
+          pl-20 md:pl-32 
           rounded-l-full flex items-center 
-          bg-gradient-to-r dark:from-darkMain from-main from-90% to-95% z-0 
+          bg-gradient-to-r dark:from-darkMain from-main from-80% to-95% z-0 
           transition-opacity duration-300 ${isActive ? 'opacity-100 animate-slideIn' : 'opacity-0 pointer-events-none'}
           `}
       >
