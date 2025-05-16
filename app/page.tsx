@@ -83,7 +83,7 @@ function CircleMotion({
       {/* Круг */}
       <div
         className={`w-20 md:w-24 h-20 md:h-24 lg:w-28 lg:h-28 
-          rounded-full bg-darkMain transition-transform duration-300 z-10 
+          rounded-full dark:bg-darkMain bg-main transition-transform duration-300 z-10 
           ${isActive ? '-translate-x-32 md:-translate-x-52' : ''}
         `}
       />
@@ -101,7 +101,7 @@ function CircleMotion({
           transition-opacity duration-300 ${isActive ? 'opacity-100 animate-slideIn' : 'opacity-0 pointer-events-none'}
           `}
       >
-        <div className="text-[10px] md:text-sm lg:text-base leading-snug">
+        <div className="text-[10px] md:text-sm lg:text-base leading-snug ">
           <h3 className="font-bold md:mb-1">{title}</h3>
           <p className="text-white text-[6px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
         </div>
