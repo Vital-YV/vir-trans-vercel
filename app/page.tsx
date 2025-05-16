@@ -103,7 +103,7 @@ function CircleMotion({
       >
         <div className="text-[9px] md:text-sm lg:text-base leading-snug ">
           <h3 className="font-bold md:mb-1">{title}</h3>
-          <p className="text-[5px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
+          <p className="text-[6px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@ function CircleMotion({
 const circleData = [
   {
     title: 'Сохранность груза и полная материальная ответственность',
-    text: 'Страхование нашей ответственности — обязательное условие. Минимальная сумма на рейс — 8 млн ₽. При превышении лимита — доп. страхование. Партнёры: Росгосстрах, Ингосстрах, СК Согласие, СК Пари.',
+    text: 'Страхование нашей ответственности — обязательное условие. Минимум на рейс — 8 млн ₽. При превышении лимита — доп. страхование. Партнёры: Росгосстрах, Ингосстрах, СК Согласие, СК Пари.',
   },
   {
     title: 'Точное соблюдение сроков',
