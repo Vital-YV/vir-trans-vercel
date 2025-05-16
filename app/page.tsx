@@ -101,9 +101,9 @@ function CircleMotion({
           transition-opacity duration-300 ${isActive ? 'opacity-100 animate-slideIn' : 'opacity-0 pointer-events-none'}
           `}
       >
-        <div className="text-[10px] md:text-sm lg:text-base leading-snug ">
+        <div className="text-[9px] md:text-sm lg:text-base leading-snug ">
           <h3 className="font-bold md:mb-1">{title}</h3>
-          <p className="text-white text-[6px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
+          <p className="text-[5px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
         </div>
       </div>
     </div>
