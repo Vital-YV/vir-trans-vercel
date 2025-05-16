@@ -85,7 +85,7 @@ module.exports = {
 				'400': '400px',
 				'300': '300px',
 				'200': '200px',
-				
+
 			},
 			minWidth: {
 				'1000': '1000px',
@@ -143,7 +143,7 @@ module.exports = {
 				'russo': ['Russo One'],
 				'handjet': ['Handjet'],
 				roboto: ['var(--font-roboto)', 'sans-serif'],
-        		garamond: ['var(--font-garamond)', 'serif'],
+				garamond: ['var(--font-garamond)', 'serif'],
 			},
 			fontSize: {
 				'neonsign': '20vh',
@@ -160,7 +160,7 @@ module.exports = {
 				eight: '0.8',
 				'0.25': '0.25'
 			},
-			colors:{
+			colors: {
 				main: '#FB8500',
 				darkMain: '#023047',
 
@@ -194,47 +194,51 @@ module.exports = {
 					'50%': { transform: 'rotate(0deg)' },
 					'75%': { transform: 'rotate(6deg)' },
 					'100%': { transform: 'rotate(0deg)' },
-				  },
-				  helicopterFly: {
+				},
+				helicopterFly: {
 					'0%': { transform: 'translate(150%, -120%)' },
 					'40%': { transform: 'translate(-108px, 75px)' },
 					'50%': { transform: 'translate(-108px, 75px)' },
 					'80%': { transform: 'translate(-108px, 60px)' },
 					'100%': { transform: 'translate(112px, -25px)' },
-				  },
-				  packageLift: {
+				},
+				packageLift: {
 					'0%, 50%': { transform: 'translate(0, 0)' },
 					'40%': { transform: 'translate(0, 0px)' },
 					'50%': { transform: 'translate(0, 0px)' },
 					'80%': { transform: 'translate(0, -15px)' },
 					'100%': { transform: 'translate(220px, -100px)' },
-				  },
-				  packageScale: {
-					'0%': {scale: '1'},
-					'10%': {scale: '2.1'},
-					'15%': {scale: '2'},
-					'20%': {scale: '2.1'},
-					'25%': {scale: '2'},
-					'90%': {scale: '2'},
-					'100%': {scale: '1'},
-				  },
-				  packageInHardhat:{
+				},
+				packageScale: {
+					'0%': { scale: '1' },
+					'10%': { scale: '2.1' },
+					'15%': { scale: '2' },
+					'20%': { scale: '2.1' },
+					'25%': { scale: '2' },
+					'90%': { scale: '2' },
+					'100%': { scale: '1' },
+				},
+				packageInHardhat: {
 					'0%': { transform: 'translate(-16px, -100%)' },
-					'40%': { transform: 'translate(-16px, -10%)'},
-					'60%': { transform: 'translate(-16px, 0px), rotate(3deg)'},
-					'85%': { transform: 'translate(-16px, 0px), rotate(6deg)'},
-					'95%': { transform: 'translate(-16px, 0px), rotate(9deg)'},
+					'40%': { transform: 'translate(-16px, -10%)' },
+					'60%': { transform: 'translate(-16px, 0px), rotate(3deg)' },
+					'85%': { transform: 'translate(-16px, 0px), rotate(6deg)' },
+					'95%': { transform: 'translate(-16px, 0px), rotate(9deg)' },
 					'100%': { transform: 'translate(-16px, 0px), rotate(12deg)' },
-				  },
-				  magnifier:{
+				},
+				magnifier: {
 					'0%': { transform: 'translate(0%, 0%)' },
-					'20%': { transform: 'translate(-50%, -20%)', scale:'1.1'},
-					'40%': { transform: 'translate(-25%, 0%)', scale:'0.9'},
-					'60%': { transform: 'translate(-50%, 40%)', scale:'1.1'},
-					'80%': { transform: 'translate(-10%, 40%)', scale:'0.8'},
+					'20%': { transform: 'translate(-50%, -20%)', scale: '1.1' },
+					'40%': { transform: 'translate(-25%, 0%)', scale: '0.9' },
+					'60%': { transform: 'translate(-50%, 40%)', scale: '1.1' },
+					'80%': { transform: 'translate(-10%, 40%)', scale: '0.8' },
 					'100%': { transform: 'translate(0%, 0%)' },
-				  }
-					
+				},
+				slideIn: {
+					'0%': { opacity: 0, transform: 'translateX(-20px)' },
+					'100%': { opacity: 1, transform: 'translateX(0)' },
+				},
+
 			},
 			animation: {
 				'floatUpOne': 'floatUp 3s infinite linear',
@@ -248,14 +252,15 @@ module.exports = {
 				packageLift: 'packageLift 4s ease-in-out forwards',
 				packageScale: 'packageScale 4s ease-in-out',
 				packageInHardhat: 'packageInHardhat 0.8s ease-in-out',
-				magnifier: 'magnifier 4s ease-in-out'
+				magnifier: 'magnifier 4s ease-in-out',
+				slideIn: 'slideIn 0.3s ease-out forwards',
 			},
 			screens: {
 				'h-sm': { 'raw': '(max-height: 800px)' },
 				'h-xs': { 'raw': '(max-height: 600px)' },
 				// Add more custom height breakpoints as needed
 			},
-			
+
 
 
 		},

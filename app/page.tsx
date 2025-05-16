@@ -54,6 +54,81 @@ function TransportIcon({ src, alt, label }: TransportIconProps) {
   );
 }
 
+interface CircleMotionProps {
+  keyNumber: number;
+  title: string;
+  text: string;
+  activeIndex: number | null;
+  setActiveIndex: (index: number) => void;
+}
+
+function CircleMotion({
+  keyNumber,
+  title,
+  text,
+  activeIndex,
+  setActiveIndex,
+}: CircleMotionProps) {
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    setIsActive(activeIndex === keyNumber);
+  }, [activeIndex, keyNumber]);
+
+  return (
+    <div
+      onMouseEnter={() => setActiveIndex(keyNumber)}
+      className="relative flex items-center h-20 md:h-24 lg:h-28"
+    >
+      {/* Круг */}
+      <div
+        className={`w-24 h-24 lg:w-28 lg:h-28 
+          rounded-full bg-darkMain transition-transform duration-300 z-10 
+          ${isActive ? '-translate-x-32 md:-translate-x-52' : ''}
+        `}
+      />
+
+      {/* Блок с текстом */}
+      <div
+        className={`
+          absolute 
+          -ml-32 md:-ml-52 
+          w-[350px] md:w-[550px] lg:w-[650px] 
+          h-24 lg:h-28 
+          pl-28 md:pl-32 
+          rounded-l-full flex items-center 
+          bg-gradient-to-r dark:from-darkMain from-main from-90% to-95% z-0 
+          transition-opacity duration-300 ${isActive ? 'opacity-100 animate-slideIn' : 'opacity-0 pointer-events-none'}
+          `}
+      >
+        <div className="text-xs md:text-sm lg:text-base leading-snug">
+          <h3 className="font-bold mb-1">{title}</h3>
+          <p className="text-white text-[8px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const circleData = [
+  {
+    title: 'Сохранность груза и полная материальная ответственность',
+    text: 'Страхование нашей ответственности — обязательное условие. Минимальная сумма на рейс — 8 млн ₽. При превышении лимита — доп. страхование. Партнёры: Росгосстрах, Ингосстрах, СК Согласие, СК Пари.',
+  },
+  {
+    title: 'Точное соблюдение сроков',
+    text: 'Мы гарантируем своевременную доставку грузов в рамках согласованного графика, строго соблюдая дедлайны.',
+  },
+  {
+    title: 'Контроль на всех этапах',
+    text: 'Мы отслеживаем грузы в пути, информируем клиента и контролируем процесс доставки вплоть до получения.',
+  },
+  {
+    title: 'Персональный подход',
+    text: 'Каждому клиенту — индивидуальный менеджер, подбор транспорта и маршрута под задачи и бюджет.',
+  },
+];
+
 
 export default function Home() {
 
@@ -69,6 +144,8 @@ export default function Home() {
   const [hoveredBigPackageBlock3, setHoveredBigPackageBlock3] = useState(false);
   const [hoveredPackageInHardhatBlock3, setHoveredPackageInHardhatBlock3] = useState(false);
   const [hoveredMagnifierBlock3, setHoveredMagnifierBlock3] = useState(false);
+
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -327,8 +404,8 @@ export default function Home() {
             транспорта!
           </p>
         </div>
-          
-          <div ref={targetRef}/>
+
+        <div ref={targetRef} />
 
         <div
           className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}
@@ -454,7 +531,7 @@ export default function Home() {
 
             {/* Блок с текстом */}
             <div className="relative w-full h-[calc(0.3*100svh)] flex justify-center text-xs md:text-base lg:text-lg">
-            <div
+              <div
                 className={`text-center p-4 transition-all duration-500 transform ease-in-out 
           ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
               >
@@ -689,6 +766,24 @@ export default function Home() {
           <li><strong>ВКонтакте:</strong> <a href="#" className="text-[#219EBC] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
           <li><strong>Телеграм:</strong> <a href="#" className="text-[#219EBC] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
         </ul>
+      </div>
+
+      {/*ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ*/}
+      <div id='заказчикам-и-перевозчикам' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ</h1>
+        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Преимущества работы с нами:</h2>
+        <div className="flex flex-col space-y-8 md:space-y-12 lg:space-y-16 mt-10">
+          {circleData.map((item, index) => (
+          <CircleMotion
+            key={index}
+            keyNumber={index}
+            title={item.title}
+            text={item.text}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        ))}
+        </div>
       </div>
 
     </main >
