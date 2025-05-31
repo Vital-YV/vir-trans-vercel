@@ -25,10 +25,10 @@ export default function TopMenu() {
     }, []);
 
     const menuItems = [
-        { title: "Услуги грузоперевозок", submenu: ["Обычные грузы", "Наливные и опасные грузы", "Негабаритные грузы / мультимодальные доставки"] },
-        { title: "Заказчикам и Перевозчикам", submenu: ["Преимущества работы с нами", "Вопросы - ответы", "География перевозок", "Примеры перевозок"] },
+        { title: "Услуги грузоперевозок", submenu: ["Обычные грузы", "Наливные и опасные грузы", "Негабаритные грузы / мультимодальные доставки"] }, 
         { title: "Нам ДОВЕРЯЮТ", submenu: [] },
         { title: "Задать вопрос/Контакты", submenu: [] },
+        { title: "Заказчикам и Перевозчикам", submenu: ["Преимущества работы с нами", "Вопросы - ответы", "География перевозок", "Примеры перевозок"] },
         { title: "Отзывы", submenu: [] },
         { title: "Вакансии", submenu: [] },
         { title: "Дайджест", submenu: [] },
@@ -51,6 +51,16 @@ export default function TopMenu() {
         setIsVisible((prev) => !prev);
         setChangeUl(isVisible ? 'hidden' : '');
         setOpenMenu(null);
+    };
+
+    const scrollToId = (id: string) => {
+        const offset = 92; // высота хедера в px (24 Tailwind единицы = 6rem = 96px)
+        const element = document.getElementById(id);
+        if (!element) return;
+
+        const y = element.getBoundingClientRect().top + window.scrollY - offset;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
     };
 
     return (
@@ -81,9 +91,17 @@ export default function TopMenu() {
                         <ul className="mt-20 pl-4 text-white">
                             {menuItems.map((item, index) => (
                                 <li key={index} className="mb-4">
-                                    <button className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain transition-colors text-lg text-left w-full">
-                                        <a className=' text-shadow-[0_1px_3px_rgba(0,0,0,0.4)]' href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`} onClick={() => setIsMenuOpen(false)}>{item.title}</a>
-                                    </button>
+                                    <div className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain transition-colors text-lg text-left w-full">
+                                        <button
+                                            className='text-shadow-[0_1px_3px_rgba(0,0,0,0.4)]'
+                                            onClick={() => {
+                                                scrollToId(item.title.replace(/\s+/g, '-').toLowerCase());
+                                                setIsMenuOpen(false);
+                                            }}
+                                        >
+                                            {item.title}
+                                        </button>
+                                    </div>
 
                                     {item.submenu.length > 0 && (
                                         <ul className="mt-2 ml-4 space-y-1">
@@ -93,7 +111,14 @@ export default function TopMenu() {
                                                     className="text-sm flex items-center gap-2 dark:hover:text-textDarkMain hover:text-textMain cursor-pointer transition-colors"
                                                 >
                                                     <span className="before:content-['•'] text-white"></span>
-                                                    <a href={`#${subItem.replace(/\s+/g, '-').toLowerCase()}`} onClick={() => setIsMenuOpen(false)}>{subItem}</a>
+                                                    <button
+                                                        onClick={() => {
+                                                            scrollToId(subItem.replace(/\s+/g, '-').toLowerCase());
+                                                            setIsMenuOpen(false);
+                                                        }}
+                                                    >
+                                                        {subItem}
+                                                    </button>
                                                 </li>
                                             ))}
                                         </ul>
@@ -119,28 +144,40 @@ export default function TopMenu() {
                                     onMouseEnter={() => handleMouseEnter(index)}
                                     onMouseLeave={handleMouseLeave}
                                 >
-                                    <button className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain">
-                                        <a className=' text-shadow-[0_1px_3px_rgba(0,0,0,0.4)]' href={`#${item.title.replace(/\s+/g, '-').toLowerCase()}`}>{item.title}</a>
-                                    </button>
-
-                                    {item.submenu.length > 0 && (
-                                        <ul
-                                            className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b dark:from-darkMain from-main from-90% to-95% p-4 pb-16 transform transition-all
-                                            ${openMenu === index ? "opacity-100 translate-y-0 duration-500 ease-out" : "opacity-0 -translate-y-4 pointer-events-none"}`}
+                                    <div className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain">
+                                        <button
+                                            className='text-shadow-[0_1px_3px_rgba(0,0,0,0.4)] dark:hover:text-textDarkMain hover:text-textMain'
+                                            onClick={() => scrollToId(item.title.replace(/\s+/g, '-').toLowerCase())}
                                         >
-                                            {item.submenu.map((subItem, subIndex) => (
-                                                <li key={subIndex} className="py-2 dark:hover:text-textDarkMain hover:text-textMain cursor-pointer">
-                                                    <a href={`#${subItem.replace(/\s+/g, '-').toLowerCase()}`}>{subItem}</a>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
+                                            {item.title}
+                                        </button>
+                                    </div>
+
+                                    {
+                                        item.submenu.length > 0 && (
+                                            <ul
+                                                className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b dark:from-darkMain from-main from-90% to-95% p-4 pb-16 transform transition-all
+                                            ${openMenu === index ? "opacity-100 translate-y-0 duration-500 ease-out" : "opacity-0 -translate-y-4 pointer-events-none"}`}
+                                            >
+                                                {item.submenu.map((subItem, subIndex) => (
+                                                    <li key={subIndex} className="py-2 dark:hover:text-textDarkMain hover:text-textMain cursor-pointer">
+                                                        <button
+                                                            onClick={() => scrollToId(subItem.replace(/\s+/g, '-').toLowerCase())}
+                                                        >
+                                                            {subItem}
+                                                        </button>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )
+                                    }
                                 </li>
                             ))}
                         </ul>
                     </div>
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 }

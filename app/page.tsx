@@ -1,6 +1,7 @@
 "use client"
-import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import QuestionRain from './QuestionRain';
+
 
 type TransportIconProps = {
   src: string;
@@ -54,10 +55,12 @@ function TransportIcon({ src, alt, label }: TransportIconProps) {
   );
 }
 
+
 interface CircleMotionProps {
   keyNumber: number;
   title: string;
   text: string;
+  image: string;
   activeIndex: number | null;
   setActiveIndex: (index: number) => void;
 }
@@ -66,6 +69,7 @@ function CircleMotion({
   keyNumber,
   title,
   text,
+  image,
   activeIndex,
   setActiveIndex,
 }: CircleMotionProps) {
@@ -83,10 +87,16 @@ function CircleMotion({
       {/* Круг */}
       <div
         className={`w-20 md:w-24 h-20 md:h-24 lg:w-28 lg:h-28 
-          rounded-full dark:bg-darkMain bg-main transition-transform duration-300 z-10 
+          rounded-full dark:bg-[#3b457c] bg-main transition-transform duration-300 z-10 
           ${isActive ? '-translate-x-32 md:-translate-x-52' : ''}
         `}
-      />
+      >
+        <img
+          src={image}
+          alt={image}
+          className="scale-75"
+        />
+      </div>
 
       {/* Блок с текстом */}
       <div
@@ -97,12 +107,12 @@ function CircleMotion({
           h-20 md:h-24 lg:h-28 
           pl-20 md:pl-32 
           rounded-l-full flex items-center 
-          bg-gradient-to-r dark:from-darkMain from-main from-80% to-95% z-0 
+          bg-gradient-to-r dark:from-[#3b457c] from-main from-80% to-95% z-0 
           transition-opacity duration-300 ${isActive ? 'opacity-100 animate-slideIn' : 'opacity-0 pointer-events-none'}
           `}
       >
-        <div className="text-[9px] md:text-sm lg:text-base leading-snug ">
-          <h3 className="font-bold md:mb-1">{title}</h3>
+        <div className="text-[9px] md:text-sm lg:text-base leading-snug text-white">
+          <h3 className="font-bold md:mb-1 ">{title}</h3>
           <p className="text-[6px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
         </div>
       </div>
@@ -114,20 +124,248 @@ const circleData = [
   {
     title: 'Сохранность груза и полная материальная ответственность',
     text: 'Страхование нашей ответственности — обязательное условие. Минимум на рейс — 8 млн ₽. При превышении лимита — доп. страхование. Партнёры: Росгосстрах, Ингосстрах, СК Согласие, СК Пари.',
+    image: '/shield.svg'
   },
   {
     title: 'Точное соблюдение сроков',
     text: 'Мы гарантируем своевременную доставку грузов в рамках согласованного графика, строго соблюдая дедлайны.',
+    image: '/handshake.svg'
   },
   {
     title: 'Контроль на всех этапах',
     text: 'Мы отслеживаем грузы в пути, информируем клиента и контролируем процесс доставки вплоть до получения.',
+    image: '/cup.svg'
   },
   {
     title: 'Персональный подход',
     text: 'Каждому клиенту — индивидуальный менеджер, подбор транспорта и маршрута под задачи и бюджет.',
+    image: '/cogs.svg'
   },
 ];
+
+type FlipCardProps = {
+  question: string;
+  answer: string;
+};
+
+function SpiralCard({ question, answer }: FlipCardProps) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      className="relative w-[300px] h-[180px] m-4 cursor-pointer overflow-hidden"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Ответ */}
+      <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center text-center text-lg p-6 z-0">
+        {answer}
+      </div>
+
+      {/* Вопрос */}
+      <div
+        className={`absolute inset-0 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center text-center text-xl font-semibold p-6 z-10 transition-all duration-700 ease-in-out`}
+        style={{
+          maskImage: hovered
+            ? 'radial-gradient(circle at center, transparent 30%, black 70%)'
+            : 'radial-gradient(circle at center, black 100%, black 100%)',
+          WebkitMaskImage: hovered
+            ? 'radial-gradient(circle at center, transparent 30%, black 70%)'
+            : 'radial-gradient(circle at center, black 100%, black 100%)',
+          transform: hovered ? 'rotate(720deg) scale(0)' : 'rotate(0deg) scale(1)',
+          transformOrigin: 'center',
+        }}
+      >
+        {question}
+      </div>
+    </div>
+  );
+}
+
+type FlagsProps = {
+  position: string;
+  title: string;
+  size: string;
+  sizeText: string;
+  keyNumber: number;
+  activeIndexFlags: number;
+  setActiveIndexFlags: (index: number) => void;
+};
+
+function Flags({
+  position,
+  title,
+  size,
+  sizeText,
+  keyNumber,
+  activeIndexFlags,
+  setActiveIndexFlags,
+}: FlagsProps) {
+  const isActive = activeIndexFlags === keyNumber;
+
+
+
+  return (
+    <div className={`absolute ${position} flex items-center`}>
+      <img
+        src="flag.svg"
+        alt="flag"
+        className={`
+          ${size} rounded-full bg-[#FFB703] transform transition-transform duration-300 ease-out
+          ${isActive ? "scale-125 -rotate-12 translate-x-0 z-20" : "scale-100 rotate-0 translate-x-2 z-0"}
+        `}
+        onMouseEnter={() => {
+          setActiveIndexFlags(keyNumber);
+        }}
+      />
+      <div
+        className={`
+    z-10 
+    italic 
+    rounded-l-full ${sizeText}
+    bg-gradient-to-r from-[#FFB703] from-80% to-95% 
+    text-sm text-black font-bold
+    pointer-events-none place-content-center
+    transition duration-500 delay-100 ease-in-out
+    ${isActive ? "opacity-100 translate-x-2" : "opacity-0 translate-x-0"}
+  `}
+      >
+        <div className="relative z-20">{title}</div>
+      </div>
+
+    </div>
+  );
+}
+
+const flagsList = [
+  {
+    position: 'left-[37%] top-[46%]',
+    title: 'Ямало-Ненецкий автономный округ (ЯНАО)',
+    size: 'w-[40px] h-[40px]',
+    sizeText: 'h-[50px] -ml-12 pl-12 '
+  },
+  {
+    position: 'left-[36%] top-[52%]',
+    title: 'Ханты-Мансийский автономноый округ (ХМАО)',
+    size: 'w-[40px] h-[40px]',
+    sizeText: 'h-[50px] -ml-12 pl-12 '
+  },
+  {
+    position: 'left-[60%] top-[57%]',
+    title: 'Чаяндинское месторождение',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6'
+  },
+  {
+    position: 'left-[62%] top-[61%]',
+    title: 'Бодайбо',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6'
+  },
+  {
+    position: 'left-[57%] top-[64%]',
+    title: 'Ковыктинское месторождение',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6'
+  },
+  {
+    position: 'left-[38%] top-[66%]',
+    title: 'Магистральный',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6'
+  },
+  {
+    position: 'left-[40%] top-[50%]',
+    title: 'Суторминское месторождение',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6'
+  },
+  {
+    position: 'left-[17%] top-[56%]',
+    title: 'Салмановка',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6'
+  },
+  {
+    position: 'left-[30%] top-[46%]',
+    title: 'Усинск',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[35%] top-[47%]',
+    title: 'Салехард',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[42%] top-[48%]',
+    title: 'Новозаполярный',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[37%] top-[57%]',
+    title: 'Салыме',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[31%] top-[42%]',
+    title: 'Нарьян-Маре',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[46%] top-[42%]',
+    title: 'Норильск',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[58%] top-[62%]',
+    title: 'Усть-Кут',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[70%] top-[40%]',
+    title: 'Якутия',
+    size: 'w-[40px] h-[40px]',
+    sizeText: 'h-[50px] -ml-12 pl-12 '
+  },
+  {
+    position: 'left-[75%] top-[64%]',
+    title: 'Талакан',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[48%] top-[45%]',
+    title: 'Красноярский край',
+    size: 'w-[48px] h-[48px]',
+    sizeText: 'h-[60px] -ml-[60px] pl-[60px] '
+  },
+  {
+    position: 'left-[48%] top-[60%]',
+    title: 'Лесосибирск',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[50%] top-[56%]',
+    title: 'Северо-Енисейский',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+  {
+    position: 'left-[34%] top-[45%]',
+    title: 'Воркута',
+    size: 'w-[20px] h-[20px]',
+    sizeText: 'h-[25px] -ml-6 pl-6 '
+  },
+]
+
 
 
 export default function Home() {
@@ -136,7 +374,6 @@ export default function Home() {
   const [OKompanii, setOKompanii] = useState('translate-x-full');
   const targetRef = useRef();
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [itemContent, setItemContent] = useState('opacity-0')
   const [mobile, setMobile] = useState<boolean>(false);
   const [hoverBlock3, setHoverBlock3] = useState(null)
 
@@ -146,6 +383,9 @@ export default function Home() {
   const [hoveredMagnifierBlock3, setHoveredMagnifierBlock3] = useState(false);
 
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
+  const [activeIndexFalgs, setActiveIndexFlags] = useState<number | null>();
+
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -192,7 +432,7 @@ export default function Home() {
         <p className='text-base md:text-lg max-w-3xl mt-2'>
           Мы специализируемся на перевозке различных текучих веществ, будь то химические продукты или пищевые ингредиенты. Наши специалисты обладают высокой квалификацией и опытом, гарантируя безопасную доставку вашего груза.
         </p>,
-      color: 'bg-[#FB8500] hover:bg-slate-100',
+      color: 'bg-[#FB8500] hover:bg-[#af5c00]',
     },
     {
       title: '',
@@ -208,7 +448,7 @@ export default function Home() {
         <p className="text-base md:text-lg max-w-3xl mt-2">
           Для перевозки наливных грузов мы используем специальные автоцистерны. Все емкости проходят строгий санитарный контроль и регулярную проверку на техническое состояние, обеспечивая высокий уровень безопасности и качества доставки.
         </p>,
-      color: 'bg-[#FB8500] hover:bg-slate-100',
+      color: 'bg-[#FB8500] hover:bg-[#af5c00]',
     },
     {
       title: '',
@@ -230,7 +470,7 @@ export default function Home() {
         <p className="text-base md:text-lg max-w-3xl mt-2">
           Мы строго следуем санитарно-эпидемиологическим нормам и стандартам безопасности при перевозке грузов. Перед каждой загрузкой емкости проходят тщательную очистку и обработку, а наши водители проходят профессиональную подготовку.
         </p>,
-      color: 'bg-[#FB8500] hover:bg-slate-100',
+      color: 'bg-[#FB8500] hover:bg-[#af5c00]',
     },
     {
       title: '',
@@ -250,7 +490,7 @@ export default function Home() {
             растворимые краски, моющие средства, концентраты и экстракты, вина, виноградное сусло, продукты питания и многое другое.
           </li>
         </ul>,
-      color: 'bg-[#FB8500] hover:bg-slate-100',
+      color: 'bg-[#FB8500] hover:bg-[#af5c00]',
     },
 
 
@@ -339,19 +579,42 @@ export default function Home() {
     },
   ]
 
-  const circleMouseEnter = (index) => {
-    setHoveredIndex(index)
-    items[index].hover = 'opacity-100'
-  }
-
-  const circleMouseLeave = () => {
-    setHoveredIndex(null)
-
-  }
+  const qaPairs = [
+    {
+      question: 'Как производится оплата?',
+      answer:
+        'Оплата производится на расчётный счёт, согласно договору, учитывая пожелания клиента.',
+    },
+    {
+      question: 'Работаете ли с отсрочкой по оплате?',
+      answer:
+        'Да, работаем. Длительность отсрочки зависит от объёма заказов.',
+    },
+    {
+      question: 'Предоставляете ли скидки?',
+      answer: 'Конечно. Мы готовы обсуждать взаимовыгодные условия.',
+    },
+    {
+      question: 'У вас грузы застрахованы?',
+      answer:
+        'Наша ответственность застрахована на 8 млн. рублей. При превышении этой суммы производится дополнительное страхование груза по согласованию.',
+    },
+    {
+      question: 'ЭДО. Работаете по электронному обороту документов?',
+      answer:
+        'Да. Вариант получения сопроводительных документов выбирает клиент. Это может быть ЭДО, почта, курьер.',
+    },
+    {
+      question: 'Гарантируете ли вы налоговую чистоту?',
+      answer:
+        'Конечно. Все налоги оплачиваются в срок и в полном объёме. Это можно проверить в открытых источниках.',
+    },
+  ];
 
 
   return (
     <main className="overflow-x-clip" >
+
       {/* Титульная страница */}
       <div className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-text1 dark:text-text1Dark ">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold   px-5 sm:px-0">Грузоперевозки по РФ+</h1>
@@ -432,15 +695,9 @@ export default function Home() {
 
       </div>
 
-      {/* Услуги */}
-      <div id='услуги-грузоперевозок' className="w-full  flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">УСЛУГИ ГРУЗОПЕРЕВОЗОК</h1>
-        <div className="mt-4">(Здесь будет изображение)</div>
-      </div>
-
       {/* Услуга 1 ДОСТАВКА «ТОЧКА – ТОЧКА»*/}
-      <div id="обычные-грузы" className="relative w-full pt-20 md:pt-0 min-h-[100svh] bg-white dark:bg-black text-text2 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ДОСТАВКА «ТОЧКА – ТОЧКА»</h1>
+      <div id="обычные-грузы" className="relative w-full pt-20 md:pt-0 min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text1Dark">
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  mt-10">ДОСТАВКА «ТОЧКА – ТОЧКА»</h1>
         <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Любым видом транспорта!</h2>
 
         {mobile ? (
@@ -495,7 +752,7 @@ export default function Home() {
       </div>
 
       {/* Услуга 2 ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ*/}
-      <div id='наливные-и-опасные-грузы' className="w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text1 dark:text-text1Dark ">
+      <div id='наливные-и-опасные-грузы' className="bg-white dark:bg-black w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text2 dark:text-text2Dark ">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">
           ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ
         </h1>
@@ -603,7 +860,7 @@ export default function Home() {
       </div>
 
       {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА*/}
-      <div id='негабаритные-грузы-/-мультимодальные-доставки' className="bg-white dark:bg-black text-text2 w-full min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
+      <div id='негабаритные-грузы-/-мультимодальные-доставки' className=" text-text1 w-full min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 dark:text-text1Dark">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ</h1>
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА</h1>
         <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2  ">РАЗМЕР ИМЕЕТ ЗНАЧЕНИЕ!</h2>
@@ -703,34 +960,61 @@ export default function Home() {
         </p> */}
       </div>
 
-      {/* Нам доверяют */}
-      <div id='нам-доверяют' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">НАМ ДОВЕРЯЮТ</h1>
-
-        <p className="mt-4 text-base md:text-lg lg:text-xl max-w-3xl">
-          Нам доверяют крупнейшие компании из сфер нефтегазовой промышленности, металлургии, химического производства, электротехники и товаров народного потребления.
-        </p>
-
-        {/* Лого клиентов */}
-        <div className="mt-6 flex flex-wrap justify-center gap-6">
+      {/*ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ*/}
+      {/* Вопросы - ответы */}
+      <div id='вопросы---ответы' className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12 ">
+        <QuestionRain />
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold z-10">ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ</h1>
+        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2 z-10">Вопросы – ответы</h2>
+        <div className="flex flex-wrap justify-center max-w-5xl">
+          {qaPairs.map(({ question, answer }, index) => (
+            <SpiralCard key={index} question={question} answer={answer} />
+          ))}
         </div>
-
-        <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-8">Мы гарантируем:</h3>
-        <ul className="mt-2 list-disc list-inside text-xs md:text-base lg:text-lg max-w-2xl text-left">
-          <li>
-            <strong>Тщательную проверку партнёров:</strong> Мы отбираем транспортные компании для сотрудничества, оценивая их по утверждённому алгоритму и ряду критериев, включая техническое состояние автопарка, опыт и репутацию.
-          </li>
-          <li>
-            <strong>Контроль качества:</strong> Мониторинг исполнения каждого этапа заказа проводят не только персональные менеджеры загрузок, но и сотрудники собственной службы безопасности.
-          </li>
-          <li>
-            <strong>Прозрачность сделок:</strong> Мы соблюдаем строгое соответствие гражданско-правовым отношениям, требованиям бухгалтерского учета и налогового законодательства по всем сделкам.
-          </li>
-        </ul>
+      </div>
+      {/* Преимущества работы с нами */}
+      <div id='преимущества-работы-с-нами' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
+        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Преимущества работы с нами</h2>
+        <div className="flex flex-col space-y-6 md:space-y-12 lg:space-y-16 mt-10">
+          {circleData.map((item, index) => (
+            <CircleMotion
+              key={index}
+              keyNumber={index}
+              title={item.title}
+              text={item.text}
+              image={item.image}
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+            />
+          ))}
+        </div>
+      </div>
+      {/* География перевозок */}
+      <div id='география-перевозок' className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
+        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">География перевозок</h2>
+        <div className="relative overflow-hidden">
+          <img
+            src='map.png'
+            alt='map'
+            className="w-full -m-1 -my-20 "
+          />
+          {flagsList.map((item, index) => (
+            <Flags
+              key={index}
+              keyNumber={index}
+              title={item.title}
+              position={item.position}
+              size={item.size}
+              sizeText={item.sizeText}
+              activeIndexFlags={activeIndexFalgs}
+              setActiveIndexFlags={setActiveIndexFlags}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Задать вопросы */}
-      <div id='задать-вопрос/контакты' className="w-full min-h-[100svh] bg-white dark:bg-black text-text2 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
+      <div id='задать-вопрос/контакты' className="w-full min-h-[100svh] text-text1  flex flex-col items-center justify-center text-center p-6 dark:text-text1Dark">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ЗАДАТЬ ВОПРОС / КОНТАКТЫ</h1>
 
         <p className="mt-4 text-base md:text-lg lg:text-xl">Подберём транспорт под ваши потребности.</p>
@@ -738,7 +1022,7 @@ export default function Home() {
         <p className="text-base md:text-lg lg:text-xl">Избавим от сомнений.</p>
 
         {/* Кнопка «Задать вопрос» */}
-        <button className="mt-6 px-6 py-3 bg-[#023047] text-white text-base md:text-lg lg:text-xl font-semibold rounded-2xl shadow-md hover:bg-[#035a78] transition">
+        <button className="mt-6 px-6 py-3 bg-[#3b457c] text-white text-base md:text-lg lg:text-xl font-semibold rounded-2xl shadow-md hover:bg-[#035a78] transition">
           Задать вопрос
         </button>
 
@@ -768,24 +1052,38 @@ export default function Home() {
         </ul>
       </div>
 
-      {/*ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ*/}
-      <div id='заказчикам-и-перевозчикам' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ</h1>
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Преимущества работы с нами:</h2>
-        <div className="flex flex-col space-y-6 md:space-y-12 lg:space-y-16 mt-10">
-          {circleData.map((item, index) => (
-          <CircleMotion
-            key={index}
-            keyNumber={index}
-            title={item.title}
-            text={item.text}
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
-          />
-        ))}
-        </div>
-      </div>
-
     </main >
   );
 }
+
+{/* Нам доверяют */ }
+{/* <div id='нам-доверяют' className="bg-white dark:bg-black w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text2 dark:text-text2Dark ">
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">НАМ ДОВЕРЯЮТ</h1>
+
+        <p className="mt-4 text-base md:text-lg lg:text-xl max-w-3xl">
+          Нам доверяют крупнейшие компании из сфер нефтегазовой промышленности, металлургии, химического производства, электротехники и товаров народного потребления.
+        </p>
+
+        
+        <div className="mt-6 flex flex-wrap justify-center gap-6">
+        </div>
+
+        <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-8">Мы гарантируем:</h3>
+        <ul className="mt-2 list-disc list-inside text-xs md:text-base lg:text-lg max-w-2xl text-left">
+          <li>
+            <strong>Тщательную проверку партнёров:</strong> Мы отбираем транспортные компании для сотрудничества, оценивая их по утверждённому алгоритму и ряду критериев, включая техническое состояние автопарка, опыт и репутацию.
+          </li>
+          <li>
+            <strong>Контроль качества:</strong> Мониторинг исполнения каждого этапа заказа проводят не только персональные менеджеры загрузок, но и сотрудники собственной службы безопасности.
+          </li>
+          <li>
+            <strong>Прозрачность сделок:</strong> Мы соблюдаем строгое соответствие гражданско-правовым отношениям, требованиям бухгалтерского учета и налогового законодательства по всем сделкам.
+          </li>
+        </ul>
+      </div> */}
+
+{/* Услуги */ }
+{/* <div id='услуги-грузоперевозок' className="w-full  flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text1 dark:text-text1Dark ">
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">УСЛУГИ ГРУЗОПЕРЕВОЗОК</h1>
+        <div className="mt-4">(Здесь будет изображение)</div>
+      </div> */}

@@ -161,13 +161,13 @@ module.exports = {
 				'0.25': '0.25'
 			},
 			colors: {
-				main: '#FB8500',
-				darkMain: '#023047',
+				main: '#3b457c',
+				darkMain: '#3b457c',
 
-				textMain: '#1e3d98',
+				textMain: '#FB8500',
 				textDarkMain: '#FB8500',
 
-				h1: '#023047',
+				h1: '#3b457c',
 				h1Dark: '#FFB703',
 
 				h2: '#219EBC',
@@ -176,7 +176,7 @@ module.exports = {
 				text1: 'white',
 				text1Dark: 'white',
 
-				text2: '#023047',
+				text2: '#3b457c',
 				text2Dark: '#219EBC',
 
 			},
@@ -238,6 +238,10 @@ module.exports = {
 					'0%': { opacity: 0, transform: 'translateX(-20px)' },
 					'100%': { opacity: 1, transform: 'translateX(0)' },
 				},
+				fall: {
+					'0%': { transform: 'translateY(-100%)' },
+					'100%': { transform: 'translateY(100vh)' },
+				},
 
 			},
 			animation: {
@@ -254,15 +258,15 @@ module.exports = {
 				packageInHardhat: 'packageInHardhat 0.8s ease-in-out',
 				magnifier: 'magnifier 4s ease-in-out',
 				slideIn: 'slideIn 0.3s ease-out forwards',
+				fall: 'fall 10s linear infinite',
+				
+
 			},
 			screens: {
 				'h-sm': { 'raw': '(max-height: 800px)' },
 				'h-xs': { 'raw': '(max-height: 600px)' },
 				// Add more custom height breakpoints as needed
 			},
-
-
-
 		},
 	},
 	plugins: [
@@ -284,6 +288,18 @@ module.exports = {
 				'.no-scrollbar': {
 					'-ms-overflow-style': 'none',
 					'scrollbar-width': 'none',
+				},
+				'.preserve-3d': {
+					transformStyle: 'preserve-3d',
+				},
+				'.backface-hidden': {
+					backfaceVisibility: 'hidden',
+				},
+				'.rotate-y-180': {
+					transform: 'rotateY(180deg)',
+				},
+				'.perspective': {
+					perspective: '1000px',
 				},
 			};
 			addUtilities(newUtilities)
