@@ -1,371 +1,123 @@
 "use client"
-import { useState, useEffect, useRef } from "react";
-import QuestionRain from './QuestionRain';
+import { useState, useEffect, useRef } from "react"
 
 
-type TransportIconProps = {
-  src: string;
-  alt: string;
-  label: string;
-};
+function Reviews() {
+  const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState("");
+  const [contact, setContact] = useState("");
 
-function TransportIcon({ src, alt, label }: TransportIconProps) {
-  const [animate, setAnimate] = useState(false);
-  const itemRef = useRef();
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.3 }
-    );
-
-    if (itemRef.current) {
-      observer.observe(itemRef.current);
-    }
-
-    return () => {
-      if (itemRef.current) {
-        observer.unobserve(itemRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isVisible) {
-      setAnimate(true);
-    }
-  }, [isVisible]);
+  const handleSubmit = () => {
+    // Здесь можно добавить отправку формы
+    console.log("Отзыв отправлен:", { message, contact });
+    setShowModal(false);
+    setMessage("");
+    setContact("");
+  };
 
   return (
-    <div className="flex flex-col items-center">
-      <img
-        src={src}
-        alt={alt}
-        className={`w-20 h-20 transition-transform duration-300 ${animate ? 'animate-tilt' : ''}`}
-        onMouseEnter={() => setAnimate(true)}
-        onAnimationEnd={() => setAnimate(false)}
-      />
-      <span className="mt-2 text-base" ref={itemRef}>
-        {label}
-      </span>
-    </div>
-  );
-}
+    <div className="relative min-h-screen text-text1 dark:text-text1Dark overflow-hidden flex flex-col items-center justify-center px-6 py-12">
 
-
-interface CircleMotionProps {
-  keyNumber: number;
-  title: string;
-  text: string;
-  image: string;
-  activeIndex: number | null;
-  setActiveIndex: (index: number) => void;
-}
-
-function CircleMotion({
-  keyNumber,
-  title,
-  text,
-  image,
-  activeIndex,
-  setActiveIndex,
-}: CircleMotionProps) {
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    setIsActive(activeIndex === keyNumber);
-  }, [activeIndex, keyNumber]);
-
-  return (
-    <div
-      onMouseEnter={() => setActiveIndex(keyNumber)}
-      className="relative flex items-center h-20 md:h-24 lg:h-28"
-    >
-      {/* Круг */}
-      <div
-        className={`w-20 md:w-24 h-20 md:h-24 lg:w-28 lg:h-28 
-          rounded-full dark:bg-[#3b457c] bg-main transition-transform duration-300 z-10 
-          ${isActive ? '-translate-x-32 md:-translate-x-52' : ''}
-        `}
-      >
-        <img
-          src={image}
-          alt={image}
-          className="scale-75"
-        />
-      </div>
-
-      {/* Блок с текстом */}
-      <div
-        className={`
-          absolute 
-          -ml-32 md:-ml-52 
-          w-[330px] md:w-[550px] lg:w-[650px] 
-          h-20 md:h-24 lg:h-28 
-          pl-20 md:pl-32 
-          rounded-l-full flex items-center 
-          bg-gradient-to-r dark:from-[#3b457c] from-main from-80% to-95% z-0 
-          transition-opacity duration-300 ${isActive ? 'opacity-100 animate-slideIn' : 'opacity-0 pointer-events-none'}
-          `}
-      >
-        <div className="text-[9px] md:text-sm lg:text-base leading-snug text-white">
-          <h3 className="font-bold md:mb-1 ">{title}</h3>
-          <p className="text-[6px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold my-2 ">Отзывы</h1>
+        
+        <div className="space-y-6">
+          {reviews.map((r, i) => (
+            <div key={i} className="bg-main p-4 rounded-xl border text-white border-gray-700">
+              <p className="italic text-base">"{r.text}"</p>
+              <div className="mt-2 text-sm text-gray-400">{r.date} — {r.author}</div>
+            </div>
+          ))}
         </div>
+
+        <button
+          onClick={() => setShowModal(true)}
+          className="bg-[#219EBC] hover:bg-[#3b457c] text-white font-semibold px-5 py-2 rounded my-10"
+        >
+          Оставить отзыв
+        </button>
+
+        <p className="mt-10 text-sm text-gray-400">
+          Более подробную информацию можно посмотреть на ресурсе:<br />
+          <strong>ATI.SU — Паспорт участника Вир-Транс ★★★★★, код 865279</strong>
+        </p>
       </div>
+
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white text-black p-6 rounded-lg w-full max-w-md shadow-xl">
+            <h3 className="text-xl font-semibold mb-4">Оставить отзыв</h3>
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Ваш отзыв"
+              rows={4}
+              className="w-full border border-gray-300 p-2 rounded mb-4"
+            />
+            <input
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
+              placeholder="Ваши данные (Имя / ИП / Компания)"
+              className="w-full border border-gray-300 p-2 rounded mb-4"
+            />
+            <div className="flex justify-end space-x-2">
+              <button
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400"
+              >
+                Отмена
+              </button>
+              <button
+                onClick={handleSubmit}
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Отправить
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-const circleData = [
+const reviews = [
   {
-    title: 'Сохранность груза и полная материальная ответственность',
-    text: 'Страхование нашей ответственности — обязательное условие. Минимум на рейс — 8 млн ₽. При превышении лимита — доп. страхование. Партнёры: Росгосстрах, Ингосстрах, СК Согласие, СК Пари.',
-    image: '/shield.svg'
+    text: "Надежный заказчик! Оплата в срок! Рекомендуем к сотрудничеству! Успехов и процветания!",
+    date: "10 сен 2024",
+    author: "Машинный двор, ООО",
   },
   {
-    title: 'Точное соблюдение сроков',
-    text: 'Мы гарантируем своевременную доставку грузов в рамках согласованного графика, строго соблюдая дедлайны.',
-    image: '/handshake.svg'
+    text: "Выражаем благодарность фирме за сотрудничество! Приятно работать с профессионалами. Очень рекомендуем!",
+    date: "21 авг 2024",
+    author: "Чалый Павел Сергеевич, ИП",
   },
   {
-    title: 'Контроль на всех этапах',
-    text: 'Мы отслеживаем грузы в пути, информируем клиента и контролируем процесс доставки вплоть до получения.',
-    image: '/cup.svg'
+    text: "Работали впервые. Спасибо Олегу за качественную и согласованную работу. Быстро на погрузке и без проблем на выгрузке. Оплата в срок.",
+    date: "23 июля 2024",
+    author: 'ПКФ "МЕТАЛЛ СВ", ООО',
   },
   {
-    title: 'Персональный подход',
-    text: 'Каждому клиенту — индивидуальный менеджер, подбор транспорта и маршрута под задачи и бюджет.',
-    image: '/cogs.svg'
+    text: "Надеемся на дальнейшее сотрудничество! Быстрая загрузка и выгрузка. Оплата без задержек! 🤝",
+    date: "22 июля 2024",
+    author: "МТА Логистик, ООО",
+  },
+  {
+    text: "Работали с данной компанией, остались довольны. Быстрая загрузка/выгрузка. Оплата в срок. Спасибо Александру. Рекомендую к сотрудничеству.",
+    date: "17 июля 2024",
+    author: "Неверова Светлана Владимировна, ИП",
+  },
+  {
+    text: "Благодарим за хорошую работу, за быструю оплату! Очень отзывчивые и ответственные сотрудники! Отвечали на звонки даже в не рабочее время.",
+    date: "03 июля 2024",
+    author: "Халачян Силва Ованесовна, ИП",
+  },
+  {
+    text: "Благодарю за сотрудничество Александра! Очень легкое взаимодействие. Все вопросы решались в рабочем режиме. Удовольствие работать с профессионалами. Удачи)))",
+    date: "27 июня 2024",
+    author: "ПОПУТНО.ПРО",
   },
 ];
-
-type FlipCardProps = {
-  question: string;
-  answer: string;
-};
-
-function SpiralCard({ question, answer }: FlipCardProps) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <div
-      className="relative w-[300px] h-[180px] m-4 cursor-pointer overflow-hidden"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Ответ */}
-      <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center text-center text-lg p-6 z-0">
-        {answer}
-      </div>
-
-      {/* Вопрос */}
-      <div
-        className={`absolute inset-0 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center text-center text-xl font-semibold p-6 z-10 transition-all duration-700 ease-in-out`}
-        style={{
-          maskImage: hovered
-            ? 'radial-gradient(circle at center, transparent 30%, black 70%)'
-            : 'radial-gradient(circle at center, black 100%, black 100%)',
-          WebkitMaskImage: hovered
-            ? 'radial-gradient(circle at center, transparent 30%, black 70%)'
-            : 'radial-gradient(circle at center, black 100%, black 100%)',
-          transform: hovered ? 'rotate(720deg) scale(0)' : 'rotate(0deg) scale(1)',
-          transformOrigin: 'center',
-        }}
-      >
-        {question}
-      </div>
-    </div>
-  );
-}
-
-type FlagsProps = {
-  position: string;
-  title: string;
-  size: string;
-  sizeText: string;
-  keyNumber: number;
-  activeIndexFlags: number;
-  setActiveIndexFlags: (index: number) => void;
-};
-
-function Flags({
-  position,
-  title,
-  size,
-  sizeText,
-  keyNumber,
-  activeIndexFlags,
-  setActiveIndexFlags,
-}: FlagsProps) {
-  const isActive = activeIndexFlags === keyNumber;
-
-
-
-  return (
-    <div className={`absolute ${position} flex items-center`}>
-      <img
-        src="flag.svg"
-        alt="flag"
-        className={`
-          ${size} rounded-full bg-[#FFB703] transform transition-transform duration-300 ease-out
-          ${isActive ? "scale-125 -rotate-12 translate-x-0 z-20" : "scale-100 rotate-0 translate-x-2 z-0"}
-        `}
-        onMouseEnter={() => {
-          setActiveIndexFlags(keyNumber);
-        }}
-      />
-      <div
-        className={`
-    z-10 
-    italic 
-    rounded-l-full ${sizeText}
-    bg-gradient-to-r from-[#FFB703] from-80% to-95% 
-    text-sm text-black font-bold
-    pointer-events-none place-content-center
-    transition duration-500 delay-100 ease-in-out
-    ${isActive ? "opacity-100 translate-x-2" : "opacity-0 translate-x-0"}
-  `}
-      >
-        <div className="relative z-20">{title}</div>
-      </div>
-
-    </div>
-  );
-}
-
-const flagsList = [
-  {
-    position: 'left-[37%] top-[46%]',
-    title: 'Ямало-Ненецкий автономный округ (ЯНАО)',
-    size: 'w-[40px] h-[40px]',
-    sizeText: 'h-[50px] -ml-12 pl-12 '
-  },
-  {
-    position: 'left-[36%] top-[52%]',
-    title: 'Ханты-Мансийский автономноый округ (ХМАО)',
-    size: 'w-[40px] h-[40px]',
-    sizeText: 'h-[50px] -ml-12 pl-12 '
-  },
-  {
-    position: 'left-[60%] top-[57%]',
-    title: 'Чаяндинское месторождение',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6'
-  },
-  {
-    position: 'left-[62%] top-[61%]',
-    title: 'Бодайбо',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6'
-  },
-  {
-    position: 'left-[57%] top-[64%]',
-    title: 'Ковыктинское месторождение',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6'
-  },
-  {
-    position: 'left-[38%] top-[66%]',
-    title: 'Магистральный',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6'
-  },
-  {
-    position: 'left-[40%] top-[50%]',
-    title: 'Суторминское месторождение',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6'
-  },
-  {
-    position: 'left-[17%] top-[56%]',
-    title: 'Салмановка',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6'
-  },
-  {
-    position: 'left-[30%] top-[46%]',
-    title: 'Усинск',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[35%] top-[47%]',
-    title: 'Салехард',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[42%] top-[48%]',
-    title: 'Новозаполярный',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[37%] top-[57%]',
-    title: 'Салыме',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[31%] top-[42%]',
-    title: 'Нарьян-Маре',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[46%] top-[42%]',
-    title: 'Норильск',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[58%] top-[62%]',
-    title: 'Усть-Кут',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[70%] top-[40%]',
-    title: 'Якутия',
-    size: 'w-[40px] h-[40px]',
-    sizeText: 'h-[50px] -ml-12 pl-12 '
-  },
-  {
-    position: 'left-[75%] top-[64%]',
-    title: 'Талакан',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[48%] top-[45%]',
-    title: 'Красноярский край',
-    size: 'w-[48px] h-[48px]',
-    sizeText: 'h-[60px] -ml-[60px] pl-[60px] '
-  },
-  {
-    position: 'left-[48%] top-[60%]',
-    title: 'Лесосибирск',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[50%] top-[56%]',
-    title: 'Северо-Енисейский',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-  {
-    position: 'left-[34%] top-[45%]',
-    title: 'Воркута',
-    size: 'w-[20px] h-[20px]',
-    sizeText: 'h-[25px] -ml-6 pl-6 '
-  },
-]
-
 
 
 export default function Home() {
@@ -373,19 +125,6 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [OKompanii, setOKompanii] = useState('translate-x-full');
   const targetRef = useRef();
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [mobile, setMobile] = useState<boolean>(false);
-  const [hoverBlock3, setHoverBlock3] = useState(null)
-
-  const [hoveredShipBlock3, setHoveredShipBlock3] = useState(false);
-  const [hoveredBigPackageBlock3, setHoveredBigPackageBlock3] = useState(false);
-  const [hoveredPackageInHardhatBlock3, setHoveredPackageInHardhatBlock3] = useState(false);
-  const [hoveredMagnifierBlock3, setHoveredMagnifierBlock3] = useState(false);
-
-  const [activeIndex, setActiveIndex] = useState<number | null>(0);
-  const [activeIndexFalgs, setActiveIndexFlags] = useState<number | null>();
-
-
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -412,211 +151,13 @@ export default function Home() {
     }
   }, [isVisible]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setMobile(window.innerWidth <= 900);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const items = [
-    {
-      title: 'Профессиональный подход',
-      content:
-        <p className='text-base md:text-lg max-w-3xl mt-2'>
-          Мы специализируемся на перевозке различных текучих веществ, будь то химические продукты или пищевые ингредиенты. Наши специалисты обладают высокой квалификацией и опытом, гарантируя безопасную доставку вашего груза.
-        </p>,
-      color: 'bg-[#FB8500] hover:bg-[#af5c00]',
-    },
-    {
-      title: '',
-      content:
-        <p className="">
-        </p>,
-      color: 'bg-[#FB8500]/0 cursor-default',
-    },
-
-    {
-      title: 'Специализированное оборудование',
-      content:
-        <p className="text-base md:text-lg max-w-3xl mt-2">
-          Для перевозки наливных грузов мы используем специальные автоцистерны. Все емкости проходят строгий санитарный контроль и регулярную проверку на техническое состояние, обеспечивая высокий уровень безопасности и качества доставки.
-        </p>,
-      color: 'bg-[#FB8500] hover:bg-[#af5c00]',
-    },
-    {
-      title: '',
-      content:
-        <p className="">
-        </p>,
-      color: 'bg-[#FB8500]/0 cursor-default',
-    },
-    {
-      title: '',
-      content:
-        <p className="">
-        </p>,
-      color: 'bg-[#FB8500]/0 cursor-default',
-    },
-    {
-      title: 'Соблюдение стандартов',
-      content:
-        <p className="text-base md:text-lg max-w-3xl mt-2">
-          Мы строго следуем санитарно-эпидемиологическим нормам и стандартам безопасности при перевозке грузов. Перед каждой загрузкой емкости проходят тщательную очистку и обработку, а наши водители проходят профессиональную подготовку.
-        </p>,
-      color: 'bg-[#FB8500] hover:bg-[#af5c00]',
-    },
-    {
-      title: '',
-      content:
-        <p className="">
-        </p>,
-      color: 'bg-[#FB8500]/0 cursor-default',
-    },
-    {
-      title: 'В услуги входит',
-      content:
-        <ul className="text-base md:text-lg mt-2 list-disc list-inside max-w-2xl text-left">
-          <li>Минимальная стоимость доставки, рассчитанная индивидуально для каждого клиента.</li>
-          <li>Доставка от 300 кг, от двери до двери.</li>
-          <li>
-            Перевозка различных типов наливных грузов, включая патоку, растительные масла, минеральные масла, смазочные жидкости,
-            растворимые краски, моющие средства, концентраты и экстракты, вина, виноградное сусло, продукты питания и многое другое.
-          </li>
-        </ul>,
-      color: 'bg-[#FB8500] hover:bg-[#af5c00]',
-    },
-
-
-  ];
-
-  const itemsMobile = [
-    {
-      title: 'Профессиональный подход',
-      content:
-        <p className='max-w-3xl mt-2'>
-          Мы специализируемся на перевозке различных текучих веществ, будь то химические продукты или пищевые ингредиенты. Наши специалисты обладают высокой квалификацией и опытом, гарантируя безопасную доставку вашего груза.
-        </p>,
-      color: 'bg-[#FB8500] hover:bg-slate-100',
-    },
-    {
-      title: 'Специализированное оборудование',
-      content:
-        <p className="max-w-3xl mt-2">
-          Для перевозки наливных грузов мы используем специальные автоцистерны. Все емкости проходят строгий санитарный контроль и регулярную проверку на техническое состояние, обеспечивая высокий уровень безопасности и качества доставки.
-        </p>,
-      color: 'bg-[#FB8500] hover:bg-slate-100',
-    },
-    {
-      title: 'Соблюдение стандартов',
-      content:
-        <p className="max-w-3xl mt-2">
-          Мы строго следуем санитарно-эпидемиологическим нормам и стандартам безопасности при перевозке грузов. Перед каждой загрузкой емкости проходят тщательную очистку и обработку, а наши водители проходят профессиональную подготовку.
-        </p>,
-      color: 'bg-[#FB8500] hover:bg-slate-100',
-    },
-    {
-      title: 'В услуги входит',
-      content:
-        <ul className="mt-2 list-disc list-inside max-w-2xl text-left">
-          <li>Минимальная стоимость доставки, рассчитанная индивидуально для каждого клиента.</li>
-          <li>Доставка от 300 кг, от двери до двери.</li>
-          <li>
-            Перевозка различных типов наливных грузов, включая патоку, растительные масла, минеральные масла, смазочные жидкости,
-            растворимые краски, моющие средства, концентраты и экстракты, вина, виноградное сусло, продукты питания и многое другое.
-          </li>
-        </ul>,
-      color: 'bg-[#FB8500] hover:bg-slate-100',
-    },
-  ];
-
-  const itemsBlock3 = [
-    {
-      title:
-        <strong>
-          Множество видов транспорта:
-        </strong>,
-      content:
-        <div>
-          В компании «Вир-транс» широкий спектр услуг в области перевозок, оперируя всеми видами транспорта: водным, речным, морским, железнодорожным, авиационным, а также вертолетным и вездеходным, всё это обеспечивает нам возможность выбора оптимального маршрута и средств доставки для каждого конкретного груза, гарантируя его безопасность и своевременную доставку.
-        </div>
-    },
-    {
-      title:
-        <strong>
-          Специализация в перевозке крупногабаритных грузов:
-        </strong>,
-      content:
-        <div>
-          Мы специализируемся на перевозке крупногабаритных, длинномерных и тяжеловесных грузов. Наш опыт и профессионализм позволяют нам эффективно справляться с самыми сложными задачами, обеспечивая надежность и качество обслуживания наших клиентов. При необходимости наш транспорт будет сопровождаться сотрудниками ГИБДД или специализированными автомобилями прикрытия, чтобы обеспечить максимальный уровень безопасности на каждом этапе пути.
-        </div>
-    },
-    {
-      title:
-        <strong>
-          Инженерная подготовка:
-        </strong>,
-      content:
-        <div>
-          Для перевозки негабаритных грузов часто требуется специальное согласование маршрутов с государственными органами и учет ограничений по времени движения. Наша команда инженеров, логистов и специалистов по безопасности разрабатывает оптимальные маршруты и методы подъема и перемещения грузов, обеспечивая их безопасность и эффективность доставки.
-        </div>
-    },
-    {
-      title:
-        <strong>
-          Внимание к деталям:
-        </strong>,
-      content:
-        <div>
-          Мы уделяем особое внимание каждой детали в планировании и выполнении перевозок. Даже небольшие изменения в параметрах груза могут потребовать пересмотра всего плана перевозки, поэтому внимательное планирование и координация играют ключевую роль в успешной доставке негабаритных грузов. Мы гарантируем высокий уровень сервиса и качества обслуживания каждому нашему клиенту.
-        </div>
-    },
-  ]
-
-  const qaPairs = [
-    {
-      question: 'Как производится оплата?',
-      answer:
-        'Оплата производится на расчётный счёт, согласно договору, учитывая пожелания клиента.',
-    },
-    {
-      question: 'Работаете ли с отсрочкой по оплате?',
-      answer:
-        'Да, работаем. Длительность отсрочки зависит от объёма заказов.',
-    },
-    {
-      question: 'Предоставляете ли скидки?',
-      answer: 'Конечно. Мы готовы обсуждать взаимовыгодные условия.',
-    },
-    {
-      question: 'У вас грузы застрахованы?',
-      answer:
-        'Наша ответственность застрахована на 8 млн. рублей. При превышении этой суммы производится дополнительное страхование груза по согласованию.',
-    },
-    {
-      question: 'ЭДО. Работаете по электронному обороту документов?',
-      answer:
-        'Да. Вариант получения сопроводительных документов выбирает клиент. Это может быть ЭДО, почта, курьер.',
-    },
-    {
-      question: 'Гарантируете ли вы налоговую чистоту?',
-      answer:
-        'Конечно. Все налоги оплачиваются в срок и в полном объёме. Это можно проверить в открытых источниках.',
-    },
-  ];
 
 
   return (
     <main className="overflow-x-clip" >
 
       {/* Титульная страница */}
-      <div className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-text1 dark:text-text1Dark ">
+      <div id='vir-trans' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-centerbg-white bg-white dark:bg-black text-text2 dark:text-text2Dark">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold   px-5 sm:px-0">Грузоперевозки по РФ+</h1>
         <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Автомобильные, морские, авиационные и железнодорожные</h2>
         <div className="mt-4 grid grid-cols-4 gap-2">
@@ -654,12 +195,12 @@ export default function Home() {
       </div>
 
       {/* О компании */}
-      <div className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center bg-white dark:bg-black text-text2 text-xs sm:text-sm md:text-base overflow-hidden">
+      <div id='о-компании' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-text1 dark:text-text1Dark text-xs sm:text-sm md:text-base overflow-hidden">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold ">О КОМПАНИИ</h1>
         <div
           className={`w-svw pr-20vw transform transition-transform duration-700 ease-out ${OKompanii === "translate-x-full" ? "-translate-x-full" : OKompanii}`}
         >
-          <p className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/20 p-4 md:px-28 px-10 pl-20vw md:pl-20vw dark:text-[#FB8500]">
+          <p className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/10 p-4 md:px-28 px-10 pl-20vw md:pl-20vw dark:text-[#fb8600]">
             В 2008 году ООО «Вир-Транс» осуществило свою первую транспортировку
             груза, что стало началом нашего успешного пути в логистике. С тех пор мы
             постоянно расширяем свои компетенции и накапливаем опыт в этой сфере.
@@ -673,7 +214,7 @@ export default function Home() {
         <div
           className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}
         >
-          <div className="mt-4 border border-[#219EBC] rounded-l-xl bg-[#219EBC]/20 p-4 md:px-28 px-10 pr-20vw md:pr-20vw dark:text-[#219EBC]">
+          <div className="mt-4 border border-[#219EBC] rounded-l-xl bg-[#219EBC]/10 p-4 md:px-28 px-10 pr-20vw md:pr-20vw dark:text-[#219EBC]">
             <h4 className="font-semibold text-xs md:text-base lg:text-lg">Наши услуги включают:</h4>
             <ul className="mt-2 list-disc list-inside text-left">
               <li>Доставка «точка – точка» обычных грузов любым видом транспорта.</li>
@@ -695,326 +236,8 @@ export default function Home() {
 
       </div>
 
-      {/* Услуга 1 ДОСТАВКА «ТОЧКА – ТОЧКА»*/}
-      <div id="обычные-грузы" className="relative w-full pt-20 md:pt-0 min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text1Dark">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  mt-10">ДОСТАВКА «ТОЧКА – ТОЧКА»</h1>
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Любым видом транспорта!</h2>
-
-        {mobile ? (
-          <div className="relative w-[300px] h-[200px] grid place-items-center">
-            <div className="absolute top-0 left-0 scale-[0.5]">
-              <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
-            </div>
-            <div className="absolute top-0 right-0 scale-[0.5]">
-              <TransportIcon src='/ship.svg' alt='ship' label='Водный транспорт' />
-            </div>
-            <div className="absolute bottom-0 left-0 scale-[0.5]">
-              <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
-            </div>
-            <div className="absolute bottom-0 right-0 scale-[0.5]">
-              <TransportIcon src='/train.svg' alt='train' label='ЖД' />
-            </div>
-            <div className="flex felx-col items-center scale-[0.5]">
-              <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
-            </div>
-          </div>
-        ) : (
-          <div className="relative w-[600px] h-[400px] mt-20 grid place-items-center">
-            <div className="absolute top-0 left-0">
-              <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
-            </div>
-            <div className="absolute top-0 right-0">
-              <TransportIcon src='/ship.svg' alt='ship' label='Водный транспорт' />
-            </div>
-            <div className="absolute bottom-0 left-0">
-              <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
-            </div>
-            <div className="absolute bottom-0 right-0">
-              <TransportIcon src='/train.svg' alt='train' label='ЖД' />
-            </div>
-            <div className="flex felx-col items-center">
-              <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
-            </div>
-          </div>
-        )}
-
-
-        <div className="mt-10">
-          <p className="mt-6 text-base md:text-lg lg:text-xl max-w-2xl">
-            Возьмем на себя все ваши вопросы по логистике.
-          </p>
-
-          <p className="mt-2 text-xs md:text-base lg:text-lg max-w-2xl">
-            Примем заказ в любое время и доставим в любую точку. Всегда готовы пойти навстречу заказчику и предложить оптимальную стоимость и схему транспортировки.
-          </p>
-        </div>
-
-      </div>
-
-      {/* Услуга 2 ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ*/}
-      <div id='наливные-и-опасные-грузы' className="bg-white dark:bg-black w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text2 dark:text-text2Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">
-          ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ
-        </h1>
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">
-          СВОЙСТВО ИМЕЕТ ЗНАЧЕНИЕ!
-        </h2>
-
-        {mobile ? (
-          <div>
-            <div className="relative scale-[0.7] grid grid-cols-2 gap-4 w-full h-[calc(0.2*100svh)] place-items-center mb-16">
-              {itemsMobile.map((item, index) => (
-                <div key={index} className="flex flex-col items-center justify-center text-center">
-                  {/* Круг */}
-                  <div
-                    className={`transition-all duration-500 ease-in-out 
-            w-16 h-16 md:w-20 md:h-20 ${item.color} 
-            ${hoveredIndex === index ? "scale-110" : ""} 
-            rounded-full`}
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                  />
-
-                  {/* Заголовок под кругом */}
-                  <p
-                    className={`mt-2 text-xs sm:text-sm font-semibold transition-all duration-500
-            ${hoveredIndex === index ? "-translate-y-4 opacity-0" : "translate-y-0 opacity-100"}`}
-                  >
-                    {item.title}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Блок с текстом */}
-            <div className="relative w-full h-[calc(0.3*100svh)] flex justify-center text-xs md:text-base lg:text-lg">
-              <div
-                className={`text-center p-4 transition-all duration-500 transform ease-in-out 
-          ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
-              >
-                {hoveredIndex !== null && (
-                  <>
-                    <h3 className="font-semibold">{itemsMobile[hoveredIndex]?.title}</h3>
-                    {itemsMobile[hoveredIndex]?.content}
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div>
-            <div className="relative grid grid-cols-4 gap-4 w-full h-[calc(0.2*100svh)] place-items-center my-16 mx-24">
-              {items.map((item, index) => (
-                <div key={index} className="relative flex items-center justify-center">
-                  {/* Круги */}
-                  <div
-                    className={`transition-all duration-500 ease-in-out w-20 h-10 sm:w-14 sm:h-18 md:w-20 md:h-20 ${item.color} 
-            ${hoveredIndex === index ? "scale-110" : ""}
-            rounded-full`}
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                  />
-
-                  {/* Заголовки */}
-                  <p
-                    className={`text-xs sm:text-sm font-semibold transition-all duration-500 w-24 sm:w-32 md:w-40 break-words
-            ${hoveredIndex === index ? "-translate-x-4 opacity-0" : "translate-x-0 opacity-100"} 
-            left-[-55px] top-[-15px]`}
-                  >
-                    {item.title}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Блок с текстом */}
-            <div className="relative w-full h-[calc(0.3*100svh)] flex justify-center top-0 text-xs md:text-base lg:text-lg">
-              <div
-                className={`text-center p-4 transition-all duration-500 transform ease-in-out 
-          ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
-              >
-                {hoveredIndex !== null && (
-                  <>
-                    <h3 className="font-semibold text-lg">{items[hoveredIndex]?.title}</h3>
-                    {items[hoveredIndex]?.content}
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-
-        {/* <p className="text-lg md:text-xl mt-6 max-w-2xl">
-          Транспортировка наливных грузов – одно из ключевых направлений деятельности компании "ВИР-Транс"
-        </p> */}
-
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Mail">
-            <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
-          </a>
-          <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Phone">
-            <img src="/phone-svg.svg" alt="phone" className="w-8 h-8" />
-          </a>
-        </div>
-      </div>
-
-      {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА*/}
-      <div id='негабаритные-грузы-/-мультимодальные-доставки' className=" text-text1 w-full min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 dark:text-text1Dark">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ</h1>
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА</h1>
-        <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2  ">РАЗМЕР ИМЕЕТ ЗНАЧЕНИЕ!</h2>
-
-        <h3 className="text-base md:text-lg lg:text-xl font-semibold my-6">Мы предлагаем Вам:</h3>
-        <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[1] scale-[0.4] gap-3 min-w-max h-[calc(0.4*100svh)] sm:h-auto -mt-16 sm:mt-0">
-
-          <div onMouseEnter={() => setHoverBlock3(0)}>
-            <div onMouseEnter={() => setHoveredShipBlock3(true)} onMouseLeave={() => setHoveredShipBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100 overflow-hidden rounded-lg">
-                {/* Корабль */}
-                <img
-                  src="/shipBlock3.svg"
-                  alt="ship"
-                  className="absolute bottom-0 left-0 w-40"
-                />
-                {/* Посылка */}
-                <img
-                  src="/packageBlock3ForHelicopter.svg"
-                  alt="package"
-                  className={`absolute w-8 left-[70px] bottom-[90px] transition-all
-          ${hoveredShipBlock3 ? 'animate-packageLift' : ''}`}
-                />
-                {/* Вертолёт */}
-                <img
-                  src="/helicopterBlock3.svg"
-                  alt="helicopter"
-                  className={`absolute w-24 top-[-20px] right-[-10px] 
-          ${hoveredShipBlock3 ? 'animate-helicopterFly' : ''}`}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div onMouseEnter={() => setHoverBlock3(1)}>
-            <div onMouseEnter={() => setHoveredBigPackageBlock3(true)} onMouseLeave={() => setHoveredBigPackageBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100 overflow-hidden rounded-lg">
-                <img
-                  src="/packageBlock3.svg"
-                  alt="package"
-                  className={`absolute w-40% left-[76px] bottom-[72px] transition-all 
-          ${hoveredBigPackageBlock3 ? 'animate-packageScale' : ''}`}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div onMouseEnter={() => setHoverBlock3(2)}>
-            <div onMouseEnter={() => setHoveredPackageInHardhatBlock3(true)} onMouseLeave={() => setHoveredPackageInHardhatBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100 overflow-hidden rounded-lg">
-                <img
-                  src="/hardHatBlock3.svg"
-                  alt="hard-hat"
-                  className={`absolute w-40% left-[90px] bottom-[120px] transition-all rotate-12
-          ${hoveredPackageInHardhatBlock3 ? 'animate-packageInHardhat' : ''}`}
-                />
-                <img
-                  src="/packageBlock3.svg"
-                  alt="package"
-                  className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div onMouseEnter={() => setHoverBlock3(3)}>
-            <div onMouseEnter={() => setHoveredMagnifierBlock3(true)} onMouseLeave={() => setHoveredMagnifierBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100 overflow-hidden rounded-lg">
-                <img
-                  src="/magnifier.svg"
-                  alt="magnifier"
-                  className={`absolute w-40% left-[120px] bottom-[72px] transition-all
-          ${hoveredMagnifierBlock3 ? 'animate-magnifier ' : ''}`}
-                />
-                <img
-                  src="/packageBlock3.svg"
-                  alt="package"
-                  className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div className={`mt-4 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
-          {hoverBlock3 !== null && (
-            <div>
-              {itemsBlock3[hoverBlock3].title}
-              {itemsBlock3[hoverBlock3].content}
-            </div>
-          )}
-        </div>
-
-        {/* <p className="pt-6 max-w-2xl bottom-0 border-t-2 text-xs md:text-base lg:text-lg">
-          В мире современной логистики каждый сантиметр имеет значение, особенно когда речь идет о перевозке негабаритных и мультимодальных грузов. Мы стремимся к эффективности и надежности в любых условиях, преодолевая все возможные сложности пути: от мостов и паромных переправ до горных серпантинов и зимников.
-        </p> */}
-      </div>
-
-      {/*ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ*/}
-      {/* Вопросы - ответы */}
-      <div id='вопросы---ответы' className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12 ">
-        <QuestionRain />
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold z-10">ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ</h1>
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2 z-10">Вопросы – ответы</h2>
-        <div className="flex flex-wrap justify-center max-w-5xl">
-          {qaPairs.map(({ question, answer }, index) => (
-            <SpiralCard key={index} question={question} answer={answer} />
-          ))}
-        </div>
-      </div>
-      {/* Преимущества работы с нами */}
-      <div id='преимущества-работы-с-нами' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Преимущества работы с нами</h2>
-        <div className="flex flex-col space-y-6 md:space-y-12 lg:space-y-16 mt-10">
-          {circleData.map((item, index) => (
-            <CircleMotion
-              key={index}
-              keyNumber={index}
-              title={item.title}
-              text={item.text}
-              image={item.image}
-              activeIndex={activeIndex}
-              setActiveIndex={setActiveIndex}
-            />
-          ))}
-        </div>
-      </div>
-      {/* География перевозок */}
-      <div id='география-перевозок' className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">География перевозок</h2>
-        <div className="relative overflow-hidden">
-          <img
-            src='map.png'
-            alt='map'
-            className="w-full -m-1 -my-20 "
-          />
-          {flagsList.map((item, index) => (
-            <Flags
-              key={index}
-              keyNumber={index}
-              title={item.title}
-              position={item.position}
-              size={item.size}
-              sizeText={item.sizeText}
-              activeIndexFlags={activeIndexFalgs}
-              setActiveIndexFlags={setActiveIndexFlags}
-            />
-          ))}
-        </div>
-      </div>
-
       {/* Задать вопросы */}
-      <div id='задать-вопрос/контакты' className="w-full min-h-[100svh] text-text1  flex flex-col items-center justify-center text-center p-6 dark:text-text1Dark">
+      <div id='задать-вопрос' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 bg-white dark:bg-black text-text2 dark:text-text2Dark">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ЗАДАТЬ ВОПРОС / КОНТАКТЫ</h1>
 
         <p className="mt-4 text-base md:text-lg lg:text-xl">Подберём транспорт под ваши потребности.</p>
@@ -1022,7 +245,7 @@ export default function Home() {
         <p className="text-base md:text-lg lg:text-xl">Избавим от сомнений.</p>
 
         {/* Кнопка «Задать вопрос» */}
-        <button className="mt-6 px-6 py-3 bg-[#3b457c] text-white text-base md:text-lg lg:text-xl font-semibold rounded-2xl shadow-md hover:bg-[#035a78] transition">
+        <button className="bg-[#219EBC] hover:bg-[#3b457c] text-white font-semibold px-5 py-2 rounded mb-10">
           Задать вопрос
         </button>
 
@@ -1050,6 +273,11 @@ export default function Home() {
           <li><strong>ВКонтакте:</strong> <a href="#" className="text-[#219EBC] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
           <li><strong>Телеграм:</strong> <a href="#" className="text-[#219EBC] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
         </ul>
+      </div>
+
+      {/* Отзывы */}
+      <div id='отзывы'>
+        <Reviews/>
       </div>
 
     </main >

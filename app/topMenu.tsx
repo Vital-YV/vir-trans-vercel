@@ -1,8 +1,8 @@
 "use client";
 import './globals.css';
-import Link from 'next/link';
 import React, { useState, useEffect } from "react";
 import { useLayout } from './LayoutContext';
+import { useRouter, usePathname } from "next/navigation";
 
 export default function TopMenu() {
     const { isVisible, setIsVisible } = useLayout();
@@ -10,6 +10,9 @@ export default function TopMenu() {
     const [openMenu, setOpenMenu] = useState<number | null>(null);
     const [mobileMenu, setMobileMenu] = useState<boolean>(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleResize = () => {
@@ -25,13 +28,34 @@ export default function TopMenu() {
     }, []);
 
     const menuItems = [
-        { title: "Услуги грузоперевозок", submenu: ["Обычные грузы", "Наливные и опасные грузы", "Негабаритные грузы / мультимодальные доставки"] }, 
-        { title: "Нам ДОВЕРЯЮТ", submenu: [] },
-        { title: "Задать вопрос/Контакты", submenu: [] },
-        { title: "Заказчикам и Перевозчикам", submenu: ["Преимущества работы с нами", "Вопросы - ответы", "География перевозок", "Примеры перевозок"] },
-        { title: "Отзывы", submenu: [] },
-        { title: "Вакансии", submenu: [] },
-        { title: "Дайджест", submenu: [] },
+        {
+            title: "Vir trans", href: "/",
+            submenu: [
+                { label: "О компании", id: "о-компании" },
+                { label: "Задать вопрос", id: "задать-вопрос" },
+                { label: "Отзывы", id: "отзывы" }
+            ]
+        },
+        {
+            title: "Услуги грузоперевозок", href: "/service",
+            submenu: [
+                { label: "Обычные грузы", id: "обычные-грузы" },
+                { label: "Наливные и опасные грузы", id: "наливные-и-опасные-грузы" },
+                { label: "Мультимодальные доставки", id: "мультимодальные-доставки" }
+            ]
+        },
+        {
+            title: "Заказчикам и Перевозчикам", href: "/forClients",
+            submenu: [
+                { label: "Вопросы - ответы", id: "вопросы---ответы" },
+                { label: "Преимущества работы с нами", id: "преимущества-работы-с-нами" },
+                { label: "География перевозок", id: "география-перевозок" }
+            ]
+        },
+        {
+            title: "Вакансии", href: "/vacancies",
+            submenu: []
+        }
     ];
 
     const handleToggleClick = () => {
@@ -54,21 +78,43 @@ export default function TopMenu() {
     };
 
     const scrollToId = (id: string) => {
-        const offset = 92; // высота хедера в px (24 Tailwind единицы = 6rem = 96px)
+        const offset = 92;
         const element = document.getElementById(id);
         if (!element) return;
 
         const y = element.getBoundingClientRect().top + window.scrollY - offset;
-
         window.scrollTo({ top: y, behavior: 'smooth' });
     };
+
+    const handleMenuClick = (href: string) => {
+        if (href.startsWith("/#")) {
+            const id = href.substring(2); // Убираем "/#"
+            if (pathname === "/") {
+                scrollToId(id);
+            } else {
+                router.push(href);
+            }
+        } else {
+            router.push(href);
+        }
+    };
+
+
+    const handleSubmenuClick = async (pageHref: string, anchorId: string) => {
+        if (pathname === pageHref) {
+            scrollToId(anchorId);
+        } else {
+            router.push(`${pageHref}#${anchorId}`);
+        }
+    };
+
 
     return (
         <div className="w-full h-24 fixed flex flex-col bg-gradient-to-b dark:from-darkMain from-main from-95% to-[#023047]/0">
             {mobileMenu ? (
                 <div className="relative">
                     <div className="z-50 fixed top-5 left-5 flex items-center text-white">
-                        <div className="text-lg font-semibold">Vir trans</div>
+                        <div className="text-lg font-semibold">logo</div>
                         <div className="ml-4">
                             <button className="w-3 h-3" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                 <div className="w-3 h-0.5 bg-slate-50 shadow-[0_1px_3px_rgba(0,0,0,0.4)]" />
@@ -79,8 +125,7 @@ export default function TopMenu() {
                     </div>
 
                     <div
-                        className={`fixed inset-0 transition-all duration-300 ${isMenuOpen ? "backdrop-blur-md bg-black/50" : "pointer-events-none"
-                            }`}
+                        className={`fixed inset-0 transition-all duration-300 ${isMenuOpen ? "backdrop-blur-md bg-black/50" : "pointer-events-none"}`}
                         onClick={() => setIsMenuOpen(false)}
                     ></div>
 
@@ -94,10 +139,7 @@ export default function TopMenu() {
                                     <div className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain transition-colors text-lg text-left w-full">
                                         <button
                                             className='text-shadow-[0_1px_3px_rgba(0,0,0,0.4)]'
-                                            onClick={() => {
-                                                scrollToId(item.title.replace(/\s+/g, '-').toLowerCase());
-                                                setIsMenuOpen(false);
-                                            }}
+                                            onClick={() => handleMenuClick(item.href)}
                                         >
                                             {item.title}
                                         </button>
@@ -113,11 +155,11 @@ export default function TopMenu() {
                                                     <span className="before:content-['•'] text-white"></span>
                                                     <button
                                                         onClick={() => {
-                                                            scrollToId(subItem.replace(/\s+/g, '-').toLowerCase());
+                                                            handleSubmenuClick(item.href, subItem.id);
                                                             setIsMenuOpen(false);
                                                         }}
                                                     >
-                                                        {subItem}
+                                                        {subItem.label}
                                                     </button>
                                                 </li>
                                             ))}
@@ -129,11 +171,10 @@ export default function TopMenu() {
                     </div>
                 </div>
 
-
             ) : (
                 <div className="grid grid-cols-[max-content_auto] h-full">
                     <div className="max-w-max flex items-center px-4 text-white">
-                        Vir trans
+                        logo
                     </div>
                     <div className={`flex items-center flex-1`}>
                         <ul className={`h-full list-none flex mt-0 flex-row gap-4`}>
@@ -147,37 +188,34 @@ export default function TopMenu() {
                                     <div className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain">
                                         <button
                                             className='text-shadow-[0_1px_3px_rgba(0,0,0,0.4)] dark:hover:text-textDarkMain hover:text-textMain'
-                                            onClick={() => scrollToId(item.title.replace(/\s+/g, '-').toLowerCase())}
+                                            onClick={() => handleMenuClick(item.href)}
                                         >
                                             {item.title}
                                         </button>
                                     </div>
 
-                                    {
-                                        item.submenu.length > 0 && (
-                                            <ul
-                                                className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b dark:from-darkMain from-main from-90% to-95% p-4 pb-16 transform transition-all
+                                    {item.submenu.length > 0 && (
+                                        <ul
+                                            className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b dark:from-darkMain from-main from-90% to-95% p-4 pb-16 transform transition-all
                                             ${openMenu === index ? "opacity-100 translate-y-0 duration-500 ease-out" : "opacity-0 -translate-y-4 pointer-events-none"}`}
-                                            >
-                                                {item.submenu.map((subItem, subIndex) => (
-                                                    <li key={subIndex} className="py-2 dark:hover:text-textDarkMain hover:text-textMain cursor-pointer">
-                                                        <button
-                                                            onClick={() => scrollToId(subItem.replace(/\s+/g, '-').toLowerCase())}
-                                                        >
-                                                            {subItem}
-                                                        </button>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )
-                                    }
+                                        >
+                                            {item.submenu.map((subItem, subIndex) => (
+                                                <li key={subIndex} className="py-2 dark:hover:text-textDarkMain hover:text-textMain cursor-pointer">
+                                                    <button
+                                                        onClick={() => handleSubmenuClick(item.href, subItem.id)}
+                                                    >
+                                                        {subItem.label}
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </li>
                             ))}
                         </ul>
                     </div>
                 </div>
-            )
-            }
-        </div >
+            )}
+        </div>
     );
 }
