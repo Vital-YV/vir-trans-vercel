@@ -173,8 +173,8 @@ module.exports = {
 				h2: '#219EBC',
 				h2Dark: '#FB8500',
 
-				text1: 'white',
-				text1Dark: 'white',
+				text1: '#D1D5DB',
+				text1Dark: '#D1D5DB',
 
 				text2: '#3b457c',
 				text2Dark: '#219EBC',

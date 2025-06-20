@@ -262,14 +262,9 @@ export default function Service() {
   ]
 
   return (
-    <main className="overflow-x-clip" >
-
-      <div className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center bg-white dark:bg-black">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold z-10 text-center">Услуги грузоперевозок</h1>
-      </div>
-
+    <main className="overflow-x-clip pt-20" >
       {/* Услуга 1 ДОСТАВКА «ТОЧКА – ТОЧКА»*/}
-      <div id="обычные-грузы" className="relative w-full pt-20 md:pt-0 min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text1Dark">
+      <div id="обычные-грузы" className="relative w-full md:pt-0 min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text1Dark">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  mt-10">ДОСТАВКА «ТОЧКА – ТОЧКА»</h1>
         <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Любым видом транспорта!</h2>
 

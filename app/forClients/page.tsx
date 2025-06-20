@@ -369,15 +369,11 @@ export default function ForClients() {
   ];
 
   return (
-    <main className="overflow-x-clip" >
-
-      <div className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center bg-white dark:bg-black">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold z-10 text-center">ЗАКАЗЧИКАМ И ПЕРЕВОЗЧИКАМ</h1>
-      </div>
+    <main className="overflow-x-clip pt-20" >
 
       {/* Преимущества работы с нами */}
       <div id='преимущества-работы-с-нами' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Преимущества работы с нами</h2>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2  ">Преимущества работы с нами</h1>
         <div className="flex flex-col space-y-6 md:space-y-12 lg:space-y-16 mt-10">
           {circleData.map((item, index) => (
             <CircleMotion
@@ -396,7 +392,7 @@ export default function ForClients() {
       {/* Вопросы - ответы */}
       <div id='вопросы---ответы' className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
         <QuestionRain />
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2 z-10">Вопросы – ответы</h2>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 z-10">Вопросы – ответы</h1>
         <div className="flex flex-wrap justify-center max-w-5xl">
           {qaPairs.map(({ question, answer }, index) => (
             <SpiralCard key={index} question={question} answer={answer} />
@@ -405,8 +401,8 @@ export default function ForClients() {
       </div>
 
       {/* География перевозок */}
-      <div id='география-перевозок' className="relative min-h-screen text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
-        <h2 className="text-2xl md:text-5xl lg:text-7xl font-semibold mt-20 z-10 drop-shadow-md drop-shadow-black">География перевозок</h2>
+      <div id='география-перевозок' className="hidden md:block relative min-h-screen text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-20 z-0 drop-shadow-md drop-shadow-black">География перевозок</h1>
         <div className="relative w-full max-w-6xl mx-auto aspect-[3/2]">
           <img
             src="map.png"
@@ -426,7 +422,45 @@ export default function ForClients() {
             />
           ))}
         </div>
+      </div>
 
+      {/* География перевозок - мобильная версия */}
+      <div className="md:hidden w-full py-10 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold mb-6">География перевозок</h1>
+
+          <div className="space-y-4 text-gray-900 dark:text-gray-300">
+            <p>Наша компания охватывает широкую географию доставок, включая ключевые регионы и труднодоступные месторождения по всей России.</p>
+
+            <p>Мы успешно осуществляем транспортировку в такие разнообразные и удаленные точки, как месторождения в:</p>
+
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Ямало-Ненецком автономном округе (ЯНАО)</li>
+              <li>Ханты-Мансийском автономном округе (ХМАО)</li>
+              <li>Чаяндинском</li>
+              <li>Бодайбо</li>
+              <li>Ковыктинском</li>
+              <li>Магистральном</li>
+              <li>Суторминском</li>
+              <li>Салмановском</li>
+              <li>Усинске</li>
+              <li>Салехарде</li>
+              <li>Новозаполярном</li>
+              <li>Салыме</li>
+              <li>Нарьян-Маре</li>
+              <li>Норильске</li>
+              <li>Усть-Куте</li>
+              <li>Якутии</li>
+              <li>Талакане</li>
+              <li>Красноярском крае</li>
+              <li>Лесосибирске</li>
+              <li>Северо-Енисейском</li>
+              <li>Воркуте</li>
+              <li>Республике Саха</li>
+              <li>и других регионах</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
 

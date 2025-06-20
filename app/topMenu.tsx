@@ -53,7 +53,7 @@ export default function TopMenu() {
             ]
         },
         {
-            title: "Вакансии", href: "/vacancies",
+            title: "Вакансии", href: "/vacancy",
             submenu: []
         }
     ];
