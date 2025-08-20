@@ -17,7 +17,7 @@ function Reviews() {
   };
 
   return (
-    <div className="relative min-h-screen text-text1 dark:text-text1Dark overflow-hidden flex flex-col items-center justify-center px-6 py-12">
+    <div className="relative min-h-screen text-text1 dark:text-text1Dark overflow-hidden flex flex-col items-center justify-center px-6 py-12 bg-white/90 dark:bg-black/90">
 
       <div className="max-w-4xl mx-auto">
         <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold my-2 ">Отзывы</h1>
@@ -789,47 +789,53 @@ export default function Home() {
     <main className="overflow-x-clip" >
 
       {/* Титульная страница */}
-      <div id='vir-trans' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-text1 dark:text-text1Dark">
-        <div className="">
-          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold   px-5 sm:px-0">Грузоперевозки по РФ+</h1>
-          <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  text-center">Автомобильные, морские, авиационные и железнодорожные</h2>
+      <div
+        id="vir-trans"
+        className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-text1 dark:text-text1Dark relative"
+      >
+        <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6">
+          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">
+            Грузоперевозки по РФ+
+          </h1>
+          <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2">
+            Автомобильные, морские, авиационные и железнодорожные
+          </h2>
         </div>
-        <div className="mt-4 grid grid-cols-4 gap-2">
+
+        <div className="mt-6 grid grid-cols-4 gap-2">
           <a
-            href=""  // Замените на ссылку вашего канала в Telegram
+            href="" // Замените на ссылку вашего канала в Telegram
             className="text-[#B7CCBD] hover:text-white transition-colors"
             aria-label="Telegram"
           >
             <img src="/telegram-svg.svg" alt="Telegram" className="w-8 h-8" />
           </a>
           <a
-            href=""  // Замените на ссылку вашего VK
+            href="" // Замените на ссылку вашего VK
             className="text-[#B7CCBD] hover:text-white transition-colors"
             aria-label="VK"
           >
             <img src="/vk-svg.svg" alt="vk" className="w-8 h-8" />
           </a>
           <a
-            href=""  // Замените на ваш Mail
+            href="" // Замените на ваш Mail
             className="text-[#B7CCBD] hover:text-white transition-colors"
             aria-label="Mail"
           >
             <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
           </a>
           <a
-            href=""  // Замените на ваш номер
+            href="" // Замените на ваш номер
             className="text-[#B7CCBD] hover:text-white transition-colors"
             aria-label="Phone"
           >
             <img src="/phone-svg.svg" alt="phone" className="w-8 h-8" />
           </a>
-
-
         </div>
       </div>
 
       {/* О компании */}
-      <div id='о-компании' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-xs sm:text-sm md:text-base overflow-hidden bg-white dark:bg-black text-text2 dark:text-text2Dark">
+      <div id='о-компании' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-xs sm:text-sm md:text-base overflow-hidden bg-white/90 dark:bg-black/90 text-text2 dark:text-text2Dark">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold ">О КОМПАНИИ</h1>
         <div
           className={`w-svw pr-20vw transform transition-transform duration-700 ease-out ${OKompanii === "translate-x-full" ? "-translate-x-full" : OKompanii}`}
@@ -882,7 +888,7 @@ export default function Home() {
           <p className="font-semibold">ООО «ВИР-ТРАНС»</p>
           <p>ИНН 6315621732 / ОГРН 1086315013179</p>
           <p>Россия, 443093, г. Самара, ул. Партизанская 82А, офис 507</p>
-          <p>Телефон: <a href="tel:+78004440097" className="text-[#219EBC] hover:underline">+7 (800) 444-00-97</a></p>
+          <p>Телефон: <a href="tel:+78004440097" className="text-[#00aeff] hover:underline">+7 (800) 444-00-97</a></p>
         </div>
 
         {/* Список филиалов */}
@@ -897,10 +903,10 @@ export default function Home() {
         {/* Контактные данные */}
         <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-6">Контакты:</h3>
         <ul className="mt-2 list-none text-xs md:text-base lg:text-lg text-left max-w-2xl">
-          <li><strong>E-mail:</strong> <a href="mailto:v-t@vir-trans.ru" className="text-[#219EBC] hover:underline dark:text-[#FFB703]">v-t@vir-trans.ru</a></li>
-          <li><strong>Сайт:</strong> <a href="https://vir-trans.ru" className="text-[#219EBC] hover:underline dark:text-[#FFB703]">vir-trans.ru</a></li>
-          <li><strong>ВКонтакте:</strong> <a href="#" className="text-[#219EBC] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
-          <li><strong>Телеграм:</strong> <a href="#" className="text-[#219EBC] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
+          <li><strong>E-mail:</strong> <a href="mailto:v-t@vir-trans.ru" className="text-[#00aeff] hover:underline dark:text-[#FFB703]">v-t@vir-trans.ru</a></li>
+          <li><strong>Сайт:</strong> <a href="https://vir-trans.ru" className="text-[#00aeff] hover:underline dark:text-[#FFB703]">vir-trans.ru</a></li>
+          <li><strong>ВКонтакте:</strong> <a href="#" className="text-[#00aeff] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
+          <li><strong>Телеграм:</strong> <a href="#" className="text-[#00aeff] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
         </ul>
       </div>
 
@@ -912,7 +918,7 @@ export default function Home() {
 
       {/*  ====service====  */}
       {/* Услуга 1 ДОСТАВКА «ТОЧКА – ТОЧКА»*/}
-      <div id="обычные-грузы" className="bg-white dark:bg-black relative w-full md:pt-0 min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text2 dark:text-text2Dark">
+      <div id="обычные-грузы" className="relative w-full md:pt-0 min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  mt-10">ДОСТАВКА «ТОЧКА – ТОЧКА»</h1>
         <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Любым видом транспорта!</h2>
 
@@ -968,7 +974,7 @@ export default function Home() {
       </div>
 
       {/* Услуга 2 ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ*/}
-      <div id='наливные-и-опасные-грузы' className="relative w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text1 dark:text-text1Dark ">
+      <div id='наливные-и-опасные-грузы' className="relative w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text2 dark:text-text2Dark bg-white/90 dark:bg-black/90">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">
           ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ
         </h1>
@@ -1084,7 +1090,7 @@ export default function Home() {
       </div>
 
       {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА*/}
-      <div id='мультимодальные-доставки' className="bg-white dark:bg-black w-full min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 text-text2 dark:text-text2Dark">
+      <div id='мультимодальные-доставки' className="w-full min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА</h1>
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">доставка негабаритных грузов</h1>
         <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2  ">РАЗМЕР ИМЕЕТ ЗНАЧЕНИЕ!</h2>
@@ -1094,13 +1100,13 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(0)}>
             <div onMouseEnter={() => setHoveredShipBlock3(true)} onMouseLeave={() => setHoveredShipBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100  overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg">
                 {/* Корабль */}
                 <img
                   src="/shipBlock3.svg"
                   alt="ship"
                   className="absolute bottom-0 left-0 w-40"
-                  
+
                 />
                 {/* Посылка */}
                 <img
@@ -1108,7 +1114,7 @@ export default function Home() {
                   alt="package"
                   className={`absolute w-8 left-[70px] bottom-[90px] transition-all
                   ${hoveredShipBlock3 ? 'animate-packageLift' : ''}`}
-                  
+
                 />
                 {/* Вертолёт */}
                 <img
@@ -1116,7 +1122,7 @@ export default function Home() {
                   alt="helicopter"
                   className={`absolute w-24 top-[-20px] right-[-10px] 
                   ${hoveredShipBlock3 ? 'animate-helicopterFly' : ''}`}
-                  
+
                 />
               </div>
             </div>
@@ -1124,13 +1130,13 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(1)}>
             <div onMouseEnter={() => setHoveredBigPackageBlock3(true)} onMouseLeave={() => setHoveredBigPackageBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100  overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg">
                 <img
                   src="/packageBlock3.svg"
                   alt="package"
                   className={`absolute w-40% left-[76px] bottom-[72px] transition-all 
           ${hoveredBigPackageBlock3 ? 'animate-packageScale' : ''}`}
-                  
+
                 />
               </div>
             </div>
@@ -1138,19 +1144,19 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(2)}>
             <div onMouseEnter={() => setHoveredPackageInHardhatBlock3(true)} onMouseLeave={() => setHoveredPackageInHardhatBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100  overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg">
                 <img
                   src="/hardHatBlock3.svg"
                   alt="hard-hat"
                   className={`absolute w-40% left-[90px] bottom-[120px] transition-all rotate-12
           ${hoveredPackageInHardhatBlock3 ? 'animate-packageInHardhat' : ''}`}
-                  
+
                 />
                 <img
                   src="/packageBlock3.svg"
                   alt="package"
                   className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
-                  
+
                 />
               </div>
             </div>
@@ -1158,19 +1164,19 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(3)}>
             <div onMouseEnter={() => setHoveredMagnifierBlock3(true)} onMouseLeave={() => setHoveredMagnifierBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100  overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 bg-white overflow-hidden rounded-lg">
                 <img
                   src="/magnifier.svg"
                   alt="magnifier"
                   className={`absolute w-40% left-[120px] bottom-[72px] transition-all
           ${hoveredMagnifierBlock3 ? 'animate-magnifier ' : ''}`}
-                  
+
                 />
                 <img
                   src="/packageBlock3.svg"
                   alt="package"
                   className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
-                  
+
                 />
               </div>
             </div>
@@ -1196,34 +1202,6 @@ export default function Home() {
 
       {/*  ====forClients====  */}
 
-      {/* Преимущества работы с нами */}
-      <div id='преимущества-работы-с-нами' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2  ">Преимущества работы с нами</h1>
-        <div className="flex flex-col space-y-6 md:space-y-12 lg:space-y-16 mt-10">
-          {circleData.map((item, index) => (
-            <CircleMotion
-              key={index}
-              keyNumber={index}
-              title={item.title}
-              text={item.text}
-              image={item.image}
-              activeIndex={activeIndex}
-              setActiveIndex={setActiveIndex}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Вопросы - ответы */}
-      <div id='вопросы---ответы' className="relative min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
-        <QuestionRain />
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 z-10">Вопросы – ответы</h1>
-        <div className="flex flex-wrap justify-center max-w-5xl">
-          {qaPairs.map(({ question, answer }, index) => (
-            <SpiralCard key={index} question={question} answer={answer} />
-          ))}
-        </div>
-      </div>
 
       {/* География перевозок */}
       <div id='география-перевозок' className="hidden md:block relative min-h-screen text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
@@ -1289,6 +1267,35 @@ export default function Home() {
               <li>и других регионах</li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      {/* Вопросы - ответы */}
+      <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 text-black dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
+        <QuestionRain />
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 z-10">Вопросы – ответы</h1>
+        <div className="flex flex-wrap justify-center max-w-5xl">
+          {qaPairs.map(({ question, answer }, index) => (
+            <SpiralCard key={index} question={question} answer={answer} />
+          ))}
+        </div>
+      </div>
+
+      {/* Преимущества работы с нами */}
+      <div id='преимущества-работы-с-нами' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2  ">Преимущества работы с нами</h1>
+        <div className="flex flex-col space-y-6 md:space-y-12 lg:space-y-16 mt-10">
+          {circleData.map((item, index) => (
+            <CircleMotion
+              key={index}
+              keyNumber={index}
+              title={item.title}
+              text={item.text}
+              image={item.image}
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+            />
+          ))}
         </div>
       </div>
 

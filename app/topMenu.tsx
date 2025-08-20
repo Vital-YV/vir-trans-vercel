@@ -13,6 +13,7 @@ export default function TopMenu() {
 
     const router = useRouter();
     const pathname = usePathname();
+    
 
     useEffect(() => {
         const handleResize = () => {
@@ -53,9 +54,9 @@ export default function TopMenu() {
             href: "/",
             mainAnchor: "преимущества-работы-с-нами", // Якорь для основного пункта
             submenu: [
-                { label: "Преимущества работы с нами", id: "преимущества-работы-с-нами" },
+                { label: "География перевозок", id: "география-перевозок" },
                 { label: "Вопросы - ответы", id: "вопросы---ответы" },
-                { label: "География перевозок", id: "география-перевозок" }
+                { label: "Преимущества работы с нами", id: "преимущества-работы-с-нами" }
             ]
         },
         {
