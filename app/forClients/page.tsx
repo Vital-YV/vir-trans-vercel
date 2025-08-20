@@ -402,12 +402,16 @@ export default function ForClients() {
 
       {/* География перевозок */}
       <div id='география-перевозок' className="hidden md:block relative min-h-screen text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-20 z-0 drop-shadow-md drop-shadow-black">География перевозок</h1>
         <div className="relative w-full max-w-6xl mx-auto aspect-[3/2]">
+          {/* Заголовок теперь внутри контейнера */}
+          <h1 className="absolute top-0 left-0 w-full text-3xl md:text-4xl lg:text-5xl font-bold z-50 drop-shadow-md drop-shadow-black text-center">
+            География перевозок
+          </h1>
+
           <img
             src="map.png"
             alt="map"
-            className="absolute top-0 left-7 w-full h-full object-contain scale-[2.2]"
+            className="absolute top-0 left-7 w-full h-full object-contain scale-[2.2] z-0"
           />
           {flagsList.map((item, index) => (
             <Flags

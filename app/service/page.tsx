@@ -320,7 +320,7 @@ export default function Service() {
       </div>
 
       {/* Услуга 2 ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ*/}
-      <div id='наливные-и-опасные-грузы' className="bg-white dark:bg-black w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text2 dark:text-text2Dark ">
+      <div id='наливные-и-опасные-грузы' className="relative bg-white dark:bg-black w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text2 dark:text-text2Dark ">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">
           ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ
         </h1>
@@ -329,7 +329,7 @@ export default function Service() {
         </h2>
 
         {mobile ? (
-          <div>
+          <div className="relative">
             <div className="relative scale-[0.7] grid grid-cols-2 gap-4 w-full h-[calc(0.2*100svh)] place-items-center mb-16">
               {itemsMobile.map((item, index) => (
                 <div key={index} className="flex flex-col items-center justify-center text-center">
@@ -358,7 +358,8 @@ export default function Service() {
             </div>
 
             {/* Блок с текстом */}
-            <div className="relative w-full h-[calc(0.3*100svh)] flex justify-center text-xs md:text-base lg:text-lg">
+            <div className="h-[calc(0.3*100svh)]"/>
+            <div className="absolute w-full -mt-[calc(0.3*100svh)] flex justify-center text-xs md:text-base lg:text-lg">
               <div
                 className={`text-center p-4 transition-all duration-500 transform ease-in-out 
           ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
@@ -374,7 +375,7 @@ export default function Service() {
           </div>
         ) : (
           <div>
-            <div className="relative grid grid-cols-4 gap-4 w-full h-[calc(0.2*100svh)] place-items-center my-16 mx-24">
+            <div className="relative grid grid-cols-4 gap-4 w-auto h-[calc(0.2*100svh)] place-items-center my-16 mx-24">
               {items.map((item, index) => (
                 <div key={index} className="relative flex items-center justify-center">
                   {/* Круги */}
@@ -403,7 +404,7 @@ export default function Service() {
             </div>
 
             {/* Блок с текстом */}
-            <div className="relative w-full h-[calc(0.3*100svh)] flex justify-center top-0 text-xs md:text-base lg:text-lg">
+            <div className="relative w-full h-[calc(0.4*100svh)] flex justify-center top-0 text-xs md:text-base lg:text-lg">
               <div
                 className={`text-center p-4 transition-all duration-500 transform ease-in-out 
           ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
@@ -424,7 +425,7 @@ export default function Service() {
           Транспортировка наливных грузов – одно из ключевых направлений деятельности компании "ВИР-Транс"
         </p> */}
 
-        <div className="mt-4 grid grid-cols-2 gap-2">
+        <div className="absolute bottom-5 grid grid-cols-2 gap-2 z-20">
           <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Mail">
             <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
           </a>
@@ -445,7 +446,7 @@ export default function Service() {
 
           <div onMouseEnter={() => setHoverBlock3(0)}>
             <div onMouseEnter={() => setHoveredShipBlock3(true)} onMouseLeave={() => setHoveredShipBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100 overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 dark:bg-blue-100 bg-white overflow-hidden rounded-lg">
                 {/* Корабль */}
                 <img
                   src="/shipBlock3.svg"
@@ -472,7 +473,7 @@ export default function Service() {
 
           <div onMouseEnter={() => setHoverBlock3(1)}>
             <div onMouseEnter={() => setHoveredBigPackageBlock3(true)} onMouseLeave={() => setHoveredBigPackageBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100 overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 dark:bg-blue-100 bg-white overflow-hidden rounded-lg">
                 <img
                   src="/packageBlock3.svg"
                   alt="package"
@@ -485,7 +486,7 @@ export default function Service() {
 
           <div onMouseEnter={() => setHoverBlock3(2)}>
             <div onMouseEnter={() => setHoveredPackageInHardhatBlock3(true)} onMouseLeave={() => setHoveredPackageInHardhatBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100 overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 dark:bg-blue-100 bg-white overflow-hidden rounded-lg">
                 <img
                   src="/hardHatBlock3.svg"
                   alt="hard-hat"
@@ -503,7 +504,7 @@ export default function Service() {
 
           <div onMouseEnter={() => setHoverBlock3(3)}>
             <div onMouseEnter={() => setHoveredMagnifierBlock3(true)} onMouseLeave={() => setHoveredMagnifierBlock3(false)}>
-              <div className="relative w-64 h-64 bg-blue-100 overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 dark:bg-blue-100 bg-white overflow-hidden rounded-lg">
                 <img
                   src="/magnifier.svg"
                   alt="magnifier"
@@ -521,7 +522,7 @@ export default function Service() {
         </div>
 
 
-        <div className={`mt-4 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
+        <div className={`mt-20 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
           {hoverBlock3 !== null && (
             <div>
               {itemsBlock3[hoverBlock3].title}

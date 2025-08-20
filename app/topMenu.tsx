@@ -29,7 +29,9 @@ export default function TopMenu() {
 
     const menuItems = [
         {
-            title: "Vir trans", href: "/",
+            title: "Vir trans",
+            href: "/",
+            mainAnchor: "", // Добавлен якорь для основного пункта
             submenu: [
                 { label: "О компании", id: "о-компании" },
                 { label: "Задать вопрос", id: "задать-вопрос" },
@@ -37,7 +39,9 @@ export default function TopMenu() {
             ]
         },
         {
-            title: "Услуги грузоперевозок", href: "/service",
+            title: "Услуги грузоперевозок",
+            href: "/",
+            mainAnchor: "обычные-грузы", // Якорь для основного пункта
             submenu: [
                 { label: "Обычные грузы", id: "обычные-грузы" },
                 { label: "Наливные и опасные грузы", id: "наливные-и-опасные-грузы" },
@@ -45,15 +49,19 @@ export default function TopMenu() {
             ]
         },
         {
-            title: "Заказчикам и Перевозчикам", href: "/forClients",
+            title: "Заказчикам и Перевозчикам",
+            href: "/",
+            mainAnchor: "преимущества-работы-с-нами", // Якорь для основного пункта
             submenu: [
-                { label: "Вопросы - ответы", id: "вопросы---ответы" },
                 { label: "Преимущества работы с нами", id: "преимущества-работы-с-нами" },
+                { label: "Вопросы - ответы", id: "вопросы---ответы" },
                 { label: "География перевозок", id: "география-перевозок" }
             ]
         },
         {
-            title: "Вакансии", href: "/vacancy",
+            title: "Вакансии",
+            href: "/vacancy",
+            mainAnchor: null, // Для страниц без якоря
             submenu: []
         }
     ];
@@ -86,25 +94,50 @@ export default function TopMenu() {
         window.scrollTo({ top: y, behavior: 'smooth' });
     };
 
-    const handleMenuClick = (href: string) => {
-        if (href.startsWith("/#")) {
-            const id = href.substring(2); // Убираем "/#"
-            if (pathname === "/") {
-                scrollToId(id);
-            } else {
-                router.push(href);
+    const scrollToAnchor = (id: string) => {
+        const offset = 92; // смещение под фиксированное меню
+        const element = document.getElementById(id);
+        if (!element) return;
+
+        const start = window.scrollY;
+        const end = element.getBoundingClientRect().top + window.scrollY - offset;
+        const duration = 500; // время анимации в мс
+        const startTime = performance.now();
+
+        const animate = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3); // cubic easing
+
+            window.scrollTo(0, start + (end - start) * ease);
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
             }
+        };
+
+        requestAnimationFrame(animate);
+    };
+
+    // Для главного меню
+    const handleMainMenuClick = (item: typeof menuItems[0]) => {
+        if (pathname === item.href && item.mainAnchor) {
+            scrollToAnchor(item.mainAnchor);
+        } else if (item.mainAnchor) {
+            router.push(`${item.href}#${item.mainAnchor}`);
+            setTimeout(() => scrollToAnchor(item.mainAnchor), 50); // небольшая задержка
         } else {
-            router.push(href);
+            router.push(item.href);
         }
     };
 
-
-    const handleSubmenuClick = async (pageHref: string, anchorId: string) => {
+    // Для подменю
+    const handleSubmenuClick = (pageHref: string, anchorId: string) => {
         if (pathname === pageHref) {
-            scrollToId(anchorId);
+            scrollToAnchor(anchorId);
         } else {
             router.push(`${pageHref}#${anchorId}`);
+            setTimeout(() => scrollToAnchor(anchorId), 50);
         }
     };
 
@@ -139,7 +172,11 @@ export default function TopMenu() {
                                     <div className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain transition-colors text-lg text-left w-full">
                                         <button
                                             className='text-shadow-[0_1px_3px_rgba(0,0,0,0.4)]'
-                                            onClick={() => handleMenuClick(item.href)}
+                                            onClick={() => {
+                                                handleMainMenuClick(item);
+                                                setIsMenuOpen(false);
+                                            }}
+
                                         >
                                             {item.title}
                                         </button>
@@ -188,7 +225,7 @@ export default function TopMenu() {
                                     <div className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain">
                                         <button
                                             className='text-shadow-[0_1px_3px_rgba(0,0,0,0.4)] dark:hover:text-textDarkMain hover:text-textMain'
-                                            onClick={() => handleMenuClick(item.href)}
+                                            onClick={() => handleMainMenuClick(item)}
                                         >
                                             {item.title}
                                         </button>

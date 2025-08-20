@@ -167,14 +167,15 @@ module.exports = {
 				textMain: '#FB8500',
 				textDarkMain: '#FB8500',
 
+				/*h1: '#3b457c',*/
 				h1: '#3b457c',
 				h1Dark: '#FFB703',
 
 				h2: '#219EBC',
 				h2Dark: '#FB8500',
 
-				text1: '#D1D5DB',
-				text1Dark: '#D1D5DB',
+				text1: '#ffffff',
+				text1Dark: '#ffffff',
 
 				text2: '#3b457c',
 				text2Dark: '#219EBC',
