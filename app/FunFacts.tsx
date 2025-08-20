@@ -150,11 +150,11 @@ export default function CornerFacts() {
       `}>
         <div className="flex items-center mb-3">
           <span className="text-3xl mr-4 text-amber-400">{activeStory.emoji}</span>
-          <h3 className="text-black font-bold text-xl">{activeStory.title}</h3>
+          <h3 className="text-black dark:text-white font-bold text-xl">{activeStory.title}</h3>
         </div>
 
         <div className="max-h-52 overflow-y-auto pr-3 custom-scrollbar">
-          <p className="text-black/90 text-base leading-relaxed">
+          <p className="text-black/90 dark:text-white text-base leading-relaxed">
             {activeStory.content}
           </p>
         </div>
