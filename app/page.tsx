@@ -888,7 +888,7 @@ export default function Home() {
           <p className="font-semibold">ООО «ВИР-ТРАНС»</p>
           <p>ИНН 6315621732 / ОГРН 1086315013179</p>
           <p>Россия, 443093, г. Самара, ул. Партизанская 82А, офис 507</p>
-          <p>Телефон: <a href="tel:+78004440097" className="text-[#00aeff] hover:underline">+7 (800) 444-00-97</a></p>
+          <p>Телефон: <a href="tel:+78004440097" className="text-[#81a3ff] hover:underline">+7 (800) 444-00-97</a></p>
         </div>
 
         {/* Список филиалов */}
@@ -903,10 +903,10 @@ export default function Home() {
         {/* Контактные данные */}
         <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-6">Контакты:</h3>
         <ul className="mt-2 list-none text-xs md:text-base lg:text-lg text-left max-w-2xl">
-          <li><strong>E-mail:</strong> <a href="mailto:v-t@vir-trans.ru" className="text-[#00aeff] hover:underline dark:text-[#FFB703]">v-t@vir-trans.ru</a></li>
-          <li><strong>Сайт:</strong> <a href="https://vir-trans.ru" className="text-[#00aeff] hover:underline dark:text-[#FFB703]">vir-trans.ru</a></li>
-          <li><strong>ВКонтакте:</strong> <a href="#" className="text-[#00aeff] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
-          <li><strong>Телеграм:</strong> <a href="#" className="text-[#00aeff] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
+          <li><strong>E-mail:</strong> <a href="mailto:v-t@vir-trans.ru" className="text-[#81a3ff] hover:underline dark:text-[#FFB703]">v-t@vir-trans.ru</a></li>
+          <li><strong>Сайт:</strong> <a href="https://vir-trans.ru" className="text-[#81a3ff] hover:underline dark:text-[#FFB703]">vir-trans.ru</a></li>
+          <li><strong>ВКонтакте:</strong> <a href="#" className="text-[#81a3ff] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
+          <li><strong>Телеграм:</strong> <a href="#" className="text-[#81a3ff] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
         </ul>
       </div>
 

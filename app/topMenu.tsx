@@ -13,7 +13,7 @@ export default function TopMenu() {
 
     const router = useRouter();
     const pathname = usePathname();
-    
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -32,7 +32,7 @@ export default function TopMenu() {
         {
             title: "Vir trans",
             href: "/",
-            mainAnchor: "", // Добавлен якорь для основного пункта
+            mainAnchor: "vir-trans", // id блока, куда нужно скроллить
             submenu: [
                 { label: "О компании", id: "о-компании" },
                 { label: "Задать вопрос", id: "задать-вопрос" },
@@ -123,14 +123,17 @@ export default function TopMenu() {
     // Для главного меню
     const handleMainMenuClick = (item: typeof menuItems[0]) => {
         if (pathname === item.href && item.mainAnchor) {
+            // Уже на странице, есть якорь → плавный скролл
             scrollToAnchor(item.mainAnchor);
         } else if (item.mainAnchor) {
+            // На другой странице → переход с якорем
             router.push(`${item.href}#${item.mainAnchor}`);
-            setTimeout(() => scrollToAnchor(item.mainAnchor), 50); // небольшая задержка
+            setTimeout(() => scrollToAnchor(item.mainAnchor), 100);
         } else {
             router.push(item.href);
         }
     };
+
 
     // Для подменю
     const handleSubmenuClick = (pageHref: string, anchorId: string) => {
