@@ -856,7 +856,7 @@ export default function Home() {
         <div ref={targetRef} />
 
         <div className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}>
-          <div className="mt-4 border border-black rounded-l-xl bg-black/50 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-white flex items-center justify-between">
+          <div className="mt-4 border border-black dark:border-[#219EBC] rounded-l-xl bg-black/50 dark:bg-[#3b82f6]/50 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-white flex items-center justify-between">
 
             {/* Левая часть — текст */}
             <div className="max-w-[80%]">
@@ -1023,7 +1023,7 @@ export default function Home() {
                   <div className={`relative w-20 h-20 md:w-[100px] md:h-[100px] rounded-full ${item.subColor}`}>
                     <div
                       className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out 
-                        w-16 h-16 md:w-20 md:h-20 ${item.color} 
+                        w-6 h-6 ${item.color} 
                         ${hoveredIndex === index ? "scale-125" : ""}
                         rounded-full`}
                       onMouseEnter={() => setHoveredIndex(index)}
@@ -1068,7 +1068,7 @@ export default function Home() {
                   <div className={`relative w-20 h-20 md:w-[100px] md:h-[100px] rounded-full ${item.subColor}`}>
                     <div
                       className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out 
-                        w-10 h-10 sm:w-14 sm:h-14 md:w-10 md:h-10 ${item.color} 
+                        w-10 h-10 ${item.color} 
                         ${hoveredIndex === index ? "scale-2.5" : ""}
                         rounded-full`}
                       onMouseEnter={() => setHoveredIndex(index)}
@@ -1122,7 +1122,7 @@ export default function Home() {
       </div>
 
       {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА*/}
-      <div id='мультимодальные-доставки' className="w-full min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
+      <div id='мультимодальные-доставки' className="w-auto min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  "
           style={{
             textShadow: `
@@ -1254,7 +1254,7 @@ export default function Home() {
         </div>
 
 
-        <div className={` text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
+        <div className={`mt-10 md:mt-0 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
           <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
             {hoverBlock3 !== null && (
               <div>
