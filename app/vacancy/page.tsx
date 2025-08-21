@@ -33,9 +33,10 @@ export default function Vacancy() {
                             onClick={() => toggleSection('aboutCompany')}
                             className="flex items-center justify-between cursor-pointer group"
                         >
-                            <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                            <h2 className="flex-1 text-center text-2xl md:text-3xl font-semibold text-[#FB8500] dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                                 Присоединяйся к успешной команде ВИР-Транс!
                             </h2>
+
                             {expandedSections.aboutCompany ?
                                 <FiChevronUp className="text-blue-600 dark:text-blue-400 text-2xl" /> :
                                 <FiChevronDown className="text-gray-500 dark:text-gray-400 text-2xl group-hover:text-blue-600 dark:group-hover:text-blue-400" />

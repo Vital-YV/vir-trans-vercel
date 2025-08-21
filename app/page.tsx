@@ -297,7 +297,7 @@ function Flags({
     italic 
     rounded-l-full ${sizeText}
     bg-gradient-to-r from-[#F97316] from-80% to-95% 
-    text-sm text-[#3b82f6] font-bold
+    text-sm text-black font-bold
     pointer-events-none place-content-center
     transition duration-500 delay-100 ease-in-out
     ${isActive ? "opacity-100 translate-x-2" : "opacity-0 translate-x-0"}
@@ -801,7 +801,7 @@ export default function Home() {
           <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white">
             Грузоперевозки по РФ+
           </h1>
-          <h2 className="text-lg md:text-3xl lg:text-5xl font-semibold mt-2">
+          <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2">
             Автомобильные, морские, авиационные и железнодорожные
           </h2>
         </div>
@@ -858,8 +858,8 @@ export default function Home() {
         <div
           className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}
         >
-          <div className="mt-4 border border-[#219EBC] rounded-l-xl bg-[#219EBC]/60 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-white ">
-            <h4 className="font-semibold text-xs md:text-base lg:text-lg">Наши услуги включают:</h4>
+          <div className="mt-4 border border-black rounded-l-xl bg-black/50 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-white ">
+            <h4 className="text-xs md:text-base lg:text-lg">Наши услуги включают:</h4>
             <ul className="mt-2 list-disc list-inside text-left">
               <li>Доставка «точка – точка» обычных грузов любым видом транспорта.</li>
               <li>
@@ -875,7 +875,7 @@ export default function Home() {
 
         </div>
         <div>
-          <h4 className="text-xs md:text-base lg:text-lg font-semibold mt-4 text-[#3b82f6]">Приглашаем Вас к взаимовыгодному сотрудничеству!</h4>
+          <h4 className="text-xs md:text-base lg:text-lg font-semibold mt-4 text-[#1e3d98]">Приглашаем Вас к взаимовыгодному сотрудничеству!</h4>
         </div>
 
       </div>
@@ -883,7 +883,16 @@ export default function Home() {
       {/* Задать вопросы */}
       <div id='задать-вопрос' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark">
         <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
-          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ЗАДАТЬ ВОПРОС / КОНТАКТЫ</h1>
+          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  "
+            style={{
+              textShadow: `
+      -1px -1px 0 white,
+       1px -1px 0 white,
+      -1px  1px 0 white,
+       1px  1px 0 white
+    `
+            }}
+          >ЗАДАТЬ ВОПРОС / КОНТАКТЫ</h1>
 
           <p className="mt-4 text-base md:text-lg lg:text-xl">Подберём транспорт под ваши потребности.</p>
           <p className="text-base md:text-lg lg:text-xl">Предупредим о возможных нюансах.</p>
@@ -1110,16 +1119,36 @@ export default function Home() {
 
       {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА*/}
       <div id='мультимодальные-доставки' className="w-full min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА</h1>
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">доставка негабаритных грузов</h1>
-        <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2  ">РАЗМЕР ИМЕЕТ ЗНАЧЕНИЕ!</h2>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  "
+          style={{
+            textShadow: `
+      -1px -1px 0 white,
+       1px -1px 0 white,
+      -1px  1px 0 white,
+       1px  1px 0 white
+    `
+          }}
+        >
+          МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА</h1>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  "
+          style={{
+            textShadow: `
+      -1px -1px 0 white,
+       1px -1px 0 white,
+      -1px  1px 0 white,
+       1px  1px 0 white
+    `
+          }}
+        >
+          доставка негабаритных грузов</h1>
+        <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2  ">РАЗМЕР ИМЕЕТ И ФОРМА ЗНАЧЕНИЕ!</h2>
 
         <h3 className="text-base md:text-lg lg:text-xl font-semibold my-6">Мы предлагаем Вам:</h3>
         <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[1] scale-[0.4] gap-3 min-w-max h-[calc(0.4*100svh)] sm:h-auto -mt-16 sm:mt-0">
 
           <div onMouseEnter={() => setHoverBlock3(0)}>
             <div onMouseEnter={() => setHoveredShipBlock3(true)} onMouseLeave={() => setHoveredShipBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-75">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-50">
                 {/* Корабль */}
                 <img
                   src="/shipBlock3.svg"
@@ -1155,7 +1184,7 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(1)}>
             <div onMouseEnter={() => setHoveredBigPackageBlock3(true)} onMouseLeave={() => setHoveredBigPackageBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-75">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-50">
                 <img
                   src="/packageBlock3.svg"
                   alt="package"
@@ -1171,7 +1200,7 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(2)}>
             <div onMouseEnter={() => setHoveredPackageInHardhatBlock3(true)} onMouseLeave={() => setHoveredPackageInHardhatBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-75">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-50">
                 <img
                   src="/hardHatBlock3.svg"
                   alt="hard-hat"
@@ -1181,21 +1210,21 @@ export default function Home() {
                     filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
                   }}
                 />
-                <img
+                {/* <img
                   src="/packageBlock3.svg"
                   alt="package"
                   className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
                   style={{
                     filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
                   }}
-                />
+                /> */}
               </div>
             </div>
           </div>
 
           <div onMouseEnter={() => setHoverBlock3(3)}>
             <div onMouseEnter={() => setHoveredMagnifierBlock3(true)} onMouseLeave={() => setHoveredMagnifierBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-75">
+              <div className="relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-50">
                 <img
                   src="/magnifier.svg"
                   alt="magnifier"
@@ -1205,21 +1234,21 @@ export default function Home() {
                     filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
                   }}
                 />
-                <img
+                {/* <img
                   src="/packageBlock3.svg"
                   alt="package"
                   className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
                   style={{
                     filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
                   }}
-                />
+                /> */}
               </div>
             </div>
           </div>
         </div>
 
 
-        <div className={`mt-8 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
+        <div className={` text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
           <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
             {hoverBlock3 !== null && (
               <div>
@@ -1244,7 +1273,15 @@ export default function Home() {
       <div id='география-перевозок' className="hidden md:block relative min-h-screen text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
         <div className="relative w-full max-w-6xl mx-auto aspect-[3/2]">
           {/* Заголовок теперь внутри контейнера */}
-          <h1 className="absolute top-0 left-0 w-full text-3xl md:text-4xl lg:text-5xl font-bold z-50 drop-shadow-md drop-shadow-black text-center">
+          <h1 className="absolute top-0 left-0 w-full text-3xl md:text-4xl lg:text-5xl font-bold z-50 drop-shadow-md drop-shadow-black text-center"
+            style={{
+              textShadow: `
+      -1px -1px 0 white,
+       1px -1px 0 white,
+      -1px  1px 0 white,
+       1px  1px 0 white
+    `
+            }}>
             География перевозок
           </h1>
 
@@ -1272,7 +1309,15 @@ export default function Home() {
       <div className="md:hidden w-full py-10 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
-            <h1 className="text-3xl font-bold mb-6">География перевозок</h1>
+            <h1 className="text-3xl font-bold mb-6"
+              style={{
+                textShadow: `
+      -1px -1px 0 white,
+       1px -1px 0 white,
+      -1px  1px 0 white,
+       1px  1px 0 white
+    `
+              }}>География перевозок</h1>
 
             <div className="space-y-4 text-white dark:text-gray-300">
               <p>Наша компания охватывает широкую географию доставок, включая ключевые регионы и труднодоступные месторождения по всей России.</p>
@@ -1310,7 +1355,7 @@ export default function Home() {
       </div>
 
       {/* Вопросы - ответы */}
-      <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 text-[#219EBC] dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
+      <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 text-[#3b82f6] dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
         <QuestionRain />
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 z-10">Вопросы – ответы</h1>
         <div className="flex flex-wrap justify-center max-w-5xl">
@@ -1322,7 +1367,15 @@ export default function Home() {
 
       {/* Преимущества работы с нами */}
       <div id='преимущества-работы-с-нами' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2  ">Преимущества работы с нами</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2  "
+          style={{
+            textShadow: `
+      -1px -1px 0 white,
+       1px -1px 0 white,
+      -1px  1px 0 white,
+       1px  1px 0 white
+    `
+          }}>Преимущества работы с нами</h1>
         <div className="flex flex-col space-y-6 md:space-y-12 lg:space-y-16 mt-10">
           {circleData.map((item, index) => (
             <CircleMotion
