@@ -147,7 +147,7 @@ export default function TopMenu() {
 
 
     return (
-        <div className="w-full h-24 fixed flex flex-col bg-gradient-to-b to-[#3b82f6] from-[#219EBC]">
+        <div className="w-full h-24 fixed flex flex-col bg-gradient-to-b to-[#3b82f6] from-[#219EBC] font-sans font-semibold">
             {mobileMenu ? (
                 <div className="relative">
                     <div className="z-50 fixed top-5 left-5 flex items-center text-white">
@@ -228,7 +228,7 @@ export default function TopMenu() {
                                 >
                                     <div className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain">
                                         <button
-                                            className='text-shadow-[0_1px_3px_rgba(0,0,0,0.4)] dark:hover:text-textDarkMain hover:text-textMain'
+                                            className=' dark:hover:text-textDarkMain hover:text-textMain'
                                             onClick={() => handleMainMenuClick(item)}
                                         >
                                             {item.title}

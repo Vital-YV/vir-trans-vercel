@@ -103,7 +103,7 @@ export default function Footer() {
       </div>
 
       {/* Нижняя полоса */}
-      <div className="mt-8 text-center text-xs text-gray-400">
+      <div className="mt-8 text-center text-xs text-gray-600">
         © {new Date().getFullYear()} Вир-Транс. Все права защищены.
       </div>
     </footer>

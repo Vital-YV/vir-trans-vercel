@@ -208,7 +208,7 @@ const circleData = [
   {
     title: 'Персональный подход',
     text: 'Каждому клиенту — индивидуальный менеджер, подбор транспорта и маршрута под задачи и бюджет.',
-    image: '/cogs.svg'
+    image: '/puzzle.png'
   },
 ];
 
@@ -629,8 +629,8 @@ export default function Home() {
         <p className='text-base md:text-lg max-w-3xl mt-2'>
           Мы специализируемся на перевозке различных текучих веществ, будь то химические продукты или пищевые ингредиенты. Наши специалисты обладают высокой квалификацией и опытом, гарантируя безопасную доставку вашего груза.
         </p>,
-      color: 'bg-[#3b82f6]',
-      subColor: 'bg-[#219EBC]'
+      color: 'bg-[#FB8500]',
+      subColor: 'bg-[#1e3d98]'
     },
     {
       title: '',
@@ -638,7 +638,7 @@ export default function Home() {
         <p className="">
         </p>,
       color: 'bg-[#FB8500]/0 cursor-default',
-      subColor: 'bg-[#ff8c2f]/0'
+      subColor: 'bg-[#1e3d98]/0'
     },
 
     {
@@ -647,8 +647,8 @@ export default function Home() {
         <p className="text-base md:text-lg max-w-3xl mt-2">
           Для перевозки наливных грузов мы используем специальные автоцистерны. Все емкости проходят строгий санитарный контроль и регулярную проверку на техническое состояние, обеспечивая высокий уровень безопасности и качества доставки.
         </p>,
-      color: 'bg-[#3b82f6]',
-      subColor: 'bg-[#219EBC]'
+      color: 'bg-[#FB8500]',
+      subColor: 'bg-[#1e3d98]'
     },
     {
       title: '',
@@ -656,7 +656,7 @@ export default function Home() {
         <p className="">
         </p>,
       color: 'bg-[#FB8500]/0 cursor-default',
-      subColor: 'bg-[#ff8c2f]/0'
+      subColor: 'bg-[#1e3d98]/0'
     },
     {
       title: '',
@@ -664,7 +664,7 @@ export default function Home() {
         <p className="">
         </p>,
       color: 'bg-[#FB8500]/0 cursor-default',
-      subColor: 'bg-[#ff8c2f]/0'
+      subColor: 'bg-[#1e3d98]/0'
     },
     {
       title: 'Соблюдение стандартов',
@@ -672,8 +672,8 @@ export default function Home() {
         <p className="text-base md:text-lg max-w-3xl mt-2">
           Мы строго следуем санитарно-эпидемиологическим нормам и стандартам безопасности при перевозке грузов. Перед каждой загрузкой емкости проходят тщательную очистку и обработку, а наши водители проходят профессиональную подготовку.
         </p>,
-      color: 'bg-[#3b82f6]',
-      subColor: 'bg-[#219EBC]'
+      color: 'bg-[#FB8500]',
+      subColor: 'bg-[#1e3d98]'
     },
     {
       title: '',
@@ -681,7 +681,7 @@ export default function Home() {
         <p className="">
         </p>,
       color: 'bg-[#FB8500]/0 cursor-default',
-      subColor: 'bg-[#ff8c2f]/0'
+      subColor: 'bg-[#1e3d98]/0'
     },
     {
       title: 'В услуги входит',
@@ -694,8 +694,8 @@ export default function Home() {
             растворимые краски, моющие средства, концентраты и экстракты, вина, виноградное сусло, продукты питания и многое другое.
           </li>
         </ul>,
-      color: 'bg-[#3b82f6]',
-      subColor: 'bg-[#219EBC]'
+      color: 'bg-[#FB8500]',
+      subColor: 'bg-[#1e3d98]'
     },
 
 
@@ -708,8 +708,8 @@ export default function Home() {
         <p className='max-w-3xl mt-2'>
           Мы специализируемся на перевозке различных текучих веществ, будь то химические продукты или пищевые ингредиенты. Наши специалисты обладают высокой квалификацией и опытом, гарантируя безопасную доставку вашего груза.
         </p>,
-      color: 'bg-[#3b82f6]',
-      subColor: 'bg-[#219EBC]'
+      color: 'bg-[#FB8500]',
+      subColor: 'bg-[#1e3d98]'
     },
     {
       title: 'Специализированное оборудование',
@@ -717,8 +717,8 @@ export default function Home() {
         <p className="max-w-3xl mt-2">
           Для перевозки наливных грузов мы используем специальные автоцистерны. Все емкости проходят строгий санитарный контроль и регулярную проверку на техническое состояние, обеспечивая высокий уровень безопасности и качества доставки.
         </p>,
-      color: 'bg-[#3b82f6]',
-      subColor: 'bg-[#219EBC]'
+      color: 'bg-[#FB8500]',
+      subColor: 'bg-[#1e3d98]'
     },
     {
       title: 'Соблюдение стандартов',
@@ -726,8 +726,8 @@ export default function Home() {
         <p className="max-w-3xl mt-2">
           Мы строго следуем санитарно-эпидемиологическим нормам и стандартам безопасности при перевозке грузов. Перед каждой загрузкой емкости проходят тщательную очистку и обработку, а наши водители проходят профессиональную подготовку.
         </p>,
-      color: 'bg-[#3b82f6]',
-      subColor: 'bg-[#219EBC]'
+      color: 'bg-[#FB8500]',
+      subColor: 'bg-[#1e3d98]'
     },
     {
       title: 'В услуги входит',
@@ -740,8 +740,8 @@ export default function Home() {
             растворимые краски, моющие средства, концентраты и экстракты, вина, виноградное сусло, продукты питания и многое другое.
           </li>
         </ul>,
-      color: 'bg-[#3b82f6]',
-      subColor: 'bg-[#219EBC]'
+      color: 'bg-[#FB8500]',
+      subColor: 'bg-[#1e3d98]'
     },
   ];
 
@@ -855,25 +855,29 @@ export default function Home() {
 
         <div ref={targetRef} />
 
-        <div
-          className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}
-        >
-          <div className="mt-4 border border-black rounded-l-xl bg-black/50 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-white ">
-            <h4 className="text-xs md:text-base lg:text-lg">Наши услуги включают:</h4>
-            <ul className="mt-2 list-disc list-inside text-left">
-              <li>Доставка «точка – точка» обычных грузов любым видом транспорта.</li>
-              <li>
-                Транспортировку наливных грузов – одно из ключевых направлений
-                деятельности компании.
-              </li>
-              <li>
-                Дальнюю доставку крупногабаритных и сверхтяжелых грузов в сложных
-                погодных условиях – особая веха в нашем развитии.
-              </li>
-            </ul>
-          </div>
+        <div className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}>
+          <div className="mt-4 border border-black rounded-l-xl bg-black/50 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-white flex items-center justify-between">
 
+            {/* Левая часть — текст */}
+            <div className="max-w-[80%]">
+              <h4 className="text-xs md:text-base lg:text-lg">Наши услуги включают:</h4>
+              <ul className="mt-2 list-disc list-inside text-left">
+                <li>Доставка «точка – точка» обычных грузов любым видом транспорта.</li>
+                <li>Транспортировку наливных грузов – одно из ключевых направлений деятельности компании.</li>
+                <li>Дальнюю доставку крупногабаритных и сверхтяжелых грузов в сложных погодных условиях – особая веха в нашем развитии.</li>
+              </ul>
+            </div>
+
+            {/* Правая часть — картинка */}
+            <img
+              src="cogs.svg"
+              alt="cogs"
+              className="w-16 h-16 md:w-20 md:h-20 md:-mr-20 -mr-10"
+              style={{ filter: "invert(54%) sepia(98%) saturate(2033%) hue-rotate(0deg) brightness(101%) contrast(101%)" }}
+            />
+          </div>
         </div>
+
         <div>
           <h4 className="text-xs md:text-base lg:text-lg font-semibold mt-4 text-[#1e3d98]">Приглашаем Вас к взаимовыгодному сотрудничеству!</h4>
         </div>
@@ -1064,8 +1068,8 @@ export default function Home() {
                   <div className={`relative w-20 h-20 md:w-[100px] md:h-[100px] rounded-full ${item.subColor}`}>
                     <div
                       className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out 
-                        w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 ${item.color} 
-                        ${hoveredIndex === index ? "scale-125" : ""}
+                        w-10 h-10 sm:w-14 sm:h-14 md:w-10 md:h-10 ${item.color} 
+                        ${hoveredIndex === index ? "scale-2.5" : ""}
                         rounded-full`}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}

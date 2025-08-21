@@ -1,5 +1,7 @@
 import { transform } from "next/dist/build/swc/generated-native";
 
+
+
 /** @type {import('tailwindcss').Config} */
 const plugin = require('tailwindcss/plugin')
 module.exports = {
@@ -144,6 +146,8 @@ module.exports = {
 				'handjet': ['Handjet'],
 				roboto: ['var(--font-roboto)', 'sans-serif'],
 				garamond: ['var(--font-garamond)', 'serif'],
+				sans: ['"Noto Sans"', 'ui-sans-serif', 'system-ui'],
+				menu: ['"Noto Sans"', 'ui-sans-serif', 'system-ui'],
 			},
 			fontSize: {
 				'neonsign': '20vh',
@@ -159,7 +163,8 @@ module.exports = {
 			scale: {
 				eight: '0.8',
 				'0.25': '0.25',
-				'0.40': '0.40'
+				'0.40': '0.40',
+				'2.5': '2.5'
 			},
 			colors: {
 				main: '#3b457c',
@@ -260,7 +265,7 @@ module.exports = {
 				magnifier: 'magnifier 4s ease-in-out',
 				slideIn: 'slideIn 0.3s ease-out forwards',
 				fall: 'fall 10s linear infinite',
-				
+
 
 			},
 			screens: {
