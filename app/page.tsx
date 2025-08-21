@@ -798,7 +798,7 @@ export default function Home() {
         className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-text1 dark:text-text1Dark relative"
       >
         <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6">
-          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold">
+          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white">
             Грузоперевозки по РФ+
           </h1>
           <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2">
@@ -839,12 +839,12 @@ export default function Home() {
       </div>
 
       {/* О компании */}
-      <div id='о-компании' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-xs sm:text-sm md:text-base overflow-hidden bg-white/90 dark:bg-black/90 text-text2 dark:text-text2Dark">
+      <div id='о-компании' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-xs sm:text-sm md:text-base overflow-hidden bg-white/90 dark:bg-black/90 ">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold ">О КОМПАНИИ</h1>
         <div
           className={`w-svw pr-20vw transform transition-transform duration-700 ease-out ${OKompanii === "translate-x-full" ? "-translate-x-full" : OKompanii}`}
         >
-          <p className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/10 p-4 md:px-28 px-10 pl-20vw md:pl-20vw dark:text-[#fb8600]">
+          <p className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/10 p-4 md:px-28 px-10 pl-20vw md:pl-20vw text-[#fb8600]">
             В 2008 году ООО «Вир-Транс» осуществило свою первую транспортировку
             груза, что стало началом нашего успешного пути в логистике. С тех пор мы
             постоянно расширяем свои компетенции и накапливаем опыт в этой сфере.
@@ -858,7 +858,7 @@ export default function Home() {
         <div
           className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}
         >
-          <div className="mt-4 border border-[#219EBC] rounded-l-xl bg-[#219EBC]/10 p-4 md:px-28 px-10 pr-20vw md:pr-20vw dark:text-[#219EBC]">
+          <div className="mt-4 border border-[#219EBC] rounded-l-xl bg-[#219EBC]/10 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-[#3b82f6] dark:text-text2Dark">
             <h4 className="font-semibold text-xs md:text-base lg:text-lg">Наши услуги включают:</h4>
             <ul className="mt-2 list-disc list-inside text-left">
               <li>Доставка «точка – точка» обычных грузов любым видом транспорта.</li>
@@ -875,7 +875,7 @@ export default function Home() {
 
         </div>
         <div>
-          <h4 className="text-xs md:text-base lg:text-lg font-semibold mt-4 dark:text-[#219EBC]">Приглашаем Вас к взаимовыгодному сотрудничеству!</h4>
+          <h4 className="text-xs md:text-base lg:text-lg font-semibold mt-4 text-[#3b82f6]">Приглашаем Вас к взаимовыгодному сотрудничеству!</h4>
         </div>
 
       </div>
@@ -931,37 +931,37 @@ export default function Home() {
         {mobile ? (
           <div className="relative w-[300px] h-[200px] grid place-items-center">
             <div className="absolute top-0 left-0 scale-[0.5]">
-              <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
+              <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
             </div>
             <div className="absolute top-0 right-0 scale-[0.5]">
               <TransportIcon src='/ship.svg' alt='ship' label='Водный транспорт' />
             </div>
             <div className="absolute bottom-0 left-0 scale-[0.5]">
-              <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
+              <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
             </div>
             <div className="absolute bottom-0 right-0 scale-[0.5]">
               <TransportIcon src='/train.svg' alt='train' label='ЖД' />
             </div>
             <div className="flex felx-col items-center scale-[0.5]">
-              <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
+              <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
             </div>
           </div>
         ) : (
           <div className="relative w-[600px] h-[400px] mt-20 grid place-items-center">
             <div className="absolute top-0 left-0">
-              <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
+              <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
             </div>
             <div className="absolute top-0 right-0">
               <TransportIcon src='/ship.svg' alt='ship' label='Водный транспорт' />
             </div>
             <div className="absolute bottom-0 left-0">
-              <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
+              <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
             </div>
             <div className="absolute bottom-0 right-0">
               <TransportIcon src='/train.svg' alt='train' label='ЖД' />
             </div>
             <div className="flex felx-col items-center">
-              <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
+              <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
             </div>
           </div>
         )}

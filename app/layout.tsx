@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="relative bg-[url('/BG.png')] bg-cover bg-center bg-fixed ">
         <div className="absolute inset-0 bg-[url('/BG.png')] bg-cover bg-center bg-fixed z-[-1]" />
 
-        <div className="absolute inset-0 bg-[#FF8C2F]/45 dark:bg-black/60 z-0"></div>
+        <div className="absolute inset-0 bg-[#219EBC]/45 dark:bg-black/60 z-0"></div>
         <LayoutProvider>
           <div className="relative z-20">
             <TopMenu />
