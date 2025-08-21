@@ -297,7 +297,7 @@ function Flags({
     italic 
     rounded-l-full ${sizeText}
     bg-gradient-to-r from-[#F97316] from-80% to-95% 
-    text-sm text-[#1e3d98] font-bold
+    text-sm text-[#3b82f6] font-bold
     pointer-events-none place-content-center
     transition duration-500 delay-100 ease-in-out
     ${isActive ? "opacity-100 translate-x-2" : "opacity-0 translate-x-0"}
@@ -980,7 +980,7 @@ export default function Home() {
       </div>
 
       {/* Услуга 2 ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ*/}
-      <div id='наливные-и-опасные-грузы' className="relative w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text2 dark:text-text2Dark bg-white/90 dark:bg-black/90">
+      <div id='наливные-и-опасные-грузы' className="relative w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text2 dark:text-white bg-white/90 dark:bg-black/90">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">
           ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ
         </h1>
@@ -1258,38 +1258,40 @@ export default function Home() {
       {/* География перевозок - мобильная версия */}
       <div className="md:hidden w-full py-10 px-6">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold mb-6">География перевозок</h1>
+          <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
+            <h1 className="text-3xl font-bold mb-6">География перевозок</h1>
 
-          <div className="space-y-4 text-white dark:text-gray-300">
-            <p>Наша компания охватывает широкую географию доставок, включая ключевые регионы и труднодоступные месторождения по всей России.</p>
+            <div className="space-y-4 text-white dark:text-gray-300">
+              <p>Наша компания охватывает широкую географию доставок, включая ключевые регионы и труднодоступные месторождения по всей России.</p>
 
-            <p>Мы успешно осуществляем транспортировку в такие разнообразные и удаленные точки, как месторождения в:</p>
+              <p>Мы успешно осуществляем транспортировку в такие разнообразные и удаленные точки, как месторождения в:</p>
 
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Ямало-Ненецком автономном округе (ЯНАО)</li>
-              <li>Ханты-Мансийском автономном округе (ХМАО)</li>
-              <li>Чаяндинском</li>
-              <li>Бодайбо</li>
-              <li>Ковыктинском</li>
-              <li>Магистральном</li>
-              <li>Суторминском</li>
-              <li>Салмановском</li>
-              <li>Усинске</li>
-              <li>Салехарде</li>
-              <li>Новозаполярном</li>
-              <li>Салыме</li>
-              <li>Нарьян-Маре</li>
-              <li>Норильске</li>
-              <li>Усть-Куте</li>
-              <li>Якутии</li>
-              <li>Талакане</li>
-              <li>Красноярском крае</li>
-              <li>Лесосибирске</li>
-              <li>Северо-Енисейском</li>
-              <li>Воркуте</li>
-              <li>Республике Саха</li>
-              <li>и других регионах</li>
-            </ul>
+              <ul className="list-disc text-left pl-6 space-y-2">
+                <li>Ямало-Ненецком автономном округе (ЯНАО)</li>
+                <li>Ханты-Мансийском автономном округе (ХМАО)</li>
+                <li>Чаяндинском</li>
+                <li>Бодайбо</li>
+                <li>Ковыктинском</li>
+                <li>Магистральном</li>
+                <li>Суторминском</li>
+                <li>Салмановском</li>
+                <li>Усинске</li>
+                <li>Салехарде</li>
+                <li>Новозаполярном</li>
+                <li>Салыме</li>
+                <li>Нарьян-Маре</li>
+                <li>Норильске</li>
+                <li>Усть-Куте</li>
+                <li>Якутии</li>
+                <li>Талакане</li>
+                <li>Красноярском крае</li>
+                <li>Лесосибирске</li>
+                <li>Северо-Енисейском</li>
+                <li>Воркуте</li>
+                <li>Республике Саха</li>
+                <li>и других регионах</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
