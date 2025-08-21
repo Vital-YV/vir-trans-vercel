@@ -24,8 +24,8 @@ export default function Vacancy() {
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-center ">ВАКАНСИИ</h1>
 
                     <div className="mb-10 p-6 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                        <p className="mb-3 text-lg">По вопросам вакансий пишите на почту: <a href="mailto:v-t@vir-trans.ru" className="font-medium text-blue-600 dark:text-blue-400 hover:underline">v-t@vir-trans.ru</a></p>
-                        <p className="text-lg">Телефон для связи: <a href="tel:+78004440097" className="font-medium text-blue-600 dark:text-blue-400 hover:underline">+7(800)444-00-97</a>, доб. 704</p>
+                        <p className="mb-3 text-lg text-black">По вопросам вакансий пишите на почту: <a href="mailto:v-t@vir-trans.ru" className="font-medium text-blue-600 dark:text-blue-400 hover:underline">v-t@vir-trans.ru</a></p>
+                        <p className="text-lg text-black">Телефон для связи: <a href="tel:+78004440097" className="font-medium text-blue-600 dark:text-blue-400 hover:underline">+7(800)444-00-97</a>, доб. 704</p>
                     </div>
 
                     <div className="mb-10">

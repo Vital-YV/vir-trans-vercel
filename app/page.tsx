@@ -1141,7 +1141,7 @@ export default function Home() {
           }}
         >
           доставка негабаритных грузов</h1>
-        <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2  ">РАЗМЕР ИМЕЕТ И ФОРМА ЗНАЧЕНИЕ!</h2>
+        <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2  ">РАЗМЕР И ФОРМА ИМЕЕТ ЗНАЧЕНИЕ!</h2>
 
         <h3 className="text-base md:text-lg lg:text-xl font-semibold my-6">Мы предлагаем Вам:</h3>
         <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[1] scale-[0.4] gap-3 min-w-max h-[calc(0.4*100svh)] sm:h-auto -mt-16 sm:mt-0">
@@ -1182,25 +1182,34 @@ export default function Home() {
             </div>
           </div>
 
-          <div onMouseEnter={() => setHoverBlock3(1)}>
-            <div onMouseEnter={() => setHoveredBigPackageBlock3(true)} onMouseLeave={() => setHoveredBigPackageBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-50">
+
+          <div onMouseEnter={() => setHoverBlock3(3)}>
+            <div onMouseEnter={() => setHoveredMagnifierBlock3(true)} onMouseLeave={() => setHoveredMagnifierBlock3(false)}>
+              <div className="relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-0.40 -rotate-45">
                 <img
-                  src="/packageBlock3.svg"
-                  alt="package"
-                  className={`absolute w-40% left-[76px] bottom-[72px] transition-all 
-          ${hoveredBigPackageBlock3 ? 'animate-packageScale' : ''}`}
+                  src="/magnifier.svg"
+                  alt="magnifier"
+                  className={`absolute w-40% left-[120px] bottom-[72px] transition-all
+          ${hoveredMagnifierBlock3 ? 'animate-magnifier ' : ''}`}
                   style={{
                     filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
                   }}
                 />
+                {/* <img
+                  src="/packageBlock3.svg"
+                  alt="package"
+                  className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
+                  style={{
+                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
+                  }}
+                /> */}
               </div>
             </div>
           </div>
 
           <div onMouseEnter={() => setHoverBlock3(2)}>
             <div onMouseEnter={() => setHoveredPackageInHardhatBlock3(true)} onMouseLeave={() => setHoveredPackageInHardhatBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-50">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-full scale-50">
                 <img
                   src="/hardHatBlock3.svg"
                   alt="hard-hat"
@@ -1222,26 +1231,19 @@ export default function Home() {
             </div>
           </div>
 
-          <div onMouseEnter={() => setHoverBlock3(3)}>
-            <div onMouseEnter={() => setHoveredMagnifierBlock3(true)} onMouseLeave={() => setHoveredMagnifierBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-50">
+
+          <div onMouseEnter={() => setHoverBlock3(1)}>
+            <div onMouseEnter={() => setHoveredBigPackageBlock3(true)} onMouseLeave={() => setHoveredBigPackageBlock3(false)}>
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-50">
                 <img
-                  src="/magnifier.svg"
-                  alt="magnifier"
-                  className={`absolute w-40% left-[120px] bottom-[72px] transition-all
-          ${hoveredMagnifierBlock3 ? 'animate-magnifier ' : ''}`}
+                  src="/packageBlock3.svg"
+                  alt="package"
+                  className={`absolute w-40% left-[76px] bottom-[72px] transition-all 
+          ${hoveredBigPackageBlock3 ? 'animate-packageScale' : ''}`}
                   style={{
                     filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
                   }}
                 />
-                {/* <img
-                  src="/packageBlock3.svg"
-                  alt="package"
-                  className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
-                  style={{
-                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
-                  }}
-                /> */}
               </div>
             </div>
           </div>
