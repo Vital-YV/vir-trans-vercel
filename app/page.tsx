@@ -629,8 +629,8 @@ export default function Home() {
         <p className='text-base md:text-lg max-w-3xl mt-2'>
           Мы специализируемся на перевозке различных текучих веществ, будь то химические продукты или пищевые ингредиенты. Наши специалисты обладают высокой квалификацией и опытом, гарантируя безопасную доставку вашего груза.
         </p>,
-      color: 'bg-[#fb7000]',
-      subColor: 'bg-[#ff8c2f]'
+      color: 'bg-[#3b82f6]',
+      subColor: 'bg-[#219EBC]'
     },
     {
       title: '',
@@ -647,8 +647,8 @@ export default function Home() {
         <p className="text-base md:text-lg max-w-3xl mt-2">
           Для перевозки наливных грузов мы используем специальные автоцистерны. Все емкости проходят строгий санитарный контроль и регулярную проверку на техническое состояние, обеспечивая высокий уровень безопасности и качества доставки.
         </p>,
-      color: 'bg-[#fb7000]',
-      subColor: 'bg-[#ff8c2f]'
+      color: 'bg-[#3b82f6]',
+      subColor: 'bg-[#219EBC]'
     },
     {
       title: '',
@@ -672,8 +672,8 @@ export default function Home() {
         <p className="text-base md:text-lg max-w-3xl mt-2">
           Мы строго следуем санитарно-эпидемиологическим нормам и стандартам безопасности при перевозке грузов. Перед каждой загрузкой емкости проходят тщательную очистку и обработку, а наши водители проходят профессиональную подготовку.
         </p>,
-      color: 'bg-[#fb7000]',
-      subColor: 'bg-[#ff8c2f]'
+      color: 'bg-[#3b82f6]',
+      subColor: 'bg-[#219EBC]'
     },
     {
       title: '',
@@ -694,8 +694,8 @@ export default function Home() {
             растворимые краски, моющие средства, концентраты и экстракты, вина, виноградное сусло, продукты питания и многое другое.
           </li>
         </ul>,
-      color: 'bg-[#fb7000]',
-      subColor: 'bg-[#ff8c2f]'
+      color: 'bg-[#3b82f6]',
+      subColor: 'bg-[#219EBC]'
     },
 
 
@@ -708,8 +708,8 @@ export default function Home() {
         <p className='max-w-3xl mt-2'>
           Мы специализируемся на перевозке различных текучих веществ, будь то химические продукты или пищевые ингредиенты. Наши специалисты обладают высокой квалификацией и опытом, гарантируя безопасную доставку вашего груза.
         </p>,
-      color: 'bg-[#fb7000]',
-      subColor: 'bg-[#ff8c2f]'
+      color: 'bg-[#3b82f6]',
+      subColor: 'bg-[#219EBC]'
     },
     {
       title: 'Специализированное оборудование',
@@ -717,8 +717,8 @@ export default function Home() {
         <p className="max-w-3xl mt-2">
           Для перевозки наливных грузов мы используем специальные автоцистерны. Все емкости проходят строгий санитарный контроль и регулярную проверку на техническое состояние, обеспечивая высокий уровень безопасности и качества доставки.
         </p>,
-      color: 'bg-[#fb7000]',
-      subColor: 'bg-[#ff8c2f]'
+      color: 'bg-[#3b82f6]',
+      subColor: 'bg-[#219EBC]'
     },
     {
       title: 'Соблюдение стандартов',
@@ -726,8 +726,8 @@ export default function Home() {
         <p className="max-w-3xl mt-2">
           Мы строго следуем санитарно-эпидемиологическим нормам и стандартам безопасности при перевозке грузов. Перед каждой загрузкой емкости проходят тщательную очистку и обработку, а наши водители проходят профессиональную подготовку.
         </p>,
-      color: 'bg-[#fb7000]',
-      subColor: 'bg-[#ff8c2f]'
+      color: 'bg-[#3b82f6]',
+      subColor: 'bg-[#219EBC]'
     },
     {
       title: 'В услуги входит',
@@ -740,8 +740,8 @@ export default function Home() {
             растворимые краски, моющие средства, концентраты и экстракты, вина, виноградное сусло, продукты питания и многое другое.
           </li>
         </ul>,
-      color: 'bg-[#fb7000]',
-      subColor: 'bg-[#ff8c2f]'
+      color: 'bg-[#3b82f6]',
+      subColor: 'bg-[#219EBC]'
     },
   ];
 
@@ -801,7 +801,7 @@ export default function Home() {
           <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white">
             Грузоперевозки по РФ+
           </h1>
-          <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2">
+          <h2 className="text-lg md:text-3xl lg:text-5xl font-semibold mt-2">
             Автомобильные, морские, авиационные и железнодорожные
           </h2>
         </div>
@@ -844,7 +844,7 @@ export default function Home() {
         <div
           className={`w-svw pr-20vw transform transition-transform duration-700 ease-out ${OKompanii === "translate-x-full" ? "-translate-x-full" : OKompanii}`}
         >
-          <p className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/10 p-4 md:px-28 px-10 pl-20vw md:pl-20vw text-[#fb8600]">
+          <p className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/60 p-4 md:px-28 px-10 pl-20vw md:pl-20vw text-white">
             В 2008 году ООО «Вир-Транс» осуществило свою первую транспортировку
             груза, что стало началом нашего успешного пути в логистике. С тех пор мы
             постоянно расширяем свои компетенции и накапливаем опыт в этой сфере.
@@ -858,7 +858,7 @@ export default function Home() {
         <div
           className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}
         >
-          <div className="mt-4 border border-[#219EBC] rounded-l-xl bg-[#219EBC]/10 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-[#3b82f6] dark:text-text2Dark">
+          <div className="mt-4 border border-[#219EBC] rounded-l-xl bg-[#219EBC]/60 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-white ">
             <h4 className="font-semibold text-xs md:text-base lg:text-lg">Наши услуги включают:</h4>
             <ul className="mt-2 list-disc list-inside text-left">
               <li>Доставка «точка – точка» обычных грузов любым видом транспорта.</li>
@@ -925,7 +925,20 @@ export default function Home() {
       {/*  ====service====  */}
       {/* Услуга 1 ДОСТАВКА «ТОЧКА – ТОЧКА»*/}
       <div id="обычные-грузы" className="relative w-full md:pt-0 min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  mt-10">ДОСТАВКА «ТОЧКА – ТОЧКА»</h1>
+        <h1
+          className="text-xl md:text-3xl lg:text-5xl font-bold mt-10"
+          style={{
+            textShadow: `
+      -1px -1px 0 white,
+       1px -1px 0 white,
+      -1px  1px 0 white,
+       1px  1px 0 white
+    `
+          }}
+        >
+          ДОСТАВКА «ТОЧКА – ТОЧКА»
+        </h1>
+
         <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Любым видом транспорта!</h2>
 
         {mobile ? (
@@ -980,7 +993,7 @@ export default function Home() {
       </div>
 
       {/* Услуга 2 ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ*/}
-      <div id='наливные-и-опасные-грузы' className="relative w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-text2 dark:text-white bg-white/90 dark:bg-black/90">
+      <div id='наливные-и-опасные-грузы' className="relative w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-black dark:text-white bg-white/90 dark:bg-black/90">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">
           ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ
         </h1>
@@ -1106,7 +1119,7 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(0)}>
             <div onMouseEnter={() => setHoveredShipBlock3(true)} onMouseLeave={() => setHoveredShipBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-75">
                 {/* Корабль */}
                 <img
                   src="/shipBlock3.svg"
@@ -1142,7 +1155,7 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(1)}>
             <div onMouseEnter={() => setHoveredBigPackageBlock3(true)} onMouseLeave={() => setHoveredBigPackageBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-75">
                 <img
                   src="/packageBlock3.svg"
                   alt="package"
@@ -1158,7 +1171,7 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(2)}>
             <div onMouseEnter={() => setHoveredPackageInHardhatBlock3(true)} onMouseLeave={() => setHoveredPackageInHardhatBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-75">
                 <img
                   src="/hardHatBlock3.svg"
                   alt="hard-hat"
@@ -1182,7 +1195,7 @@ export default function Home() {
 
           <div onMouseEnter={() => setHoverBlock3(3)}>
             <div onMouseEnter={() => setHoveredMagnifierBlock3(true)} onMouseLeave={() => setHoveredMagnifierBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white overflow-hidden rounded-lg">
+              <div className="relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-75">
                 <img
                   src="/magnifier.svg"
                   alt="magnifier"
@@ -1206,7 +1219,7 @@ export default function Home() {
         </div>
 
 
-        <div className={`mt-20 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
+        <div className={`mt-8 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
           <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
             {hoverBlock3 !== null && (
               <div>
