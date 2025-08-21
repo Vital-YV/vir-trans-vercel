@@ -143,13 +143,13 @@ export default function CornerFacts() {
       <div className={`
         bg-white/5 dark:bg-black/20 
         backdrop-blur-lg
-        border-l-4 border-amber-400
+        border-l-4 border-[#F97316]
         shadow-2xl
         pl-8 pr-6 py-5
         rounded-tr-lg
       `}>
         <div className="flex items-center mb-3">
-          <span className="text-3xl mr-4 text-amber-400">{activeStory.emoji}</span>
+          <span className="text-3xl mr-4 text-[#F97316]">{activeStory.emoji}</span>
           <h3 className="text-black dark:text-white font-bold text-xl">{activeStory.title}</h3>
         </div>
 
@@ -161,7 +161,7 @@ export default function CornerFacts() {
 
         <div className="mt-4 h-1 bg-gray-600 relative overflow-hidden">
           <div
-            className="absolute inset-y-0 left-0 right-0 bg-amber-400"
+            className="absolute inset-y-0 left-0 right-0 bg-[#F97316]"
             style={{
               animation: 'progress 20s linear forwards',
               animationPlayState: animationState === 'exiting' ? 'paused' : 'running'

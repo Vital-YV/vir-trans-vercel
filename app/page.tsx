@@ -24,9 +24,9 @@ function Reviews() {
 
         <div className="space-y-6">
           {reviews.map((r, i) => (
-            <div key={i} className="bg-main p-4 rounded-xl border text-white border-gray-700">
+            <div key={i} className="bg-[#3b82f6] p-4 rounded-xl border text-white border-[#219EBC]">
               <p className="italic text-base">"{r.text}"</p>
-              <div className="mt-2 text-sm text-gray-400">{r.date} — {r.author}</div>
+              <div className="mt-2 text-sm text-gray-600">{r.date} — {r.author}</div>
             </div>
           ))}
         </div>
@@ -38,7 +38,7 @@ function Reviews() {
           Оставить отзыв
         </button> */}
 
-        <p className="mt-10 text-sm text-gray-400">
+        <p className="mt-10 text-sm text-gray-600">
           Более подробную информацию можно посмотреть на ресурсе:<br />
           <strong>ATI.SU — Паспорт участника Вир-Транс ★★★★★, код 865279</strong>
         </p>
@@ -153,7 +153,7 @@ function CircleMotion({
       {/* Круг */}
       <div
         className={`w-20 md:w-24 h-20 md:h-24 lg:w-28 lg:h-28 
-          rounded-full dark:bg-[#219EBC] bg-[#219EBC] transition-transform duration-300 z-10 
+          rounded-full dark:bg-[#3b82f6] bg-[#3b82f6] transition-transform duration-300 z-10 
           ${isActive ? '-translate-x-32 md:-translate-x-52' : ''}
         `}
       >
@@ -176,7 +176,7 @@ function CircleMotion({
           h-20 md:h-24 lg:h-28 
           pl-20 md:pl-32 
           rounded-l-full flex items-center 
-          bg-gradient-to-r dark:from-[#219EBC] from-[#219EBC] from-80% to-95% z-0 
+          bg-gradient-to-r dark:from-[#3b82f6] from-[#3b82f6] from-80% to-95% z-0 
           transition-opacity duration-300 ${isActive ? 'opacity-100 animate-slideIn' : 'opacity-0 pointer-events-none'}
           `}
       >
@@ -278,7 +278,7 @@ function Flags({
     <div className={`absolute ${position} flex items-center`}>
       <div
         className={`
-    ${size} rounded-full bg-[#FFB703] flex items-center justify-center
+    ${size} rounded-full bg-[#F97316] flex items-center justify-center
     transform transition-transform duration-300 ease-out
     ${isActive ? "scale-125 -rotate-12 translate-x-0 z-20" : "scale-100 rotate-0 translate-x-2 z-0"}
   `}
@@ -296,7 +296,7 @@ function Flags({
     z-10 
     italic 
     rounded-l-full ${sizeText}
-    bg-gradient-to-r from-[#FFB703] from-80% to-95% 
+    bg-gradient-to-r from-[#F97316] from-80% to-95% 
     text-sm text-[#1e3d98] font-bold
     pointer-events-none place-content-center
     transition duration-500 delay-100 ease-in-out
@@ -882,36 +882,38 @@ export default function Home() {
 
       {/* Задать вопросы */}
       <div id='задать-вопрос' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ЗАДАТЬ ВОПРОС / КОНТАКТЫ</h1>
+        <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
+          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">ЗАДАТЬ ВОПРОС / КОНТАКТЫ</h1>
 
-        <p className="mt-4 text-base md:text-lg lg:text-xl">Подберём транспорт под ваши потребности.</p>
-        <p className="text-base md:text-lg lg:text-xl">Предупредим о возможных нюансах.</p>
-        <p className="text-base md:text-lg lg:text-xl">Избавим от сомнений.</p>
+          <p className="mt-4 text-base md:text-lg lg:text-xl">Подберём транспорт под ваши потребности.</p>
+          <p className="text-base md:text-lg lg:text-xl">Предупредим о возможных нюансах.</p>
+          <p className="text-base md:text-lg lg:text-xl">Избавим от сомнений.</p>
 
-        <div className="mt-10 text-xs md:text-base lg:text-lg max-w-3xl text-center">
-          <p className="font-semibold">ООО «ВИР-ТРАНС»</p>
-          <p>ИНН 6315621732 / ОГРН 1086315013179</p>
-          <p>Россия, 443093, г. Самара, ул. Партизанская 82А, офис 507</p>
-          <p>Телефон: <a href="tel:+78004440097" className="text-[#81a3ff] hover:underline">+7 (800) 444-00-97</a></p>
+          <div className="mt-10 text-xs md:text-base lg:text-lg max-w-3xl text-center">
+            <p className="font-semibold">ООО «ВИР-ТРАНС»</p>
+            <p>ИНН 6315621732 / ОГРН 1086315013179</p>
+            <p>Россия, 443093, г. Самара, ул. Партизанская 82А, офис 507</p>
+            <p>Телефон: <a href="tel:+78004440097" className="text-[#3b82f6] hover:underline">+7 (800) 444-00-97</a></p>
+          </div>
+
+          {/* Список филиалов */}
+          <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-6">Филиалы:</h3>
+          <ul className="mt-2 list-disc list-inside text-xs md:text-base lg:text-lg flex flex-col items-center gap-1">
+            <li>Самара, добавочный 705</li>
+            <li>Тольятти, добавочный 701</li>
+            <li>Санкт-Петербург, добавочный 706</li>
+            <li>Октябрьский, добавочный 703</li>
+          </ul>
+
+          {/* Контактные данные */}
+          <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-6">Контакты:</h3>
+          <ul className="mt-2 text-xs md:text-base lg:text-lg flex flex-col items-center gap-1">
+            <li><strong>E-mail:</strong> <a href="mailto:v-t@vir-trans.ru" className="text-[#3b82f6] hover:underline dark:text-[#FFB703]">v-t@vir-trans.ru</a></li>
+            <li><strong>Сайт:</strong> <a href="https://vir-trans.ru" className="text-[#3b82f6] hover:underline dark:text-[#FFB703]">vir-trans.ru</a></li>
+            <li><strong>ВКонтакте:</strong> <a href="#" className="text-[#3b82f6] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
+            <li><strong>Телеграм:</strong> <a href="#" className="text-[#3b82f6] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
+          </ul>
         </div>
-
-        {/* Список филиалов */}
-        <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-6">Филиалы:</h3>
-        <ul className="mt-2 list-disc list-inside text-xs md:text-base lg:text-lg text-left max-w-2xl">
-          <li>Самара, добавочный 705</li>
-          <li>Тольятти, добавочный 701</li>
-          <li>Санкт-Петербург, добавочный 706</li>
-          <li>Октябрьский, добавочный 703</li>
-        </ul>
-
-        {/* Контактные данные */}
-        <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-6">Контакты:</h3>
-        <ul className="mt-2 list-none text-xs md:text-base lg:text-lg text-left max-w-2xl">
-          <li><strong>E-mail:</strong> <a href="mailto:v-t@vir-trans.ru" className="text-[#81a3ff] hover:underline dark:text-[#FFB703]">v-t@vir-trans.ru</a></li>
-          <li><strong>Сайт:</strong> <a href="https://vir-trans.ru" className="text-[#81a3ff] hover:underline dark:text-[#FFB703]">vir-trans.ru</a></li>
-          <li><strong>ВКонтакте:</strong> <a href="#" className="text-[#81a3ff] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
-          <li><strong>Телеграм:</strong> <a href="#" className="text-[#81a3ff] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
-        </ul>
       </div>
 
       {/* Отзывы */}
@@ -965,12 +967,12 @@ export default function Home() {
         )}
 
 
-        <div className="mt-10">
-          <p className="mt-6 text-base md:text-lg lg:text-xl max-w-2xl">
+        <div className="mt-10 bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
+          <p className=" text-base md:text-lg lg:text-xl max-w-2xl">
             Возьмем на себя все ваши вопросы по логистике.
           </p>
 
-          <p className="mt-2 text-xs md:text-base lg:text-lg max-w-2xl">
+          <p className=" text-xs md:text-base lg:text-lg max-w-2xl">
             Примем заказ в любое время и доставим в любую точку. Всегда готовы пойти навстречу заказчику и предложить оптимальную стоимость и схему транспортировки.
           </p>
         </div>
@@ -1205,12 +1207,14 @@ export default function Home() {
 
 
         <div className={`mt-20 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
-          {hoverBlock3 !== null && (
-            <div>
-              {itemsBlock3[hoverBlock3].title}
-              {itemsBlock3[hoverBlock3].content}
-            </div>
-          )}
+          <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
+            {hoverBlock3 !== null && (
+              <div>
+                {itemsBlock3[hoverBlock3].title}
+                {itemsBlock3[hoverBlock3].content}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* <p className="pt-6 max-w-2xl bottom-0 border-t-2 text-xs md:text-base lg:text-lg">
@@ -1291,7 +1295,7 @@ export default function Home() {
       </div>
 
       {/* Вопросы - ответы */}
-      <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 text-[#1e3d98] dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
+      <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 text-[#219EBC] dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
         <QuestionRain />
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 z-10">Вопросы – ответы</h1>
         <div className="flex flex-wrap justify-center max-w-5xl">

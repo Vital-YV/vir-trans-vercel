@@ -45,7 +45,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-t dark:from-[#219EBC] to-[#3b82f6] from-[#219EBC] text-white p-6 xl:px-32">
+    <footer className="bg-gradient-to-t to-[#3b82f6] from-[#219EBC] text-white p-6 xl:px-32">
       <div className="container mx-auto grid md:grid-cols-3 gap-8 text-center md:text-left">
         {/* Контакты */}
         <div>

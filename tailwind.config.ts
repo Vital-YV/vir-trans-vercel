@@ -167,7 +167,6 @@ module.exports = {
 				textMain: '#FB8500',
 				textDarkMain: '#FB8500',
 
-				/*h1: '#3b457c',*/
 				h1: '#3b457c',
 				h1Dark: '#FFB703',
 
@@ -177,7 +176,7 @@ module.exports = {
 				text1: '#ffffff',
 				text1Dark: '#ffffff',
 
-				text2: '#3b457c',
+				text2: '#219EBC',
 				text2Dark: '#219EBC',
 
 			},
