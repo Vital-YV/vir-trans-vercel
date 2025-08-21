@@ -147,7 +147,7 @@ export default function TopMenu() {
 
 
     return (
-        <div className="w-full h-24 fixed flex flex-col bg-gradient-to-b dark:from-darkMain from-main from-95% to-[#023047]/0">
+        <div className="w-full h-24 fixed flex flex-col bg-gradient-to-b dark:from-[#219EBC] to-[#3b82f6] from-[#219EBC]">
             {mobileMenu ? (
                 <div className="relative">
                     <div className="z-50 fixed top-5 left-5 flex items-center text-white">
@@ -167,7 +167,7 @@ export default function TopMenu() {
                     ></div>
 
                     <div
-                        className={`fixed top-0 right-0 h-svh w-64 dark:bg-darkMain bg-main shadow-lg transform transition-transform duration-300 
+                        className={`fixed top-0 right-0 h-svh w-64 bg-gradient-to-b dark:from-[#219EBC] to-[#3b82f6] from-[#219EBC] shadow-lg transform transition-transform duration-300 
                      ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
                     >
                         <ul className="mt-20 pl-4 text-white">
@@ -237,7 +237,7 @@ export default function TopMenu() {
 
                                     {item.submenu.length > 0 && (
                                         <ul
-                                            className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b dark:from-darkMain from-main from-90% to-95% p-4 pb-16 transform transition-all
+                                            className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b dark:from-[#3b82f6] from-[#3b82f6] from-90% to-95% p-4 pb-16 transform transition-all
                                             ${openMenu === index ? "opacity-100 translate-y-0 duration-500 ease-out" : "opacity-0 -translate-y-4 pointer-events-none"}`}
                                         >
                                             {item.submenu.map((subItem, subIndex) => (

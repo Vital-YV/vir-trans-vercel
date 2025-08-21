@@ -153,7 +153,7 @@ function CircleMotion({
       {/* Круг */}
       <div
         className={`w-20 md:w-24 h-20 md:h-24 lg:w-28 lg:h-28 
-          rounded-full dark:bg-[#3b457c] bg-main transition-transform duration-300 z-10 
+          rounded-full dark:bg-[#219EBC] bg-[#219EBC] transition-transform duration-300 z-10 
           ${isActive ? '-translate-x-32 md:-translate-x-52' : ''}
         `}
       >
@@ -176,7 +176,7 @@ function CircleMotion({
           h-20 md:h-24 lg:h-28 
           pl-20 md:pl-32 
           rounded-l-full flex items-center 
-          bg-gradient-to-r dark:from-[#3b457c] from-main from-80% to-95% z-0 
+          bg-gradient-to-r dark:from-[#219EBC] from-[#219EBC] from-80% to-95% z-0 
           transition-opacity duration-300 ${isActive ? 'opacity-100 animate-slideIn' : 'opacity-0 pointer-events-none'}
           `}
       >
@@ -276,24 +276,28 @@ function Flags({
 
   return (
     <div className={`absolute ${position} flex items-center`}>
-      <img
-        src="flag.svg"
-        alt="flag"
+      <div
         className={`
-          ${size} rounded-full bg-[#FFB703] transform transition-transform duration-300 ease-out
-          ${isActive ? "scale-125 -rotate-12 translate-x-0 z-20" : "scale-100 rotate-0 translate-x-2 z-0"}
-        `}
-        onMouseEnter={() => {
-          setActiveIndexFlags(keyNumber);
-        }}
-      />
+    ${size} rounded-full bg-[#FFB703] flex items-center justify-center
+    transform transition-transform duration-300 ease-out
+    ${isActive ? "scale-125 -rotate-12 translate-x-0 z-20" : "scale-100 rotate-0 translate-x-2 z-0"}
+  `}
+        onMouseEnter={() => setActiveIndexFlags(keyNumber)}
+      >
+        <img
+          src="flag.svg"
+          alt="flag"
+          className="w-3/4 h-3/4 brightness-0 invert"
+        />
+      </div>
+
       <div
         className={`
     z-10 
     italic 
     rounded-l-full ${sizeText}
     bg-gradient-to-r from-[#FFB703] from-80% to-95% 
-    text-sm text-black font-bold
+    text-sm text-[#1e3d98] font-bold
     pointer-events-none place-content-center
     transition duration-500 delay-100 ease-in-out
     ${isActive ? "opacity-100 translate-x-2" : "opacity-0 translate-x-0"}
@@ -1106,7 +1110,9 @@ export default function Home() {
                   src="/shipBlock3.svg"
                   alt="ship"
                   className="absolute bottom-0 left-0 w-40"
-
+                  style={{
+                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
+                  }}
                 />
                 {/* Посылка */}
                 <img
@@ -1114,7 +1120,9 @@ export default function Home() {
                   alt="package"
                   className={`absolute w-8 left-[70px] bottom-[90px] transition-all
                   ${hoveredShipBlock3 ? 'animate-packageLift' : ''}`}
-
+                  style={{
+                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
+                  }}
                 />
                 {/* Вертолёт */}
                 <img
@@ -1122,7 +1130,9 @@ export default function Home() {
                   alt="helicopter"
                   className={`absolute w-24 top-[-20px] right-[-10px] 
                   ${hoveredShipBlock3 ? 'animate-helicopterFly' : ''}`}
-
+                  style={{
+                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
+                  }}
                 />
               </div>
             </div>
@@ -1136,7 +1146,9 @@ export default function Home() {
                   alt="package"
                   className={`absolute w-40% left-[76px] bottom-[72px] transition-all 
           ${hoveredBigPackageBlock3 ? 'animate-packageScale' : ''}`}
-
+                  style={{
+                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
+                  }}
                 />
               </div>
             </div>
@@ -1150,13 +1162,17 @@ export default function Home() {
                   alt="hard-hat"
                   className={`absolute w-40% left-[90px] bottom-[120px] transition-all rotate-12
           ${hoveredPackageInHardhatBlock3 ? 'animate-packageInHardhat' : ''}`}
-
+                  style={{
+                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
+                  }}
                 />
                 <img
                   src="/packageBlock3.svg"
                   alt="package"
                   className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
-
+                  style={{
+                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
+                  }}
                 />
               </div>
             </div>
@@ -1170,13 +1186,17 @@ export default function Home() {
                   alt="magnifier"
                   className={`absolute w-40% left-[120px] bottom-[72px] transition-all
           ${hoveredMagnifierBlock3 ? 'animate-magnifier ' : ''}`}
-
+                  style={{
+                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
+                  }}
                 />
                 <img
                   src="/packageBlock3.svg"
                   alt="package"
                   className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
-
+                  style={{
+                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
+                  }}
                 />
               </div>
             </div>
@@ -1271,7 +1291,7 @@ export default function Home() {
       </div>
 
       {/* Вопросы - ответы */}
-      <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 text-black dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
+      <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 text-[#1e3d98] dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
         <QuestionRain />
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 z-10">Вопросы – ответы</h1>
         <div className="flex flex-wrap justify-center max-w-5xl">
