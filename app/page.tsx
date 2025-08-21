@@ -297,7 +297,7 @@ function Flags({
     italic 
     rounded-l-full ${sizeText}
     bg-gradient-to-r from-[#F97316] from-80% to-95% 
-    text-sm text-black font-bold
+    text-sm text-black
     pointer-events-none place-content-center
     transition duration-500 delay-100 ease-in-out
     ${isActive ? "opacity-100 translate-x-2" : "opacity-0 translate-x-0"}
