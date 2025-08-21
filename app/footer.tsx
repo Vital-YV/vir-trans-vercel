@@ -1,31 +1,29 @@
 "use client";
-import './globals.css';
-import { usePathname, useRouter } from 'next/navigation';
+import "./globals.css";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Footer() {
   const router = useRouter();
   const pathname = usePathname();
 
   const scrollToAnchor = (id: string) => {
-    const offset = 92; // под фиксированное меню
+    const offset = 92;
     const element = document.getElementById(id);
     if (!element) return;
 
     const start = window.scrollY;
     const end = element.getBoundingClientRect().top + window.scrollY - offset;
-    const duration = 500; // время анимации в мс
+    const duration = 500;
     const startTime = performance.now();
 
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3); // cubic easing
+      const ease = 1 - Math.pow(1 - progress, 3);
 
       window.scrollTo(0, start + (end - start) * ease);
 
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
+      if (progress < 1) requestAnimationFrame(animate);
     };
 
     requestAnimationFrame(animate);
@@ -45,22 +43,24 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-t to-[#3b82f6] from-[#219EBC] text-white p-6 xl:px-32">
-      <div className="container mx-auto grid md:grid-cols-3 gap-8 text-center md:text-left">
+    <footer className="bg-gradient-to-t to-[#3b82f6] from-[#219EBC] text-white pt-10 pb-6 xl:px-32">
+      <div className="container mx-auto grid md:grid-cols-3 gap-10 text-center md:text-left">
         {/* Контакты */}
         <div>
-          <h3 className="text-xl font-semibold mb-2">Контакты</h3>
-          <p className="text-sm xl:text-base font-light">pochita@mail.com</p>
-          <p className="text-sm xl:text-base font-light">+7 (888) 888-88-88</p>
+          <h3 className="text-lg xl:text-xl font-semibold mb-3">Контакты</h3>
+          <ul className="space-y-1 text-sm xl:text-base font-light">
+            <li className="transition hover:text-gray-200">pochita@mail.com</li>
+            <li className="transition hover:text-gray-200">+7 (888) 888-88-88</li>
+          </ul>
         </div>
 
-        {/* Быстрые ссылки */}
+        {/* Навигация */}
         <div>
-          <h3 className="text-xl font-semibold mb-2">Навигация</h3>
+          <h3 className="text-lg xl:text-xl font-semibold mb-3">Навигация</h3>
           <ul className="space-y-1 text-sm xl:text-base font-light">
             <li>
               <button
-                className="hover:underline"
+                className="hover:underline transition"
                 onClick={() => handleFooterClick("/", "о-компании")}
               >
                 О компании
@@ -68,7 +68,7 @@ export default function Footer() {
             </li>
             <li>
               <button
-                className="hover:underline"
+                className="hover:underline transition"
                 onClick={() => handleFooterClick("/service")}
               >
                 Услуги
@@ -76,7 +76,7 @@ export default function Footer() {
             </li>
             <li>
               <button
-                className="hover:underline"
+                className="hover:underline transition"
                 onClick={() => handleFooterClick("/", "отзывы")}
               >
                 Отзывы
@@ -84,7 +84,7 @@ export default function Footer() {
             </li>
             <li>
               <button
-                className="hover:underline"
+                className="hover:underline transition"
                 onClick={() => handleFooterClick("/", "задать-вопрос")}
               >
                 Контакты
@@ -93,17 +93,17 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Описание / бренд */}
+        {/* Бренд / описание */}
         <div>
-          <h3 className="text-xl font-semibold mb-2">Вир-Транс</h3>
-          <p className="text-sm xl:text-base font-light">
+          <h3 className="text-lg xl:text-xl font-semibold mb-3">Вир-Транс</h3>
+          <p className="text-sm xl:text-base font-light leading-relaxed">
             Грузоперевозки по России и СНГ. Быстро, надежно, с гарантией. Работаем с 2010 года.
           </p>
         </div>
       </div>
 
-      {/* Нижняя полоса */}
-      <div className="mt-8 text-center text-xs text-gray-600">
+      {/* Разделитель */}
+      <div className="border-t border-white/20 mt-8 pt-4 text-center text-xs text-white/70">
         © {new Date().getFullYear()} Вир-Транс. Все права защищены.
       </div>
     </footer>

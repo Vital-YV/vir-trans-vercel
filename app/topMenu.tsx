@@ -30,7 +30,7 @@ export default function TopMenu() {
 
     const menuItems = [
         {
-            title: "Vir trans",
+            title: "Грузоперевозки",
             href: "/",
             mainAnchor: "vir-trans", // id блока, куда нужно скроллить
             submenu: [
@@ -170,21 +170,21 @@ export default function TopMenu() {
                         className={`fixed top-0 right-0 h-svh w-64 bg-gradient-to-b  to-[#3b82f6] from-[#219EBC] shadow-lg transform transition-transform duration-300 
                      ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
                     >
-                        <ul className="mt-20 pl-4 text-white">
+                        <ul className="mt-20 pl-4 text-white ">
                             {menuItems.map((item, index) => (
                                 <li key={index} className="mb-4">
-                                    <div className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain transition-colors text-lg text-left w-full">
+                                    <div className="cursor-pointer dark:hover:text-textDarkMain hover:text-textMain transition-colors text-lg w-full">
                                         <button
-                                            className='text-shadow-[0_1px_3px_rgba(0,0,0,0.4)]'
+                                            className="w-full text-left text-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
                                             onClick={() => {
                                                 handleMainMenuClick(item);
                                                 setIsMenuOpen(false);
                                             }}
-
                                         >
                                             {item.title}
                                         </button>
                                     </div>
+
 
                                     {item.submenu.length > 0 && (
                                         <ul className="mt-2 ml-4 space-y-1">

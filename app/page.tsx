@@ -1023,8 +1023,8 @@ export default function Home() {
                   <div className={`relative w-20 h-20 md:w-[100px] md:h-[100px] rounded-full ${item.subColor}`}>
                     <div
                       className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out 
-                        w-6 h-6 ${item.color} 
-                        ${hoveredIndex === index ? "scale-125" : ""}
+                        w-8 h-8 ${item.color} 
+                        ${hoveredIndex === index ? "scale-2.5" : ""}
                         rounded-full`}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}
@@ -1276,7 +1276,7 @@ export default function Home() {
 
 
       {/* География перевозок */}
-      <div id='география-перевозок' className="hidden md:block relative min-h-screen text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
+      <div id='география-перевозок' className="hidden my-40 md:block relative min-h-screen text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
         <div className="relative w-full max-w-6xl mx-auto aspect-[3/2]">
           {/* Заголовок теперь внутри контейнера */}
           <h1 className="absolute top-0 left-0 w-full text-3xl md:text-4xl lg:text-5xl font-bold z-50 drop-shadow-md drop-shadow-black text-center"
