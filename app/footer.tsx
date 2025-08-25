@@ -85,7 +85,7 @@ export default function Footer() {
             <li>
               <button
                 className="hover:underline transition"
-                onClick={() => handleFooterClick("/", "задать-вопрос")}
+                onClick={() => handleFooterClick("/", "контакты")}
               >
                 Контакты
               </button>

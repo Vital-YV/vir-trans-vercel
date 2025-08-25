@@ -25,8 +25,8 @@ function Reviews() {
         <div className="space-y-6">
           {reviews.map((r, i) => (
             <div key={i} className="bg-[#3b82f6] p-4 rounded-xl border text-white border-[#219EBC]">
-              <p className="italic text-base">"{r.text}"</p>
-              <div className="mt-2 text-sm text-gray-600">{r.date} — {r.author}</div>
+              <p className="text-base">"{r.text}"</p>
+              <div className="mt-2 text-sm text-gray-700">{r.date} — {r.author}</div>
             </div>
           ))}
         </div>
@@ -227,13 +227,13 @@ function SpiralCard({ question, answer }: FlipCardProps) {
       onMouseLeave={() => setHovered(false)}
     >
       {/* Ответ */}
-      <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center text-center text-lg p-6 z-0">
+      <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 text-[#1e3d98] dark:text-[#3b82f6] rounded-xl flex items-center justify-center text-center text-lg p-6 z-0">
         {answer}
       </div>
 
       {/* Вопрос */}
       <div
-        className={`absolute inset-0 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center text-center text-xl font-semibold p-6 z-10 transition-all duration-700 ease-in-out`}
+        className={`absolute inset-0 bg-gray-100 dark:bg-gray-800 text-[#F97316] rounded-xl flex items-center justify-center text-center text-xl font-semibold p-6 z-10 transition-all duration-700 ease-in-out`}
         style={{
           maskImage: hovered
             ? 'radial-gradient(circle at center, transparent 30%, black 70%)'
@@ -486,7 +486,7 @@ function TransportIcon({ src, alt, label }: TransportIconProps) {
         onMouseEnter={() => setAnimate(true)}
         onAnimationEnd={() => setAnimate(false)}
       />
-      <span className="mt-2 text-base" ref={itemRef}>
+      <span className="mt-2 text-base font-semibold" ref={itemRef}>
         {label}
       </span>
     </div>
@@ -844,13 +844,21 @@ export default function Home() {
         <div
           className={`w-svw pr-20vw transform transition-transform duration-700 ease-out ${OKompanii === "translate-x-full" ? "-translate-x-full" : OKompanii}`}
         >
-          <p className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/60 p-4 md:px-28 px-10 pl-20vw md:pl-20vw text-white">
-            В 2008 году ООО «Вир-Транс» осуществило свою первую транспортировку
-            груза, что стало началом нашего успешного пути в логистике. С тех пор мы
-            постоянно расширяем свои компетенции и накапливаем опыт в этой сфере.
-            Оказывая широкий спектр услуг логистики, мы оперируем всеми видами
-            транспорта!
-          </p>
+          <div className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/60 p-4 md:px-28 px-10 text-white flex items-center gap-6">
+            <img
+              src="logogray.png"
+              alt="logo"
+              className="w-20 h-20 md:w-28 md:h-28"
+            />
+            <p>
+              В 2008 году ООО «Вир-Транс» осуществило свою первую транспортировку
+              груза, что стало началом нашего успешного пути в логистике. С тех пор мы
+              постоянно расширяем свои компетенции и накапливаем опыт в этой сфере.
+              Оказывая широкий спектр услуг логистики, мы оперируем всеми видами
+              транспорта!
+            </p>
+          </div>
+
         </div>
 
         <div ref={targetRef} />
@@ -885,18 +893,18 @@ export default function Home() {
       </div>
 
       {/* Задать вопросы */}
-      <div id='задать-вопрос' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark">
+      <div id='контакты' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark">
         <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
           <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  "
             style={{
               textShadow: `
-      -1px -1px 0 white,
-       1px -1px 0 white,
-      -1px  1px 0 white,
-       1px  1px 0 white
+      -0.5px -0.5px 0 white,
+       0.5px -0.5px 0 white,
+      -0.5px  0.5px 0 white,
+       0.5px  0.5px 0 white
     `
             }}
-          >ЗАДАТЬ ВОПРОС / КОНТАКТЫ</h1>
+          >КОНТАКТЫ</h1>
 
           <p className="mt-4 text-base md:text-lg lg:text-xl">Подберём транспорт под ваши потребности.</p>
           <p className="text-base md:text-lg lg:text-xl">Предупредим о возможных нюансах.</p>
@@ -942,10 +950,10 @@ export default function Home() {
           className="text-xl md:text-3xl lg:text-5xl font-bold mt-10"
           style={{
             textShadow: `
-      -1px -1px 0 white,
-       1px -1px 0 white,
-      -1px  1px 0 white,
-       1px  1px 0 white
+      -0.5px -0.5px 0 white,
+       0.5px -0.5px 0 white,
+      -0.5px  0.5px 0 white,
+       0.5px  0.5px 0 white
     `
           }}
         >
@@ -1126,10 +1134,10 @@ export default function Home() {
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  "
           style={{
             textShadow: `
-      -1px -1px 0 white,
-       1px -1px 0 white,
-      -1px  1px 0 white,
-       1px  1px 0 white
+      -0.5px -0.5px 0 white,
+       0.5px -0.5px 0 white,
+      -0.5px  0.5px 0 white,
+       0.5px  0.5px 0 white
     `
           }}
         >
@@ -1282,10 +1290,10 @@ export default function Home() {
           <h1 className="absolute top-0 left-0 w-full text-3xl md:text-4xl lg:text-5xl font-bold z-50 drop-shadow-md drop-shadow-black text-center"
             style={{
               textShadow: `
-      -1px -1px 0 white,
-       1px -1px 0 white,
-      -1px  1px 0 white,
-       1px  1px 0 white
+      -0.5px -0.5px 0 white,
+       0.5px -0.5px 0 white,
+      -0.5px  0.5px 0 white,
+       0.5px  0.5px 0 white
     `
             }}>
             География перевозок
@@ -1318,10 +1326,10 @@ export default function Home() {
             <h1 className="text-3xl font-bold mb-6"
               style={{
                 textShadow: `
-      -1px -1px 0 white,
-       1px -1px 0 white,
-      -1px  1px 0 white,
-       1px  1px 0 white
+      -0.5px -0.5px 0 white,
+       0.5px -0.5px 0 white,
+      -0.5px  0.5px 0 white,
+       0.5px  0.5px 0 white
     `
               }}>География перевозок</h1>
 
@@ -1361,9 +1369,9 @@ export default function Home() {
       </div>
 
       {/* Вопросы - ответы */}
-      <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 text-[#3b82f6] dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
+      <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
         <QuestionRain />
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 z-10">Вопросы – ответы</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 z-10 text-[#000000] dark:text-[#ffffff]"><a className="text-[#F97316]">Вопросы</a> – <a className="text-[#1e3d98] dark:text-[#3b82f6]">ответы</a></h1>
         <div className="flex flex-wrap justify-center max-w-5xl">
           {qaPairs.map(({ question, answer }, index) => (
             <SpiralCard key={index} question={question} answer={answer} />
@@ -1376,10 +1384,10 @@ export default function Home() {
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2  "
           style={{
             textShadow: `
-      -1px -1px 0 white,
-       1px -1px 0 white,
-      -1px  1px 0 white,
-       1px  1px 0 white
+      -0.5px -0.5px 0 white,
+       0.5px -0.5px 0 white,
+      -0.5px  0.5px 0 white,
+       0.5px  0.5px 0 white
     `
           }}>Преимущества работы с нами</h1>
         <div className="flex flex-col space-y-6 md:space-y-12 lg:space-y-16 mt-10">

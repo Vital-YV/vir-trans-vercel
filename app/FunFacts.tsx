@@ -129,37 +129,45 @@ export default function CornerFacts() {
   if (!activeStory) return null;
 
   return (
-    <div className={`
-      fixed bottom-6 right-6 z-[9999] w-96
-      transition-all duration-500
-      ${animationState === 'entering'
-        ? 'translate-x-full'
-        : animationState === 'visible'
-          ? 'translate-x-0'
-          : 'translate-y-full opacity-0'
-      }
-    `}>
-      {/* Блок с локальным размытием фона */}
-      <div className={`
-        bg-white/5 dark:bg-black/20 
-        backdrop-blur-lg
-        border-l-4 border-[#F97316]
-        shadow-2xl
-        pl-8 pr-6 py-5
-        rounded-tr-lg
-      `}>
-        <div className="flex items-center mb-3">
-          <span className="text-3xl mr-4 text-[#F97316]">{activeStory.emoji}</span>
-          <h3 className="text-black dark:text-white text-xl font-garamond">{activeStory.title}</h3>
+    <div
+      className={`
+    fixed bottom-6 right-6 z-[9999] 
+    w-96
+    transition-all duration-500
+    ${animationState === 'entering'
+          ? 'translate-x-full'
+          : animationState === 'visible'
+            ? 'translate-x-0'
+            : 'translate-y-full opacity-0'
+        }
+  `}
+    >
+      <div
+        className={`
+      bg-white/5 dark:bg-black/20 
+      backdrop-blur-lg
+      border-l-4 border-[#F97316]
+      shadow-2xl
+      pl-6 md:pl-8 pr-4 md:pr-6 py-4 md:py-5
+      rounded-tr-lg
+    `}
+      >
+        <div className="flex items-center mb-2 md:mb-3">
+          <span className="text-2xl md:text-3xl mr-3 md:mr-4 text-[#F97316]">
+            {activeStory.emoji}
+          </span>
+          <h3 className="text-black dark:text-white text-lg md:text-xl font-oswald">
+            {activeStory.title}
+          </h3>
         </div>
 
-        <div className="max-h-52 overflow-y-auto pr-3 custom-scrollbar">
-          <p className="text-black/90 dark:text-white text-base leading-relaxed">
+        <div className="max-h-40 md:max-h-52 overflow-y-auto pr-2 md:pr-3 custom-scrollbar">
+          <p className="text-black/90 dark:text-white text-sm md:text-base leading-relaxed">
             {activeStory.content}
           </p>
         </div>
 
-        <div className="mt-4 h-1 bg-gray-600 relative overflow-hidden">
+        <div className="mt-3 md:mt-4 h-1 bg-gray-600 relative overflow-hidden">
           <div
             className="absolute inset-y-0 left-0 right-0 bg-[#F97316]"
             style={{
@@ -170,5 +178,6 @@ export default function CornerFacts() {
         </div>
       </div>
     </div>
+
   );
 }

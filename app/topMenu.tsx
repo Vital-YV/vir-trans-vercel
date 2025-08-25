@@ -35,7 +35,7 @@ export default function TopMenu() {
             mainAnchor: "vir-trans", // id блока, куда нужно скроллить
             submenu: [
                 { label: "О компании", id: "о-компании" },
-                { label: "Задать вопрос", id: "задать-вопрос" },
+                { label: "Контакты", id: "контакты" },
                 { label: "Отзывы", id: "отзывы" }
             ]
         },
@@ -52,7 +52,7 @@ export default function TopMenu() {
         {
             title: "Заказчикам и Перевозчикам",
             href: "/",
-            mainAnchor: "преимущества-работы-с-нами", // Якорь для основного пункта
+            mainAnchor: "география-перевозок", // Якорь для основного пункта
             submenu: [
                 { label: "География перевозок", id: "география-перевозок" },
                 { label: "Вопросы - ответы", id: "вопросы---ответы" },
@@ -150,13 +150,17 @@ export default function TopMenu() {
         <div className="w-full h-24 fixed flex flex-col bg-gradient-to-b to-[#3b82f6] from-[#219EBC] font-sans font-semibold">
             {mobileMenu ? (
                 <div className="relative">
-                    <div className="z-50 fixed top-5 left-5 flex items-center text-white">
-                        <div className="text-lg font-semibold">logo</div>
-                        <div className="ml-4">
+                    <div className="z-50 fixed top left-5 flex items-center text-white">
+                        <img
+                            src="logo2.png"
+                            alt="logo"
+                            className="h-24 w-auto drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]"
+                        />
+                        <div className="ml-4 mt-1">
                             <button className="w-3 h-3" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                <div className="w-3 h-0.5 bg-slate-50 shadow-[0_1px_3px_rgba(0,0,0,0.4)]" />
-                                <div className="w-3 h-0.5 mt-0.5 bg-slate-50 shadow-[0_1px_3px_rgba(0,0,0,0.4)]" />
-                                <div className="w-3 h-0.5 mt-0.5 bg-slate-50 shadow-[0_1px_3px_rgba(0,0,0,0.4)]" />
+                                <div className="w-3 h-0.5 bg-[#FF9100] drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]" />
+                                <div className="w-3 h-0.5 mt-0.5 bg-[#FF9100] drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]" />
+                                <div className="w-3 h-0.5 mt-0.5 bg-[#FF9100] drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]" />
                             </button>
                         </div>
                     </div>
@@ -215,9 +219,14 @@ export default function TopMenu() {
             ) : (
                 <div className="grid grid-cols-[max-content_auto] h-full">
                     <div className="max-w-max flex items-center px-4 text-white">
-                        logo
+                        <img
+                            src="/logo2.png"
+                            alt="logo"
+                            className="h-28 w-auto -mt-2 drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]"
+                        />
+
                     </div>
-                    <div className={`flex items-center flex-1`}>
+                    <div className={`flex items-center flex-1 -mt-1`}>
                         <ul className={`h-full list-none flex mt-0 flex-row gap-4`}>
                             {menuItems.map((item, index) => (
                                 <li

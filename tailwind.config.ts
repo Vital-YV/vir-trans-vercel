@@ -139,6 +139,7 @@ module.exports = {
 				'20vh': '20vh'
 			},
 			fontFamily: {
+				oswald: ["Oswald", "sans-serif"],
 				'neonfonts': ['Neonderthaw'],
 				'playfair': ['Playfair Display'],
 				'montserrat': ['Montserrat'],
