@@ -222,7 +222,7 @@ function SpiralCard({ question, answer }: FlipCardProps) {
 
   return (
     <div
-      className="relative w-[300px] h-[180px] m-4 cursor-pointer overflow-hidden"
+      className="relative w-[300px] h-[180px] m-4 overflow-hidden"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -630,7 +630,8 @@ export default function Home() {
           Мы специализируемся на перевозке различных текучих веществ, будь то химические продукты или пищевые ингредиенты. Наши специалисты обладают высокой квалификацией и опытом, гарантируя безопасную доставку вашего груза.
         </p>,
       color: 'bg-[#FB8500]',
-      subColor: 'bg-[#1e3d98]'
+      subColor: 'bg-[#1e3d98]',
+      hidden: 'block'
     },
     {
       title: '',
@@ -638,7 +639,8 @@ export default function Home() {
         <p className="">
         </p>,
       color: 'bg-[#FB8500]/0 cursor-default',
-      subColor: 'bg-[#1e3d98]/0'
+      subColor: 'bg-[#1e3d98]/0',
+      hidden: 'hidden'
     },
 
     {
@@ -648,7 +650,8 @@ export default function Home() {
           Для перевозки наливных грузов мы используем специальные автоцистерны. Все емкости проходят строгий санитарный контроль и регулярную проверку на техническое состояние, обеспечивая высокий уровень безопасности и качества доставки.
         </p>,
       color: 'bg-[#FB8500]',
-      subColor: 'bg-[#1e3d98]'
+      subColor: 'bg-[#1e3d98]',
+      hidden: 'block'
     },
     {
       title: '',
@@ -656,7 +659,8 @@ export default function Home() {
         <p className="">
         </p>,
       color: 'bg-[#FB8500]/0 cursor-default',
-      subColor: 'bg-[#1e3d98]/0'
+      subColor: 'bg-[#1e3d98]/0',
+      hidden: 'hidden'
     },
     {
       title: '',
@@ -664,7 +668,8 @@ export default function Home() {
         <p className="">
         </p>,
       color: 'bg-[#FB8500]/0 cursor-default',
-      subColor: 'bg-[#1e3d98]/0'
+      subColor: 'bg-[#1e3d98]/0',
+      hidden: 'hidden'
     },
     {
       title: 'Соблюдение стандартов',
@@ -673,7 +678,8 @@ export default function Home() {
           Мы строго следуем санитарно-эпидемиологическим нормам и стандартам безопасности при перевозке грузов. Перед каждой загрузкой емкости проходят тщательную очистку и обработку, а наши водители проходят профессиональную подготовку.
         </p>,
       color: 'bg-[#FB8500]',
-      subColor: 'bg-[#1e3d98]'
+      subColor: 'bg-[#1e3d98]',
+      hidden: 'block'
     },
     {
       title: '',
@@ -681,7 +687,8 @@ export default function Home() {
         <p className="">
         </p>,
       color: 'bg-[#FB8500]/0 cursor-default',
-      subColor: 'bg-[#1e3d98]/0'
+      subColor: 'bg-[#1e3d98]/0',
+      hidden: 'hidden'
     },
     {
       title: 'В услуги входит',
@@ -695,7 +702,8 @@ export default function Home() {
           </li>
         </ul>,
       color: 'bg-[#FB8500]',
-      subColor: 'bg-[#1e3d98]'
+      subColor: 'bg-[#1e3d98]',
+      hidden: 'block'
     },
 
 
@@ -799,6 +807,9 @@ export default function Home() {
       >
         <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6">
           <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white">
+            Вир-Транс
+          </h1>
+          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white">
             Грузоперевозки по РФ+
           </h1>
           <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2">
@@ -844,13 +855,13 @@ export default function Home() {
         <div
           className={`w-svw pr-20vw transform transition-transform duration-700 ease-out ${OKompanii === "translate-x-full" ? "-translate-x-full" : OKompanii}`}
         >
-          <div className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/60 p-4 md:px-28 px-10 text-white flex items-center gap-6">
+          <div className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/60  md:px-28 px-10 text-white flex items-center gap-6">
             <img
-              src="logogray.png"
+              src="thumbs-up-gray.png"
               alt="logo"
-              className="w-20 h-20 md:w-28 md:h-28"
+              className="w-10 h-10 md:w-14 md:h-14"
             />
-            <p>
+            <p className="p-4 md:p-10">
               В 2008 году ООО «Вир-Транс» осуществило свою первую транспортировку
               груза, что стало началом нашего успешного пути в логистике. С тех пор мы
               постоянно расширяем свои компетенции и накапливаем опыт в этой сфере.
@@ -1028,16 +1039,20 @@ export default function Home() {
               {itemsMobile.map((item, index) => (
                 <div key={index} className="flex flex-col items-center justify-center text-center">
                   {/* Круг */}
-                  <div className={`relative w-20 h-20 md:w-[100px] md:h-[100px] rounded-full ${item.subColor}`}>
-                    <div
-                      className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out 
-                        w-8 h-8 ${item.color} 
-                        ${hoveredIndex === index ? "scale-2.5" : ""}
-                        rounded-full`}
-                      onMouseEnter={() => setHoveredIndex(index)}
-                      onMouseLeave={() => setHoveredIndex(null)}
+                  {/* Вместо двойных кругов */}
+                  <div
+                    className="relative w-24 h-24 md:w-[100px] md:h-[100px] flex items-center justify-center"
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <img
+                      src="wheel.png"
+                      alt="wheel"
+                      className={`w-full h-full transition-transform duration-700 ease-in-out
+      ${hoveredIndex === index ? "animate-spin" : ""}`}
                     />
                   </div>
+
 
                   {/* Заголовок под кругом */}
                   <p
@@ -1073,16 +1088,20 @@ export default function Home() {
               {items.map((item, index) => (
                 <div key={index} className="relative flex items-center justify-center">
                   {/* Круги */}
-                  <div className={`relative w-20 h-20 md:w-[100px] md:h-[100px] rounded-full ${item.subColor}`}>
-                    <div
-                      className={`absolute inset-0 m-auto transition-all duration-500 ease-in-out 
-                        w-10 h-10 ${item.color} 
-                        ${hoveredIndex === index ? "scale-2.5" : ""}
-                        rounded-full`}
-                      onMouseEnter={() => setHoveredIndex(index)}
-                      onMouseLeave={() => setHoveredIndex(null)}
+                  {/* Вместо двойных кругов */}
+                  <div
+                    className="relative w-24 h-24 md:w-[100px] md:h-[100px] flex items-center justify-center"
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <img
+                      src="wheel.png"
+                      alt="wheel"
+                      className={`w-full h-full transition-transform duration-700 ease-in-out ${item.hidden}
+      ${hoveredIndex === index ? "animate-spin" : ""}`}
                     />
                   </div>
+
 
 
                   {/* Заголовки */}

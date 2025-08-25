@@ -78,7 +78,7 @@ export function DeliveryRequestForm() {
     bg-gradient-to-r from-[#219EBC] to-[#3b82f6] 
     hover:from-[#1b7a91] hover:to-[#2563eb]
     text-white font-semibold 
-    px-6 py-3 
+    md:px-6 md:py-3 py-3 px-5
     rounded-full 
     shadow-xl 
     transition 
@@ -87,10 +87,16 @@ export function DeliveryRequestForm() {
     transform 
     hover:-translate-y-1 
     hover:scale-105
+    flex items-center justify-center
   "
       >
-        Задать вопрос
+        {/* Для мобильных устройств */}
+        <span className="block md:hidden text-xl font-bold">?</span>
+
+        {/* Для планшетов и десктопов */}
+        <span className="hidden md:block">Задать вопрос</span>
       </button>
+
 
 
 

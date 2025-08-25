@@ -152,9 +152,9 @@ export default function TopMenu() {
                 <div className="relative">
                     <div className="z-50 fixed top left-5 flex items-center text-white">
                         <img
-                            src="logo2.png"
+                            src="logo3.png"
                             alt="logo"
-                            className="h-24 w-auto drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]"
+                            className="h-24 w-auto"
                         />
                         <div className="ml-4 mt-1">
                             <button className="w-3 h-3" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -220,13 +220,13 @@ export default function TopMenu() {
                 <div className="grid grid-cols-[max-content_auto] h-full">
                     <div className="max-w-max flex items-center px-4 text-white">
                         <img
-                            src="/logo2.png"
+                            src="/logo3.png"
                             alt="logo"
-                            className="h-28 w-auto -mt-2 drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]"
+                            className="h-36 w-auto -mt-6"
                         />
 
                     </div>
-                    <div className={`flex items-center flex-1 -mt-1`}>
+                    <div className={`flex items-center flex-1 -mt-5`}>
                         <ul className={`h-full list-none flex mt-0 flex-row gap-4`}>
                             {menuItems.map((item, index) => (
                                 <li
@@ -246,7 +246,7 @@ export default function TopMenu() {
 
                                     {item.submenu.length > 0 && (
                                         <ul
-                                            className={`absolute left-0 -mt-2 top-full min-w-max bg-gradient-to-b from-[#3b82f6] from-90% to-95% p-4 pb-16 transform transition-all
+                                            className={`absolute left-0 -mt-6 top-full min-w-max bg-gradient-to-b from-[#3b82f6] from-90% to-95% p-4 pb-16 transform transition-all
                                             ${openMenu === index ? "opacity-100 translate-y-0 duration-500 ease-out" : "opacity-0 -translate-y-4 pointer-events-none"}`}
                                         >
                                             {item.submenu.map((subItem, subIndex) => (
