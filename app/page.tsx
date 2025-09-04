@@ -584,7 +584,15 @@ export default function Home() {
   /* Функции из service */
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [mobile, setMobile] = useState<boolean>(false);
-  const [hoverBlock3, setHoverBlock3] = useState(null)
+  const [hoverBlock3, setHoverBlock3] = useState<number | null>(null);
+  const [prevHoverBlock3, setPrevHoverBlock3] = useState<number | null>(null);
+
+  const handleHoverBlock3 = (i: number) => {
+    if (hoverBlock3 !== i) {
+      setPrevHoverBlock3(hoverBlock3);
+      setHoverBlock3(i);
+    }
+  };
 
   const [hoveredShipBlock3, setHoveredShipBlock3] = useState(false);
   const [hoveredBigPackageBlock3, setHoveredBigPackageBlock3] = useState(false);
@@ -807,7 +815,7 @@ export default function Home() {
       >
         <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6">
           <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white">
-            Вир-Транс
+            ВИР-Транс
           </h1>
           <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white">
             Грузоперевозки по РФ+
@@ -973,54 +981,78 @@ export default function Home() {
 
         <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Любым видом транспорта!</h2>
 
-        {mobile ? (
-          <div className="relative w-[300px] h-[200px] grid place-items-center">
-            <div className="absolute top-0 left-0 scale-[0.5]">
-              <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
-            </div>
-            <div className="absolute top-0 right-0 scale-[0.5]">
-              <TransportIcon src='/ship.svg' alt='ship' label='Водный транспорт' />
-            </div>
-            <div className="absolute bottom-0 left-0 scale-[0.5]">
-              <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
-            </div>
-            <div className="absolute bottom-0 right-0 scale-[0.5]">
-              <TransportIcon src='/train.svg' alt='train' label='ЖД' />
-            </div>
-            <div className="flex felx-col items-center scale-[0.5]">
-              <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
-            </div>
-          </div>
-        ) : (
-          <div className="relative w-[600px] h-[400px] mt-20 grid place-items-center">
-            <div className="absolute top-0 left-0">
-              <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
-            </div>
-            <div className="absolute top-0 right-0">
-              <TransportIcon src='/ship.svg' alt='ship' label='Водный транспорт' />
-            </div>
-            <div className="absolute bottom-0 left-0">
-              <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
-            </div>
-            <div className="absolute bottom-0 right-0">
-              <TransportIcon src='/train.svg' alt='train' label='ЖД' />
-            </div>
-            <div className="flex felx-col items-center">
-              <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
-            </div>
-          </div>
-        )}
-
-
         <div className="mt-10 bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
-          <p className=" text-base md:text-lg lg:text-xl max-w-2xl">
+          <p className=" text-base md:text-lg lg:text-xl max-w-2xl mx-auto">
             Возьмем на себя все ваши вопросы по логистике.
           </p>
 
-          <p className=" text-xs md:text-base lg:text-lg max-w-2xl">
+          <p className=" text-xs md:text-base lg:text-lg max-w-2xl mx-auto">
             Примем заказ в любое время и доставим в любую точку. Всегда готовы пойти навстречу заказчику и предложить оптимальную стоимость и схему транспортировки.
           </p>
+          {mobile ? (
+            <div className="relative grid grid-cols-5 place-items-center">
+              <div className="scale-[0.5]">
+                <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
+              </div>
+              <div className="scale-[0.5]">
+                <TransportIcon src='/train.svg' alt='train' label='ЖД' />
+              </div>
+              <div className="scale-[0.5]">
+                <TransportIcon src='/ship.svg' alt='ship' label='Водный транспорт' />
+              </div>
+              <div className="scale-[0.5]">
+                <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
+              </div>
+              <div className="scale-[0.5]">
+                <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
+              </div>
+            </div>
+          ) : (
+            <div className="relative mt-10 grid grid-cols-5 place-items-center">
+              <div className="scale-[0.8]">
+                <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
+              </div>
+              <div className="scale-[0.8]">
+                <TransportIcon src='/train.svg' alt='train' label='ЖД' />
+              </div>
+              <div className="scale-[0.8]">
+                <TransportIcon src='/ship.svg' alt='ship' label='Водный транспорт' />
+              </div>
+              <div className="scale-[0.8]">
+                <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
+              </div>
+              <div className="scale-[0.8]">
+                <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
+              </div>
+            </div>
+          )}
         </div>
+
+        <div className="absolute bottom-5 left-0 right-0 flex items-center px-5 z-20">
+          {/* Текст слева */}
+          <div className="text-left text-sm md:text-base lg:text-lg text-[#B7CCBD]">
+            <p>Связаться с сотрудником</p>
+            <p className="font-semibold">ДОСТАВКА «ТОЧКА – ТОЧКА»</p>
+          </div>
+
+          {/* Иконки по центру экрана */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+            <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Mail">
+              <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
+            </a>
+            <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Phone">
+              <img src="/phone-svg.svg" alt="phone" className="w-8 h-8" />
+            </a>
+            <a
+              href="" // Замените на ссылку вашего канала в Telegram
+              className="text-[#B7CCBD] hover:text-white transition-colors"
+              aria-label="Telegram"
+            >
+              <img src="/telegram-svg.svg" alt="Telegram" className="w-8 h-8" />
+            </a>
+          </div>
+        </div>
+
 
       </div>
 
@@ -1138,163 +1170,122 @@ export default function Home() {
           Транспортировка наливных грузов – одно из ключевых направлений деятельности компании "ВИР-Транс"
         </p> */}
 
-        <div className="absolute bottom-5 grid grid-cols-2 gap-2 z-20">
-          <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Mail">
-            <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
-          </a>
-          <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Phone">
-            <img src="/phone-svg.svg" alt="phone" className="w-8 h-8" />
-          </a>
+        <div className="absolute bottom-5 left-0 right-0 flex items-center px-5 z-20">
+          {/* Текст слева */}
+          <div className="text-left text-sm md:text-base lg:text-lg text-gray-600 ">
+            <p>Связаться с сотрудником</p>
+            <p className="font-semibold">ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ</p>
+          </div>
+
+          {/* Иконки по центру экрана */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+            <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Mail">
+              <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
+            </a>
+            <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Phone">
+              <img src="/phone-svg.svg" alt="phone" className="w-8 h-8" />
+            </a>
+            <a
+              href="" // Замените на ссылку вашего канала в Telegram
+              className="text-[#B7CCBD] hover:text-white transition-colors"
+              aria-label="Telegram"
+            >
+              <img src="/telegram-svg.svg" alt="Telegram" className="w-8 h-8" />
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА*/}
+      {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА */}
       <div id='мультимодальные-доставки' className="w-auto min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  "
-          style={{
-            textShadow: `
-      -0.5px -0.5px 0 white,
-       0.5px -0.5px 0 white,
-      -0.5px  0.5px 0 white,
-       0.5px  0.5px 0 white
-    `
-          }}
-        >
-          МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА</h1>
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  "
-          style={{
-            textShadow: `
-      -1px -1px 0 white,
-       1px -1px 0 white,
-      -1px  1px 0 white,
-       1px  1px 0 white
-    `
-          }}
-        >
-          доставка негабаритных грузов</h1>
-        <br /><h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2  ">РАЗМЕР И ФОРМА ИМЕЕТ ЗНАЧЕНИЕ!</h2>
-
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold"
+          style={{ textShadow: `-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white` }}>
+          МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА
+        </h1>
+        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold"
+          style={{ textShadow: `-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white` }}>
+          доставка негабаритных грузов
+        </h1>
+        <br />
+        <h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2">РАЗМЕР И ФОРМА ИМЕЕТ ЗНАЧЕНИЕ!</h2>
         <h3 className="text-base md:text-lg lg:text-xl font-semibold my-6">Мы предлагаем Вам:</h3>
-        <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[1] scale-[0.4] gap-3 min-w-max h-[calc(0.4*100svh)] sm:h-auto -mt-16 sm:mt-0">
 
-          <div onMouseEnter={() => setHoverBlock3(0)}>
-            <div onMouseEnter={() => setHoveredShipBlock3(true)} onMouseLeave={() => setHoveredShipBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-50">
-                {/* Корабль */}
-                <img
-                  src="/shipBlock3.svg"
-                  alt="ship"
-                  className="absolute bottom-0 left-0 w-40"
-                  style={{
-                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
-                  }}
-                />
-                {/* Посылка */}
-                <img
-                  src="/packageBlock3ForHelicopter.svg"
-                  alt="package"
-                  className={`absolute w-8 left-[70px] bottom-[90px] transition-all
-                  ${hoveredShipBlock3 ? 'animate-packageLift' : ''}`}
-                  style={{
-                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
-                  }}
-                />
-                {/* Вертолёт */}
-                <img
-                  src="/helicopterBlock3.svg"
-                  alt="helicopter"
-                  className={`absolute w-24 top-[-20px] right-[-10px] 
-                  ${hoveredShipBlock3 ? 'animate-helicopterFly' : ''}`}
-                  style={{
-                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
-                  }}
-                />
-              </div>
-            </div>
+        {/* Картинки: порядок 0 → 3 → 2 → 1 */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[0.80] scale-[0.4] min-w-max h-[calc(0.4*100svh)] sm:h-auto -mt-16 gap-4">
+
+          {/* 0 - Корабль */}
+          <div onMouseEnter={() => handleHoverBlock3(0)} className={`relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-50 transition-all duration-500 ${hoverBlock3 === 0 ? "shadow-[0_0_25px_#FB8500]" : ""}`}>
+            <img src="/shipBlock3.svg" alt="ship" className="absolute bottom-0 left-0 w-40" style={{ filter: "invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)" }} />
+            <img src="/packageBlock3ForHelicopter.svg" alt="package" className={`absolute w-8 left-[70px] bottom-[90px] transition-all ${hoverBlock3 === 0 ? "animate-packageLift" : ""}`} style={{ filter: "invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)" }} />
+            <img src="/helicopterBlock3.svg" alt="helicopter" className={`absolute w-24 top-[-20px] right-[-10px] ${hoverBlock3 === 0 ? "animate-helicopterFly" : ""}`} style={{ filter: "invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)" }} />
           </div>
 
-
-          <div onMouseEnter={() => setHoverBlock3(3)}>
-            <div onMouseEnter={() => setHoveredMagnifierBlock3(true)} onMouseLeave={() => setHoveredMagnifierBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-0.40 -rotate-45">
-                <img
-                  src="/magnifier.svg"
-                  alt="magnifier"
-                  className={`absolute w-40% left-[120px] bottom-[72px] transition-all
-          ${hoveredMagnifierBlock3 ? 'animate-magnifier ' : ''}`}
-                  style={{
-                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
-                  }}
-                />
-                {/* <img
-                  src="/packageBlock3.svg"
-                  alt="package"
-                  className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
-                  style={{
-                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
-                  }}
-                /> */}
-              </div>
-            </div>
+          {/* 3 - Лупа */}
+          <div onMouseEnter={() => handleHoverBlock3(3)} className={`relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-[0.4] -rotate-45 transition-all duration-500 ${hoverBlock3 === 3 ? "shadow-[0_0_25px_#FB8500]" : ""}`}>
+            <img src="/magnifier.svg" alt="magnifier" className={`absolute w-32 left-[100px] bottom-[72px] transition-all ${hoverBlock3 === 3 ? "animate-magnifier" : ""}`} style={{ filter: "invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)" }} />
           </div>
 
-          <div onMouseEnter={() => setHoverBlock3(2)}>
-            <div onMouseEnter={() => setHoveredPackageInHardhatBlock3(true)} onMouseLeave={() => setHoveredPackageInHardhatBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-full scale-50">
-                <img
-                  src="/hardHatBlock3.svg"
-                  alt="hard-hat"
-                  className={`absolute w-40% left-[90px] bottom-[120px] transition-all rotate-12
-          ${hoveredPackageInHardhatBlock3 ? 'animate-packageInHardhat' : ''}`}
-                  style={{
-                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
-                  }}
-                />
-                {/* <img
-                  src="/packageBlock3.svg"
-                  alt="package"
-                  className={`absolute w-40% left-[76px] bottom-[72px] scale-[1.2]`}
-                  style={{
-                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
-                  }}
-                /> */}
-              </div>
-            </div>
+          {/* 2 - Каска */}
+          <div onMouseEnter={() => handleHoverBlock3(2)} className={`relative w-64 h-64 bg-white overflow-hidden rounded-full scale-50 transition-all duration-500 ${hoverBlock3 === 2 ? "shadow-[0_0_25px_#FB8500]" : ""}`}>
+            <img src="/hardHatBlock3.svg" alt="hard-hat" className={`absolute w-32 left-[90px] bottom-[120px] rotate-12 transition-all ${hoverBlock3 === 2 ? "animate-packageInHardhat" : ""}`} style={{ filter: "invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)" }} />
           </div>
 
-
-          <div onMouseEnter={() => setHoverBlock3(1)}>
-            <div onMouseEnter={() => setHoveredBigPackageBlock3(true)} onMouseLeave={() => setHoveredBigPackageBlock3(false)}>
-              <div className="relative w-64 h-64 bg-white  overflow-hidden rounded-lg scale-50">
-                <img
-                  src="/packageBlock3.svg"
-                  alt="package"
-                  className={`absolute w-40% left-[76px] bottom-[72px] transition-all 
-          ${hoveredBigPackageBlock3 ? 'animate-packageScale' : ''}`}
-                  style={{
-                    filter: 'invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)'
-                  }}
-                />
-              </div>
-            </div>
+          {/* 1 - Большая посылка */}
+          <div onMouseEnter={() => handleHoverBlock3(1)} className={`relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-50 transition-all duration-500 ${hoverBlock3 === 1 ? "shadow-[0_0_25px_#FB8500]" : ""}`}>
+            <img src="/packageBlock3.svg" alt="package" className={`absolute w-40 left-[50px] bottom-[55px] transition-all ${hoverBlock3 === 1 ? "animate-packageScale" : ""}`} style={{ filter: "invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)" }} />
           </div>
+
         </div>
 
+        {/* Текстовые блоки */}
+        <div className="relative mt-10 md:mt-0 w-full min-h-[calc(0.25*100svh)] overflow-visible">
+          {itemsBlock3.map((item, index) => {
+            const isActive = hoverBlock3 === index;
+            const isPrev = prevHoverBlock3 === index;
 
-        <div className={`mt-10 md:mt-0 text-left max-w-3xl min-h-[calc(0.3*100svh)] space-y-4 list-disc list-inside text-xs md:text-base lg:text-lg transition-all duration-500 transform ease-in-out ${hoverBlock3 !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
-          <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
-            {hoverBlock3 !== null && (
-              <div>
-                {itemsBlock3[hoverBlock3].title}
-                {itemsBlock3[hoverBlock3].content}
+            return (
+              <div
+                key={index}
+                className={[
+                  "absolute inset-0 p-6 max-w-3xl mx-auto rounded-lg bg-black/60 text-white backdrop-blur-md transition-all duration-700 ease-in-out overflow-visible",
+                  isActive
+                    ? "translate-x-0 opacity-100 shadow-[0_0_30px_#FB8500] z-10"
+                    : isPrev
+                      ? "-translate-x-full opacity-0 z-0"
+                      : "translate-x-full opacity-0 z-0",
+                ].join(" ")}
+              >
+                {item.title}
+                {item.content}
               </div>
-            )}
-          </div>
+            );
+          })}
         </div>
 
-        {/* <p className="pt-6 max-w-2xl bottom-0 border-t-2 text-xs md:text-base lg:text-lg">
-          В мире современной логистики каждый сантиметр имеет значение, особенно когда речь идет о перевозке негабаритных и мультимодальных грузов. Мы стремимся к эффективности и надежности в любых условиях, преодолевая все возможные сложности пути: от мостов и паромных переправ до горных серпантинов и зимников.
-        </p> */}
+        <div className="absolute bottom-5 left-0 right-0 flex items-center px-5 z-20">
+          {/* Текст слева */}
+          <div className="text-left text-sm md:text-base lg:text-lg text-[#B7CCBD]">
+            <p>Связаться с сотрудником</p>
+            <p className="font-semibold">ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ</p>
+          </div>
+
+          {/* Иконки по центру экрана */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+            <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Mail">
+              <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
+            </a>
+            <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Phone">
+              <img src="/phone-svg.svg" alt="phone" className="w-8 h-8" />
+            </a>
+            <a
+              href="" // Замените на ссылку вашего канала в Telegram
+              className="text-[#B7CCBD] hover:text-white transition-colors"
+              aria-label="Telegram"
+            >
+              <img src="/telegram-svg.svg" alt="Telegram" className="w-8 h-8" />
+            </a>
+          </div>
+        </div>
       </div>
 
 
