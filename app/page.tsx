@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react"
 import { DeliveryRequestForm } from './DeliveryRequest';
 import QuestionRain from './QuestionRain';
+import HoverHint from "./HoverHint";
 
 function Reviews() {
   const [showModal, setShowModal] = useState(false);
@@ -1028,15 +1029,15 @@ export default function Home() {
           )}
         </div>
 
-        <div className="absolute bottom-5 left-0 right-0 flex items-center px-5 z-20">
+        <div className="absolute bottom-5 left-0 right-0 flex flex-col md:flex-row md:items-center md:justify-between px-5 z-20">
           {/* Текст слева */}
-          <div className="text-left text-sm md:text-base lg:text-lg text-[#B7CCBD]">
+          <div className="text-left text-sm md:text-base lg:text-lg text-[#B7CCBD] mb-3 md:mb-0">
             <p>Связаться с сотрудником</p>
             <p className="font-semibold">ДОСТАВКА «ТОЧКА – ТОЧКА»</p>
           </div>
 
-          {/* Иконки по центру экрана */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+          {/* Иконки */}
+          <div className="flex justify-center gap-4">
             <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Mail">
               <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
             </a>
@@ -1052,6 +1053,7 @@ export default function Home() {
             </a>
           </div>
         </div>
+
 
 
       </div>
@@ -1083,6 +1085,7 @@ export default function Home() {
                       className={`w-full h-full transition-transform duration-700 ease-in-out
       ${hoveredIndex === index ? "animate-spin" : ""}`}
                     />
+
                   </div>
 
 
@@ -1096,6 +1099,7 @@ export default function Home() {
 
                 </div>
               ))}
+
             </div>
 
             {/* Блок с текстом */}
@@ -1146,6 +1150,7 @@ export default function Home() {
                   </p>
                 </div>
               ))}
+              <HoverHint className="absolute text-orange-600 -bottom-[90px] right-[145px]" />
             </div>
 
             {/* Блок с текстом */}
@@ -1170,15 +1175,15 @@ export default function Home() {
           Транспортировка наливных грузов – одно из ключевых направлений деятельности компании "ВИР-Транс"
         </p> */}
 
-        <div className="absolute bottom-5 left-0 right-0 flex items-center px-5 z-20">
+        <div className="absolute bottom-5 left-0 right-0 flex flex-col md:flex-row md:items-center md:justify-between px-5 z-20">
           {/* Текст слева */}
-          <div className="text-left text-sm md:text-base lg:text-lg text-gray-600 ">
+          <div className="text-left text-sm md:text-base lg:text-lg text-gray-600 mb-3 md:mb-0">
             <p>Связаться с сотрудником</p>
             <p className="font-semibold">ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ</p>
           </div>
 
-          {/* Иконки по центру экрана */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+          {/* Иконки */}
+          <div className="flex justify-center gap-4">
             <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Mail">
               <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
             </a>
@@ -1194,10 +1199,11 @@ export default function Home() {
             </a>
           </div>
         </div>
+
       </div>
 
       {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА */}
-      <div id='мультимодальные-доставки' className="w-auto min-h-[100svh] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
+      <div id='мультимодальные-доставки' className="w-auto min-h-[100svh] pb-[130px] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
         <h1 className="text-xl md:text-3xl lg:text-5xl font-bold"
           style={{ textShadow: `-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white` }}>
           МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА
@@ -1211,7 +1217,7 @@ export default function Home() {
         <h3 className="text-base md:text-lg lg:text-xl font-semibold my-6">Мы предлагаем Вам:</h3>
 
         {/* Картинки: порядок 0 → 3 → 2 → 1 */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[0.80] scale-[0.4] min-w-max h-[calc(0.4*100svh)] sm:h-auto -mt-16 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[0.80] scale-[0.5] min-w-max h-[calc(0.45*100svh)] sm:h-auto -mt-16 gap-4">
 
           {/* 0 - Корабль */}
           <div onMouseEnter={() => handleHoverBlock3(0)} className={`relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-50 transition-all duration-500 ${hoverBlock3 === 0 ? "shadow-[0_0_25px_#FB8500]" : ""}`}>
@@ -1234,11 +1240,11 @@ export default function Home() {
           <div onMouseEnter={() => handleHoverBlock3(1)} className={`relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-50 transition-all duration-500 ${hoverBlock3 === 1 ? "shadow-[0_0_25px_#FB8500]" : ""}`}>
             <img src="/packageBlock3.svg" alt="package" className={`absolute w-40 left-[50px] bottom-[55px] transition-all ${hoverBlock3 === 1 ? "animate-packageScale" : ""}`} style={{ filter: "invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)" }} />
           </div>
-
+          <HoverHint className="absolute text-orange-600 bottom-6 right-8" />
         </div>
 
         {/* Текстовые блоки */}
-        <div className="relative mt-10 md:mt-0 w-full min-h-[calc(0.25*100svh)] overflow-visible">
+        <div className="relative mt-10 md:mt-0 w-full min-h-[calc(0.15*100svh)] md:min-h-[calc(0.2*100svh)] lg:min-h-[calc(0.25*100svh)] overflow-visible">
           {itemsBlock3.map((item, index) => {
             const isActive = hoverBlock3 === index;
             const isPrev = prevHoverBlock3 === index;
@@ -1247,7 +1253,7 @@ export default function Home() {
               <div
                 key={index}
                 className={[
-                  "absolute inset-0 p-6 max-w-3xl mx-auto rounded-lg bg-black/60 text-white backdrop-blur-md transition-all duration-700 ease-in-out overflow-visible",
+                  "text-[6px] md:text-xs lg:text-sm absolute inset-0 p-6 max-w-3xl mx-auto rounded-lg bg-black/60 text-white backdrop-blur-md transition-all duration-700 ease-in-out overflow-visible",
                   isActive
                     ? "translate-x-0 opacity-100 shadow-[0_0_30px_#FB8500] z-10"
                     : isPrev
@@ -1255,22 +1261,22 @@ export default function Home() {
                       : "translate-x-full opacity-0 z-0",
                 ].join(" ")}
               >
-                {item.title}
+                <div className="text-[9px] md:text-sm lg:text-base">{item.title}</div>
                 {item.content}
               </div>
             );
           })}
         </div>
 
-        <div className="absolute bottom-5 left-0 right-0 flex items-center px-5 z-20">
+        <div className="absolute bottom-5 left-0 right-0 flex flex-col md:flex-row md:items-center md:justify-between px-5 z-20">
           {/* Текст слева */}
-          <div className="text-left text-sm md:text-base lg:text-lg text-[#B7CCBD]">
+          <div className="text-left text-sm md:text-base lg:text-lg text-[#B7CCBD] mb-3 md:mb-0">
             <p>Связаться с сотрудником</p>
             <p className="font-semibold">ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ</p>
           </div>
 
-          {/* Иконки по центру экрана */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+          {/* Иконки */}
+          <div className="flex justify-center gap-4">
             <a href="" className="text-[#B7CCBD] hover:text-white transition-colors" aria-label="Mail">
               <img src="/mail-svg.svg" alt="mail" className="w-8 h-8" />
             </a>
@@ -1286,6 +1292,7 @@ export default function Home() {
             </a>
           </div>
         </div>
+
       </div>
 
 
