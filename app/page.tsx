@@ -440,6 +440,53 @@ const flagsList = [
   },
 ]
 
+// Хелпер: перевод позиции "left-[34%] top-[42%]" в проценты
+const parsePosition = (pos: string, size: string) => {
+  const leftMatch = pos.match(/left-\[(\d+)%\]/);
+  const topMatch = pos.match(/top-\[(\d+)%\]/);
+  const left = leftMatch ? parseFloat(leftMatch[1]) : 0;
+  const top = topMatch ? parseFloat(topMatch[1]) : 0;
+
+  // берём размер (w-[40px]) и делим на 2 => смещение в центр
+  const sizeMatch = size.match(/w-\[(\d+)px\]/);
+  const px = sizeMatch ? parseFloat(sizeMatch[1]) : 20;
+  // предполагаем, что контейнер карты ~1000px шириной
+  const radiusPercent = (px / 2 / 1000) * 100;
+
+  return { x: left + radiusPercent, y: top + radiusPercent };
+};
+
+// Генерация случайных соединений
+const maxConnections = 2; // максимум связей на точку
+const connections: { x1: number; y1: number; x2: number; y2: number }[] = [];
+const usedConnections = new Set<string>();
+
+for (let i = 0; i < flagsList.length; i++) {
+  const p1 = parsePosition(flagsList[i].position, flagsList[i].size);
+
+  // случайный порядок точек
+  const shuffled = [...flagsList.keys()]
+    .filter(j => j !== i)
+    .sort(() => Math.random() - 0.5);
+
+  let count = 0;
+  for (let j of shuffled) {
+    if (count >= maxConnections) break;
+
+    const p2 = parsePosition(flagsList[j].position, flagsList[j].size);
+
+    // проверяем, что соединение ещё не существует
+    const key1 = `${i}-${j}`;
+    const key2 = `${j}-${i}`;
+    if (!usedConnections.has(key1) && !usedConnections.has(key2)) {
+      connections.push({ x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y });
+      usedConnections.add(key1);
+      usedConnections.add(key2);
+      count++;
+    }
+  }
+}
+
 
 /* Функции из service */
 type TransportIconProps = {
@@ -814,11 +861,11 @@ export default function Home() {
         id="vir-trans"
         className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-text1 dark:text-text1Dark relative"
       >
-        <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6">
-          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white">
+        <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-4 sm:px-6 md:px-10 py-4 md:py-6">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white">
             ВИР-Транс
           </h1>
-          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-white">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white">
             Грузоперевозки по РФ+
           </h1>
           <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2">
@@ -860,15 +907,15 @@ export default function Home() {
 
       {/* О компании */}
       <div id='о-компании' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-xs sm:text-sm md:text-base overflow-hidden bg-white/90 dark:bg-black/90 ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold ">О КОМПАНИИ</h1>
+        <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold ">О КОМПАНИИ</h1>
         <div
           className={`w-svw pr-20vw transform transition-transform duration-700 ease-out ${OKompanii === "translate-x-full" ? "-translate-x-full" : OKompanii}`}
         >
-          <div className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/60  md:px-28 px-10 text-white flex items-center gap-6">
+          <div className="mt-4 border border-[#FB8500] rounded-r-xl bg-[#FB8500]/60 px-4 md:px-28 text-white flex items-center gap-4 md:gap-6">
             <img
               src="thumbs-up-gray.png"
               alt="logo"
-              className="w-10 h-10 md:w-14 md:h-14"
+              className="w-10 h-10 md:w-14 md:h-14 dark:filter dark:brightness-0 dark:saturate-100 dark:hue-rotate-210 dark:invert-50"
             />
             <p className="p-4 md:p-10">
               В 2008 году ООО «Вир-Транс» осуществило свою первую транспортировку
@@ -884,7 +931,7 @@ export default function Home() {
         <div ref={targetRef} />
 
         <div className={`w-svw pl-20vw transform transition-transform duration-700 ease-out ${OKompanii}`}>
-          <div className="mt-4 border border-black dark:border-[#219EBC] rounded-l-xl bg-black/50 dark:bg-[#3b82f6]/50 p-4 md:px-28 px-10 pr-20vw md:pr-20vw text-white flex items-center justify-between">
+          <div className="mt-4 border border-black dark:border-[#219EBC] rounded-l-xl bg-black/50 dark:bg-[#3b82f6]/50 p-3 md:p-4 px-4 md:px-28 pr-10 md:pr-20vw text-white flex items-center justify-between">
 
             {/* Левая часть — текст */}
             <div className="max-w-[80%]">
@@ -907,7 +954,7 @@ export default function Home() {
         </div>
 
         <div>
-          <h4 className="text-xs md:text-base lg:text-lg font-semibold mt-4 text-[#1e3d98]">Приглашаем Вас к взаимовыгодному сотрудничеству!</h4>
+          <h4 className="text-sm md:text-base lg:text-lg font-semibold mt-4 text-[#1e3d98]">Приглашаем Вас к взаимовыгодному сотрудничеству!</h4>
         </div>
 
       </div>
@@ -915,7 +962,7 @@ export default function Home() {
       {/* Задать вопросы */}
       <div id='контакты' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark">
         <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
-          <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  "
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold  "
             style={{
               textShadow: `
       -0.5px -0.5px 0 white,
@@ -926,11 +973,11 @@ export default function Home() {
             }}
           >КОНТАКТЫ</h1>
 
-          <p className="mt-4 text-base md:text-lg lg:text-xl">Подберём транспорт под ваши потребности.</p>
-          <p className="text-base md:text-lg lg:text-xl">Предупредим о возможных нюансах.</p>
-          <p className="text-base md:text-lg lg:text-xl">Избавим от сомнений.</p>
+          <p className="mt-4 text-sm md:text-lg lg:text-xl">Подберём транспорт под ваши потребности.</p>
+          <p className="text-sm md:text-lg lg:text-xl">Предупредим о возможных нюансах.</p>
+          <p className="text-sm md:text-lg lg:text-xl">Избавим от сомнений.</p>
 
-          <div className="mt-10 text-xs md:text-base lg:text-lg max-w-3xl text-center">
+          <div className="mt-6 md:mt-10 text-sm md:text-base lg:text-lg max-w-3xl text-center">
             <p className="font-semibold">ООО «ВИР-ТРАНС»</p>
             <p>ИНН 6315621732 / ОГРН 1086315013179</p>
             <p>Россия, 443093, г. Самара, ул. Партизанская 82А, офис 507</p>
@@ -938,8 +985,8 @@ export default function Home() {
           </div>
 
           {/* Список филиалов */}
-          <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-6">Филиалы:</h3>
-          <ul className="mt-2 list-disc list-inside text-xs md:text-base lg:text-lg flex flex-col items-center gap-1">
+          <h3 className="text-sm md:text-lg lg:text-xl font-semibold mt-4 md:mt-6">Филиалы:</h3>
+          <ul className="mt-2 list-disc list-inside text-sm md:text-base lg:text-lg flex flex-col items-center gap-1">
             <li>Самара, добавочный 705</li>
             <li>Тольятти, добавочный 701</li>
             <li>Санкт-Петербург, добавочный 706</li>
@@ -947,8 +994,8 @@ export default function Home() {
           </ul>
 
           {/* Контактные данные */}
-          <h3 className="text-base md:text-lg lg:text-xl font-semibold mt-6">Контакты:</h3>
-          <ul className="mt-2 text-xs md:text-base lg:text-lg flex flex-col items-center gap-1">
+          <h3 className="text-sm md:text-lg lg:text-xl font-semibold mt-4 md:mt-6">Контакты:</h3>
+          <ul className="mt-2 text-sm md:text-base lg:text-lg flex flex-col items-center gap-1">
             <li><strong>E-mail:</strong> <a href="mailto:v-t@vir-trans.ru" className="text-[#3b82f6] hover:underline dark:text-[#FFB703]">v-t@vir-trans.ru</a></li>
             <li><strong>Сайт:</strong> <a href="https://vir-trans.ru" className="text-[#3b82f6] hover:underline dark:text-[#FFB703]">vir-trans.ru</a></li>
             <li><strong>ВКонтакте:</strong> <a href="#" className="text-[#3b82f6] hover:underline dark:text-[#FFB703]">vir_trans</a></li>
@@ -967,7 +1014,7 @@ export default function Home() {
       {/* Услуга 1 ДОСТАВКА «ТОЧКА – ТОЧКА»*/}
       <div id="обычные-грузы" className="relative w-full md:pt-0 min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
         <h1
-          className="text-xl md:text-3xl lg:text-5xl font-bold mt-10"
+          className="text-2xl md:text-3xl lg:text-5xl font-bold mt-6 md:mt-10"
           style={{
             textShadow: `
       -0.5px -0.5px 0 white,
@@ -980,14 +1027,14 @@ export default function Home() {
           ДОСТАВКА «ТОЧКА – ТОЧКА»
         </h1>
 
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">Любым видом транспорта!</h2>
+        <h2 className="text-xl md:text-2xl lg:text-4xl font-semibold mt-2  ">Любым видом транспорта!</h2>
 
-        <div className="mt-10 bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
-          <p className=" text-base md:text-lg lg:text-xl max-w-2xl mx-auto">
+        <div className="mt-6 md:mt-10 bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-4 sm:px-6 md:px-10 py-4 md:py-6">
+          <p className="text-sm md:text-lg lg:text-xl max-w-2xl mx-auto">
             Возьмем на себя все ваши вопросы по логистике.
           </p>
 
-          <p className=" text-xs md:text-base lg:text-lg max-w-2xl mx-auto">
+          <p className="text-xs md:text-base lg:text-lg max-w-2xl mx-auto">
             Примем заказ в любое время и доставим в любую точку. Всегда готовы пойти навстречу заказчику и предложить оптимальную стоимость и схему транспортировки.
           </p>
           {mobile ? (
@@ -1010,19 +1057,19 @@ export default function Home() {
             </div>
           ) : (
             <div className="relative mt-10 grid grid-cols-5 place-items-center">
-              <div className="scale-[0.8]">
+              <div className="scale-75 md:scale-[0.8]">
                 <TransportIcon src='/truck.svg' alt='truck' label='Малотоннажки' />
               </div>
-              <div className="scale-[0.8]">
+              <div className="scale-75 md:scale-[0.8]">
                 <TransportIcon src='/train.svg' alt='train' label='ЖД' />
               </div>
-              <div className="scale-[0.8]">
+              <div className="scale-75 md:scale-[0.8]">
                 <TransportIcon src='/ship.svg' alt='ship' label='Водный транспорт' />
               </div>
-              <div className="scale-[0.8]">
+              <div className="scale-75 md:scale-[0.8]">
                 <TransportIcon src='/airplane.svg' alt='airplane' label='АВИА' />
               </div>
-              <div className="scale-[0.8]">
+              <div className="scale-75 md:scale-[0.8]">
                 <TransportIcon src='/earth-globe.svg' alt='earth' label='Мультимодальные' />
               </div>
             </div>
@@ -1031,7 +1078,7 @@ export default function Home() {
 
         <div className="absolute bottom-5 left-0 right-0 flex flex-col md:flex-row md:items-center md:justify-between px-5 z-20">
           {/* Текст слева */}
-          <div className="text-left text-sm md:text-base lg:text-lg text-[#B7CCBD] mb-3 md:mb-0">
+          <div className="text-left text-xs md:text-base lg:text-lg text-[#B7CCBD] mb-3 md:mb-0">
             <p>Связаться с сотрудником</p>
             <p className="font-semibold">ДОСТАВКА «ТОЧКА – ТОЧКА»</p>
           </div>
@@ -1060,10 +1107,10 @@ export default function Home() {
 
       {/* Услуга 2 ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ*/}
       <div id='наливные-и-опасные-грузы' className="relative w-full flex flex-col items-center justify-center text-center p-6 min-h-[100svh] text-black dark:text-white bg-white/90 dark:bg-black/90">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold  ">
+        <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold  ">
           ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ
         </h1>
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold mt-2  ">
+        <h2 className="text-xl md:text-2xl lg:text-4xl font-semibold mt-2  ">
           СВОЙСТВО ИМЕЕТ ЗНАЧЕНИЕ!
         </h2>
 
@@ -1099,12 +1146,12 @@ export default function Home() {
 
                 </div>
               ))}
-
+              <HoverHint className="absolute text-orange-600 -bottom-[80%] right-[11%]" />
             </div>
 
             {/* Блок с текстом */}
-            <div className="h-[calc(0.3*100svh)]" />
-            <div className="absolute w-full -mt-[calc(0.3*100svh)] flex justify-center text-xs md:text-base lg:text-lg">
+            <div className="h-[calc(0.4*100svh)]" />
+            <div className="absolute w-full -mt-[calc(0.37*100svh)] flex justify-center text-xs md:text-base lg:text-lg">
               <div
                 className={`text-center p-4 transition-all duration-500 transform ease-in-out 
           ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
@@ -1150,11 +1197,11 @@ export default function Home() {
                   </p>
                 </div>
               ))}
-              <HoverHint className="absolute text-orange-600 -bottom-[90px] right-[145px]" />
+              <HoverHint className="absolute text-orange-600 sm:-bottom-[70%] sm:right-[13%]" />
             </div>
 
             {/* Блок с текстом */}
-            <div className="relative w-full h-[calc(0.4*100svh)] flex justify-center top-0 text-xs md:text-base lg:text-lg">
+            <div className="relative w-full h-[calc(0.6*100svh)] flex justify-center top-10 text-xs md:text-base lg:text-lg">
               <div
                 className={`text-center p-4 transition-all duration-500 transform ease-in-out 
           ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
@@ -1177,7 +1224,7 @@ export default function Home() {
 
         <div className="absolute bottom-5 left-0 right-0 flex flex-col md:flex-row md:items-center md:justify-between px-5 z-20">
           {/* Текст слева */}
-          <div className="text-left text-sm md:text-base lg:text-lg text-gray-600 mb-3 md:mb-0">
+          <div className="text-left text-xs md:text-base lg:text-lg text-gray-600 mb-3 md:mb-0">
             <p>Связаться с сотрудником</p>
             <p className="font-semibold">ТРАНСПОРТИРОВКА НАЛИВНЫХ И ОПАСНЫХ ГРУЗОВ</p>
           </div>
@@ -1204,17 +1251,17 @@ export default function Home() {
 
       {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА */}
       <div id='мультимодальные-доставки' className="w-auto min-h-[100svh] pb-[130px] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold"
+        <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold"
           style={{ textShadow: `-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white` }}>
           МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА
         </h1>
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold"
+        <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold"
           style={{ textShadow: `-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white` }}>
           доставка негабаритных грузов
         </h1>
         <br />
-        <h2 className="text-lg md:text-3xl lg:text-4xl font-semibold mt-2">РАЗМЕР И ФОРМА ИМЕЕТ ЗНАЧЕНИЕ!</h2>
-        <h3 className="text-base md:text-lg lg:text-xl font-semibold my-6">Мы предлагаем Вам:</h3>
+        <h2 className="text-xl md:text-3xl lg:text-4xl font-semibold mt-2">РАЗМЕР И ФОРМА ИМЕЕТ ЗНАЧЕНИЕ!</h2>
+        <h3 className="text-sm md:text-lg lg:text-xl font-semibold my-4 md:my-6">Мы предлагаем Вам:</h3>
 
         {/* Картинки: порядок 0 → 3 → 2 → 1 */}
         <div className="grid grid-cols-2 lg:grid-cols-4 sm:scale-[0.80] scale-[0.5] min-w-max h-[calc(0.45*100svh)] sm:h-auto -mt-16 gap-4">
@@ -1240,7 +1287,7 @@ export default function Home() {
           <div onMouseEnter={() => handleHoverBlock3(1)} className={`relative w-64 h-64 bg-white overflow-hidden rounded-lg scale-50 transition-all duration-500 ${hoverBlock3 === 1 ? "shadow-[0_0_25px_#FB8500]" : ""}`}>
             <img src="/packageBlock3.svg" alt="package" className={`absolute w-40 left-[50px] bottom-[55px] transition-all ${hoverBlock3 === 1 ? "animate-packageScale" : ""}`} style={{ filter: "invert(19%) sepia(91%) saturate(1755%) hue-rotate(207deg) brightness(95%) contrast(102%)" }} />
           </div>
-          <HoverHint className="absolute text-orange-600 bottom-6 right-8" />
+          <HoverHint className="absolute text-orange-600 sm:bottom-[10%] sm:right-[9%] md:bottom-[20%] md:right-[4.5%] -bottom-[50%] right-[10%]" />
         </div>
 
         {/* Текстовые блоки */}
@@ -1270,7 +1317,7 @@ export default function Home() {
 
         <div className="absolute bottom-5 left-0 right-0 flex flex-col md:flex-row md:items-center md:justify-between px-5 z-20">
           {/* Текст слева */}
-          <div className="text-left text-sm md:text-base lg:text-lg text-[#B7CCBD] mb-3 md:mb-0">
+          <div className="text-left text-xs md:text-base lg:text-lg text-[#B7CCBD] mb-3 md:mb-0">
             <p>Связаться с сотрудником</p>
             <p className="font-semibold">ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ</p>
           </div>
@@ -1303,44 +1350,61 @@ export default function Home() {
       {/* География перевозок */}
       <div id='география-перевозок' className="hidden my-40 md:block relative min-h-screen text-black dark:text-white overflow-hidden flex flex-col items-center justify-center px-6 py-12">
         <div className="relative w-full max-w-6xl mx-auto aspect-[3/2]">
-          {/* Заголовок теперь внутри контейнера */}
-          <h1 className="absolute top-0 left-0 w-full text-3xl md:text-4xl lg:text-5xl font-bold z-50 drop-shadow-md drop-shadow-black text-center"
+          <h1 className="absolute top-0 left-0 w-full text-3xl md:text-4xl lg:text-5xl font-bold z-50 text-center"
             style={{
-              textShadow: `
-      -0.5px -0.5px 0 white,
-       0.5px -0.5px 0 white,
-      -0.5px  0.5px 0 white,
-       0.5px  0.5px 0 white
-    `
+              textShadow: `-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white`
             }}>
             География перевозок
           </h1>
 
+          {/* Карта */}
           <img
             src="map.png"
             alt="map"
             className="absolute top-0 left-7 w-full h-full object-contain scale-[2.2] z-0"
           />
-          {flagsList.map((item, index) => (
-            <Flags
-              key={index}
-              keyNumber={index}
-              title={item.title}
-              position={item.position}
-              size={item.size}
-              sizeText={item.sizeText}
-              activeIndexFlags={activeIndexFalgs}
-              setActiveIndexFlags={setActiveIndexFlags}
-            />
-          ))}
+
+          {/* SVG с линиями ПОД точками */}
+          <svg className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+            {connections.map((c, i) => (
+              <line
+                key={i}
+                x1={`${c.x1}%`}
+                y1={`${c.y1}%`}
+                x2={`${c.x2}%`}
+                y2={`${c.y2}%`}
+                stroke="#F97316"
+                strokeWidth="2"
+                opacity="0.7"
+              />
+            ))}
+          </svg>
+
+          {/* Флажки СВЕРХУ */}
+          <div className="absolute inset-0 z-10">
+            {flagsList.map((item, index) => (
+              <Flags
+                key={index}
+                keyNumber={index}
+                title={item.title}
+                position={item.position}
+                size={item.size}
+                sizeText={item.sizeText}
+                activeIndexFlags={activeIndexFalgs}
+                setActiveIndexFlags={setActiveIndexFlags}
+              />
+            ))}
+          </div>
+
         </div>
       </div>
+
 
       {/* География перевозок - мобильная версия */}
       <div className="md:hidden w-full py-10 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
-            <h1 className="text-3xl font-bold mb-6"
+            <h1 className="text-2xl font-bold mb-4"
               style={{
                 textShadow: `
       -0.5px -0.5px 0 white,
@@ -1388,7 +1452,7 @@ export default function Home() {
       {/* Вопросы - ответы */}
       <div id='вопросы---ответы' className="relative min-h-screen bg-white/90 dark:bg-black/90 dark:text-white flex flex-col items-center justify-center px-6 py-12 ">
         <QuestionRain />
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 z-10 text-[#000000] dark:text-[#ffffff]"><a className="text-[#F97316]">Вопросы</a> – <a className="text-[#1e3d98] dark:text-[#3b82f6]">ответы</a></h1>
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mt-2 z-10 text-[#000000] dark:text-[#ffffff]"><a className="text-[#F97316]">Вопросы</a> – <a className="text-[#1e3d98] dark:text-[#3b82f6]">ответы</a></h1>
         <div className="flex flex-wrap justify-center max-w-5xl">
           {qaPairs.map(({ question, answer }, index) => (
             <SpiralCard key={index} question={question} answer={answer} />
@@ -1398,7 +1462,7 @@ export default function Home() {
 
       {/* Преимущества работы с нами */}
       <div id='преимущества-работы-с-нами' className="w-full min-h-[100svh]  text-text1 flex flex-col items-center justify-center text-center p-6 dark:text-text2Dark">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2  "
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mt-2  "
           style={{
             textShadow: `
       -0.5px -0.5px 0 white,
