@@ -1291,7 +1291,7 @@ export default function Home() {
         </div>
 
         {/* Текстовые блоки */}
-        <div className="relative mt-10 md:mt-0 w-full min-h-[calc(0.15*100svh)] md:min-h-[calc(0.2*100svh)] lg:min-h-[calc(0.25*100svh)] overflow-visible">
+        <div className="relative mt-10 md:mt-0 w-full min-h-[calc(0.3*100svh)] md:min-h-[calc(0.35*100svh)] lg:min-h-[calc(0.4*100svh)] overflow-visible">
           {itemsBlock3.map((item, index) => {
             const isActive = hoverBlock3 === index;
             const isPrev = prevHoverBlock3 === index;
