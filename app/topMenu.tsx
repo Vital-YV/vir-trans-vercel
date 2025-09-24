@@ -150,13 +150,13 @@ export default function TopMenu() {
         <div className="w-full h-24 fixed flex flex-col bg-gradient-to-b to-[#3b82f6] from-[#219EBC] font-sans font-semibold">
             {mobileMenu ? (
                 <div className="relative">
-                    <div className="z-50 fixed top left-5 flex items-center text-white">
+                    <div className="z-50 fixed top left-1 flex items-center text-white">
                         <img
                             src="logo3.png"
                             alt="logo"
                             className="h-24 w-auto"
                         />
-                        <div className="ml-4 mt-1">
+                        <div className="ml-0 mt-1">
                             <button className="w-3 h-3" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                 <div className="w-3 h-0.5 bg-[#FF9100] drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]" />
                                 <div className="w-3 h-0.5 mt-0.5 bg-[#FF9100] drop-shadow-[0_0_12px_rgba(249,115,22,0.8)]" />

@@ -1291,7 +1291,7 @@ export default function Home() {
         </div>
 
         {/* Текстовые блоки */}
-        <div className="relative mt-10 md:mt-0 w-full min-h-[calc(0.3*100svh)] md:min-h-[calc(0.35*100svh)] lg:min-h-[calc(0.4*100svh)] overflow-visible">
+        <div className="relative mt-10 md:mt-0 w-full min-h-[110px] md:min-h-[140px] lg:min-h-[170px] overflow-visible">
           {itemsBlock3.map((item, index) => {
             const isActive = hoverBlock3 === index;
             const isPrev = prevHoverBlock3 === index;
@@ -1341,7 +1341,6 @@ export default function Home() {
         </div>
 
       </div>
-
 
 
       {/*  ====forClients====  */}
@@ -1398,7 +1397,6 @@ export default function Home() {
 
         </div>
       </div>
-
 
       {/* География перевозок - мобильная версия */}
       <div className="md:hidden w-full py-10 px-6">
