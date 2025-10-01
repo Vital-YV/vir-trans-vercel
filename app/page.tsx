@@ -1151,9 +1151,9 @@ export default function Home() {
 
             {/* Блок с текстом */}
             <div className="h-[calc(0.4*100svh)]" />
-            <div className="absolute w-full -mt-[calc(0.37*100svh)] flex justify-center text-xs md:text-base lg:text-lg">
+            <div className="absolute w-full -mt-[calc(0.37*100svh)] flex justify-center px-2">
               <div
-                className={`text-center p-4 transition-all duration-500 transform ease-in-out 
+                className={`text-center p-4 text-xs md:text-base lg:text-lg max-w-full break-words transition-all duration-500 transform ease-in-out 
           ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
               >
                 {hoveredIndex !== null && (
@@ -1300,7 +1300,7 @@ export default function Home() {
               <div
                 key={index}
                 className={[
-                  "text-[6px] md:text-xs lg:text-sm absolute inset-0 p-6 max-w-3xl mx-auto rounded-lg bg-black/60 text-white backdrop-blur-md transition-all duration-700 ease-in-out overflow-visible",
+                  "text-[6px] md:text-xs lg:text-sm absolute inset-0 p-4 sm:p-6 w-full max-w-full break-words rounded-lg bg-black/60 text-white backdrop-blur-md transition-all duration-700 ease-in-out overflow-visible",
                   isActive
                     ? "translate-x-0 opacity-100 shadow-[0_0_30px_#FB8500] z-10"
                     : isPrev
