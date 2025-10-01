@@ -1308,7 +1308,7 @@ export default function Home() {
                       : "translate-x-full opacity-0 z-0",
                 ].join(" ")}
               >
-                <div className="text-[9px] md:text-sm lg:text-base">{item.title}</div>
+                <div className="text-[9px] md:text-sm lg:text-base pb-4">{item.title}</div>
                 {item.content}
               </div>
             );
