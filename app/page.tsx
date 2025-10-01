@@ -183,7 +183,7 @@ function CircleMotion({
       >
         <div className="text-[9px] md:text-sm lg:text-base leading-snug text-white">
           <h3 className="font-bold md:mb-1 ">{title}</h3>
-          <p className="text-[6px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
+          <p className="text-[8px] md:text-xs lg:text-sm line-clamp-3">{text}</p>
         </div>
       </div>
     </div>
@@ -1291,7 +1291,7 @@ export default function Home() {
         </div>
 
         {/* Текстовые блоки */}
-        <div className="relative mt-10 md:mt-0 w-full min-h-[110px] md:min-h-[140px] lg:min-h-[170px] overflow-visible">
+        <div className="relative mt-10 md:mt-0 w-full min-h-[110px] md:min-h-[140px] lg:min-h-[170px] flex justify-center">
           {itemsBlock3.map((item, index) => {
             const isActive = hoverBlock3 === index;
             const isPrev = prevHoverBlock3 === index;
@@ -1300,7 +1300,7 @@ export default function Home() {
               <div
                 key={index}
                 className={[
-                  "text-[6px] md:text-xs lg:text-sm absolute inset-0 p-4 sm:p-6 w-full max-w-full break-words rounded-lg bg-black/60 text-white backdrop-blur-md transition-all duration-700 ease-in-out overflow-visible",
+                  "text-[6px] md:text-xs lg:text-sm absolute inset-x-0 top-0 p-4 sm:p-6 w-full max-w-[90%] md:max-w-3xl mx-auto rounded-lg bg-black/60 text-white backdrop-blur-md transition-all duration-700 ease-in-out break-words pb-4 md:pb-6",
                   isActive
                     ? "translate-x-0 opacity-100 shadow-[0_0_30px_#FB8500] z-10"
                     : isPrev
@@ -1308,12 +1308,13 @@ export default function Home() {
                       : "translate-x-full opacity-0 z-0",
                 ].join(" ")}
               >
-                <div className="text-[9px] md:text-sm lg:text-base mb-4">{item.title}</div>
+                <div className="text-[9px] md:text-sm lg:text-base">{item.title}</div>
                 {item.content}
               </div>
             );
           })}
         </div>
+
 
         <div className="absolute bottom-5 left-0 right-0 flex flex-col md:flex-row md:items-center md:justify-between px-5 z-20">
           {/* Текст слева */}
