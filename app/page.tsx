@@ -1150,8 +1150,8 @@ export default function Home() {
             </div>
 
             {/* Блок с текстом */}
-            <div className="h-[calc(0.4*100svh)]" />
-            <div className="absolute w-full -mt-[calc(0.37*100svh)] flex justify-center px-2">
+            <div className="h-[300px]" />
+            <div className="absolute w-full -mt-[290px] flex justify-center px-2">
               <div
                 className={`text-center p-4 text-xs md:text-base lg:text-lg max-w-full break-words transition-all duration-500 transform ease-in-out 
           ${hoveredIndex !== null ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
@@ -1250,7 +1250,7 @@ export default function Home() {
       </div>
 
       {/* Услуга 3  ДОСТАВКА НЕГАБАРИТНЫХ ГРУЗОВ. МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА */}
-      <div id='мультимодальные-доставки' className="w-auto min-h-[100svh] pb-[130px] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
+      <div id='мультимодальные-доставки' className="w-auto  pb-[130px] relative flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark ">
         <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold"
           style={{ textShadow: `-0.5px -0.5px 0 white, 0.5px -0.5px 0 white, -0.5px 0.5px 0 white, 0.5px 0.5px 0 white` }}>
           МУЛЬТИМОДАЛЬНАЯ ДОСТАВКА
