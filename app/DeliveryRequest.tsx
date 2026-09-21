@@ -83,19 +83,19 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
       <form onSubmit={handleSubmit} className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
         <label className="flex min-h-14 items-center border-b border-brand-primary/45 py-2 transition-colors focus-within:border-brand-primary sm:block sm:min-h-0 sm:border-[var(--color-form-border)] sm:py-3">
           <span className="sr-only">Маршрут</span>
-          <input name="route" value={formData.route} onChange={handleChange} required placeholder="Откуда → куда" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/70 sm:placeholder:text-[var(--color-text-secondary-content)]" />
+          <input name="route" value={formData.route} onChange={handleChange} required placeholder="Откуда → куда" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/80 md:placeholder:text-[var(--color-text-secondary-content)]" />
         </label>
         <label className="flex min-h-14 items-center border-b border-brand-primary/45 py-2 transition-colors focus-within:border-brand-primary sm:block sm:min-h-0 sm:border-[var(--color-form-border)] sm:py-3">
           <span className="sr-only">Груз</span>
-          <input name="cargoDescription" value={formData.cargoDescription} onChange={handleChange} required placeholder="Что нужно перевезти" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/70 sm:placeholder:text-[var(--color-text-secondary-content)]" />
+          <input name="cargoDescription" value={formData.cargoDescription} onChange={handleChange} required placeholder="Что нужно перевезти" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/80 md:placeholder:text-[var(--color-text-secondary-content)]" />
         </label>
         <label className="flex min-h-14 items-center border-b border-brand-primary/45 py-2 transition-colors focus-within:border-brand-primary sm:block sm:min-h-0 sm:border-[var(--color-form-border)] sm:py-3">
           <span className="sr-only">Дата или период</span>
-          <input name="loadingDate" value={formData.loadingDate} onChange={handleChange} required placeholder="Когда планируется перевозка" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/70 sm:placeholder:text-[var(--color-text-secondary-content)]" />
+          <input name="loadingDate" value={formData.loadingDate} onChange={handleChange} required placeholder="Когда планируется перевозка" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/80 md:placeholder:text-[var(--color-text-secondary-content)]" />
         </label>
         <label className="flex min-h-14 items-center border-b border-brand-primary/45 py-2 transition-colors focus-within:border-brand-primary sm:block sm:min-h-0 sm:border-[var(--color-form-border)] sm:py-3">
           <span className="sr-only">Контакт</span>
-          <input name="contact" value={formData.contact} onChange={handleChange} required placeholder="Телефон, Telegram или e-mail" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/70 sm:placeholder:text-[var(--color-text-secondary-content)]" />
+          <input name="contact" value={formData.contact} onChange={handleChange} required placeholder="Телефон, Telegram или e-mail" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/80 md:placeholder:text-[var(--color-text-secondary-content)]" />
         </label>
         <div className="pt-7 sm:col-span-2">
           <button type="submit" className="inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-8 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:text-lg">
