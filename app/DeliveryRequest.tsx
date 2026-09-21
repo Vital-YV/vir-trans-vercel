@@ -1,8 +1,10 @@
 'use client'
 import { useState } from 'react';
 import axios from 'axios';
+import { usePathname } from 'next/navigation';
 
-export function DeliveryRequestForm() {
+export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'floating' | 'inline' }) {
+  const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -13,7 +15,8 @@ export function DeliveryRequestForm() {
     cargoDescription: '',
     dimensions: '',
     weight: '',
-    specialConditions: ''
+    specialConditions: '',
+    contact: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -60,7 +63,8 @@ export function DeliveryRequestForm() {
       cargoDescription: '',
       dimensions: '',
       weight: '',
-      specialConditions: ''
+      specialConditions: '',
+      contact: ''
     });
   };
 
@@ -70,11 +74,44 @@ export function DeliveryRequestForm() {
     }
   };
 
+  if (variant === 'inline') {
+    if (isSubmitted) {
+      return <p className="border-l-2 border-brand-accent py-3 pl-4 text-base leading-relaxed text-brand-primary">Ваша заявка принята. Скоро с Вами свяжутся.</p>;
+    }
+
+    return (
+      <form onSubmit={handleSubmit} className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
+        <label className="flex min-h-14 items-center border-b border-brand-primary/45 py-2 transition-colors focus-within:border-brand-primary sm:block sm:min-h-0 sm:border-[var(--color-form-border)] sm:py-3">
+          <span className="sr-only">Маршрут</span>
+          <input name="route" value={formData.route} onChange={handleChange} required placeholder="Откуда → куда" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/70 sm:placeholder:text-[var(--color-text-secondary-content)]" />
+        </label>
+        <label className="flex min-h-14 items-center border-b border-brand-primary/45 py-2 transition-colors focus-within:border-brand-primary sm:block sm:min-h-0 sm:border-[var(--color-form-border)] sm:py-3">
+          <span className="sr-only">Груз</span>
+          <input name="cargoDescription" value={formData.cargoDescription} onChange={handleChange} required placeholder="Что нужно перевезти" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/70 sm:placeholder:text-[var(--color-text-secondary-content)]" />
+        </label>
+        <label className="flex min-h-14 items-center border-b border-brand-primary/45 py-2 transition-colors focus-within:border-brand-primary sm:block sm:min-h-0 sm:border-[var(--color-form-border)] sm:py-3">
+          <span className="sr-only">Дата или период</span>
+          <input name="loadingDate" value={formData.loadingDate} onChange={handleChange} required placeholder="Когда планируется перевозка" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/70 sm:placeholder:text-[var(--color-text-secondary-content)]" />
+        </label>
+        <label className="flex min-h-14 items-center border-b border-brand-primary/45 py-2 transition-colors focus-within:border-brand-primary sm:block sm:min-h-0 sm:border-[var(--color-form-border)] sm:py-3">
+          <span className="sr-only">Контакт</span>
+          <input name="contact" value={formData.contact} onChange={handleChange} required placeholder="Телефон, Telegram или e-mail" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/70 sm:placeholder:text-[var(--color-text-secondary-content)]" />
+        </label>
+        <div className="pt-7 sm:col-span-2">
+          <button type="submit" className="inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-8 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:text-lg">
+            Обсудить перевозку
+          </button>
+        </div>
+      </form>
+    );
+  }
+
   return (
     <div>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="
+        className={`
+    ${pathname === '/' ? 'hidden' : ''}
     bg-gradient-to-r from-[#219EBC] to-[#3b82f6] 
     hover:from-[#1b7a91] hover:to-[#2563eb]
     text-white font-semibold 
@@ -88,7 +125,7 @@ export function DeliveryRequestForm() {
     hover:-translate-y-1 
     hover:scale-105
     flex items-center justify-center
-  "
+  `}
       >
         {/* Для мобильных устройств */}
         <span className="block md:hidden text-xl font-bold">?</span>

@@ -1,111 +1,42 @@
-"use client";
-import "./globals.css";
-import { usePathname, useRouter } from "next/navigation";
+import Link from 'next/link'
 
 export default function Footer() {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const scrollToAnchor = (id: string) => {
-    const offset = 92;
-    const element = document.getElementById(id);
-    if (!element) return;
-
-    const start = window.scrollY;
-    const end = element.getBoundingClientRect().top + window.scrollY - offset;
-    const duration = 500;
-    const startTime = performance.now();
-
-    const animate = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-
-      window.scrollTo(0, start + (end - start) * ease);
-
-      if (progress < 1) requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  };
-
-  const handleFooterClick = (href: string, anchorId?: string) => {
-    if (anchorId) {
-      if (pathname === href) {
-        scrollToAnchor(anchorId);
-      } else {
-        router.push(`${href}#${anchorId}`);
-        setTimeout(() => scrollToAnchor(anchorId), 50);
-      }
-    } else {
-      router.push(href);
-    }
-  };
-
   return (
-    <footer className="bg-gradient-to-t to-[#3b82f6] from-[#219EBC] text-white pt-10 pb-6 xl:px-32">
-      <div className="container mx-auto grid md:grid-cols-3 gap-10 text-center md:text-left">
-        {/* Контакты */}
-        <div>
-          <h3 className="text-lg xl:text-xl font-semibold mb-3">Контакты</h3>
-          <ul className="space-y-1 text-sm xl:text-base font-light">
-            <li className="transition hover:text-gray-200">pochita@mail.com</li>
-            <li className="transition hover:text-gray-200">+7 (888) 888-88-88</li>
-          </ul>
+    <footer className="bg-brand-graphite text-[var(--color-background)]">
+      <div className="content-container py-10 sm:py-12">
+        <div className="flex flex-col gap-10 border-b border-white/15 pb-9 md:flex-row md:items-start md:justify-between md:gap-12">
+          <div>
+            <p className="text-2xl font-extrabold tracking-[-0.06em] text-white">ВИР-ТРАНС</p>
+            <p className="mt-3 max-w-sm text-[0.9375rem] leading-6 text-[var(--color-text-secondary-on-graphite)] sm:text-sm sm:leading-relaxed">
+              Автомобильные перевозки и экспедирование по России.
+            </p>
+          </div>
+
+          <div className="grid gap-9 text-[0.9375rem] leading-6 sm:grid-cols-3 sm:gap-14 sm:text-sm sm:leading-normal">
+            <div className="flex flex-col gap-2.5 sm:gap-2">
+              <p className="text-xs font-extrabold tracking-[0.12em] text-[var(--color-text-secondary-on-graphite)]">КОНТАКТЫ</p>
+              <a href="tel:+78004440097" className="text-base font-semibold leading-6 text-white transition-colors hover:text-brand-accent sm:text-sm sm:leading-normal">+7 (800) 444-00-97</a>
+              <a href="mailto:v-t@vir-trans.ru" className="text-base font-semibold leading-6 text-white transition-colors hover:text-brand-accent sm:text-sm sm:leading-normal">v-t@vir-trans.ru</a>
+              <a href="https://ati.su/firms/865279/info" target="_blank" rel="noreferrer" className="w-fit border-b border-brand-accent pb-1 transition-colors hover:text-brand-accent">Профиль ATI.SU ↗</a>
+            </div>
+
+            <nav className="flex flex-col gap-2.5 sm:gap-2" aria-label="Навигация в footer">
+              <p className="text-xs font-extrabold tracking-[0.12em] text-[var(--color-text-secondary-on-graphite)]">НАВИГАЦИЯ</p>
+              <Link href="/#vir-trans" className="transition-colors hover:text-brand-accent">Главная</Link>
+              <Link href="/#контакты" className="transition-colors hover:text-brand-accent">Контакты</Link>
+              <a href="/service" className="transition-colors hover:text-brand-accent">Услуги</a>
+            </nav>
+
+            <nav className="flex flex-col gap-2.5 sm:gap-2" aria-label="Дополнительная навигация">
+              <p className="text-xs font-extrabold tracking-[0.12em] text-[var(--color-text-secondary-on-graphite)]">ПАРТНЁРАМ</p>
+              <a href="/forClients" className="transition-colors hover:text-brand-accent">Перевозчикам</a>
+              <a href="/vacancy" className="transition-colors hover:text-brand-accent">Вакансии</a>
+            </nav>
+          </div>
         </div>
 
-        {/* Навигация */}
-        <div>
-          <h3 className="text-lg xl:text-xl font-semibold mb-3">Навигация</h3>
-          <ul className="space-y-1 text-sm xl:text-base font-light">
-            <li>
-              <button
-                className="hover:underline transition"
-                onClick={() => handleFooterClick("/", "о-компании")}
-              >
-                О компании
-              </button>
-            </li>
-            <li>
-              <button
-                className="hover:underline transition"
-                onClick={() => handleFooterClick("/service")}
-              >
-                Услуги
-              </button>
-            </li>
-            <li>
-              <button
-                className="hover:underline transition"
-                onClick={() => handleFooterClick("/", "отзывы")}
-              >
-                Отзывы
-              </button>
-            </li>
-            <li>
-              <button
-                className="hover:underline transition"
-                onClick={() => handleFooterClick("/", "контакты")}
-              >
-                Контакты
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* Бренд / описание */}
-        <div>
-          <h3 className="text-lg xl:text-xl font-semibold mb-3">Вир-Транс</h3>
-          <p className="text-sm xl:text-base font-light leading-relaxed">
-            Грузоперевозки по России и СНГ. Быстро, надежно, с гарантией. Работаем с 2010 года.
-          </p>
-        </div>
-      </div>
-
-      {/* Разделитель */}
-      <div className="border-t border-white/20 mt-8 pt-4 text-center text-xs text-white/70">
-        © {new Date().getFullYear()} Вир-Транс. Все права защищены.
+        <p className="pt-5 text-sm leading-5 text-[var(--color-text-secondary-on-graphite)] sm:text-xs sm:leading-normal">© {new Date().getFullYear()} ВИР-ТРАНС</p>
       </div>
     </footer>
-  );
+  )
 }

@@ -1,7 +1,3 @@
-import { transform } from "next/dist/build/swc/generated-native";
-
-
-
 /** @type {import('tailwindcss').Config} */
 const plugin = require('tailwindcss/plugin')
 module.exports = {
@@ -139,7 +135,7 @@ module.exports = {
 				'20vh': '20vh'
 			},
 			fontFamily: {
-				oswald: ["Oswald", "sans-serif"],
+				oswald: ['var(--font-manrope)', 'sans-serif'],
 				'neonfonts': ['Neonderthaw'],
 				'playfair': ['Playfair Display'],
 				'montserrat': ['Montserrat'],
@@ -147,8 +143,8 @@ module.exports = {
 				'handjet': ['Handjet'],
 				roboto: ['var(--font-roboto)', 'sans-serif'],
 				garamond: ['var(--font-garamond)', 'serif'],
-				sans: ['"Noto Sans"', 'ui-sans-serif', 'system-ui'],
-				menu: ['"Noto Sans"', 'ui-sans-serif', 'system-ui'],
+				sans: ['var(--font-manrope)', 'ui-sans-serif', 'system-ui'],
+				menu: ['var(--font-manrope)', 'ui-sans-serif', 'system-ui'],
 			},
 			fontSize: {
 				'neonsign': '20vh',
@@ -168,6 +164,15 @@ module.exports = {
 				'2.5': '2.5'
 			},
 			colors: {
+				brand: {
+					background: 'var(--color-background)',
+					surface: 'var(--color-surface)',
+					primary: 'var(--color-text-primary)',
+					secondary: 'var(--color-text-secondary)',
+					graphite: 'var(--color-graphite)',
+					accent: 'var(--color-accent-orange)',
+					border: 'var(--color-border)',
+				},
 				main: '#3b457c',
 				darkMain: '#3b457c',
 

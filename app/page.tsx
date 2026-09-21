@@ -3,6 +3,13 @@ import { useState, useEffect, useRef } from "react"
 import { DeliveryRequestForm } from './DeliveryRequest';
 import QuestionRain from './QuestionRain';
 import HoverHint from "./HoverHint";
+import Hero from './Hero';
+import InquirySituations from './InquirySituations';
+import WorkProcess from './WorkProcess';
+import ExperienceRange from './ExperienceRange';
+import TrustFacts from './TrustFacts';
+import QuestionsFaq from './QuestionsFaq';
+import FinalContact from './FinalContact';
 
 function Reviews() {
   const [showModal, setShowModal] = useState(false);
@@ -470,7 +477,7 @@ for (let i = 0; i < flagsList.length; i++) {
     .sort(() => Math.random() - 0.5);
 
   let count = 0;
-  for (let j of shuffled) {
+  for (const j of shuffled) {
     if (count >= maxConnections) break;
 
     const p2 = parsePosition(flagsList[j].position, flagsList[j].size);
@@ -855,12 +862,18 @@ export default function Home() {
 
   return (
     <main className="overflow-x-clip" >
+      <Hero />
+      <InquirySituations />
+      <WorkProcess />
+      <ExperienceRange />
+      <TrustFacts />
+      <QuestionsFaq />
+      <FinalContact />
+
+      {false && <>
 
       {/* Титульная страница */}
-      <div
-        id="vir-trans"
-        className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-text1 dark:text-text1Dark relative"
-      >
+      <div className="hidden">
         <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-4 sm:px-6 md:px-10 py-4 md:py-6">
           <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white">
             ВИР-Транс
@@ -906,7 +919,7 @@ export default function Home() {
       </div>
 
       {/* О компании */}
-      <div id='о-компании' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center text-xs sm:text-sm md:text-base overflow-hidden bg-white/90 dark:bg-black/90 ">
+      <div id='о-компании' className="hidden">
         <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold ">О КОМПАНИИ</h1>
         <div
           className={`w-svw pr-20vw transform transition-transform duration-700 ease-out ${OKompanii === "translate-x-full" ? "-translate-x-full" : OKompanii}`}
@@ -960,7 +973,7 @@ export default function Home() {
       </div>
 
       {/* Задать вопросы */}
-      <div id='контакты' className="w-full min-h-[100svh] flex flex-col items-center justify-center text-center p-6 text-text1 dark:text-text1Dark">
+      <div id='legacy-contacts' className="hidden">
         <div className="bg-black/30 dark:bg-black/50 backdrop-blur-md rounded-lg px-5 sm:px-10 py-6 items-center justify-center text-center">
           <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold  "
             style={{
@@ -1485,6 +1498,7 @@ export default function Home() {
         </div>
       </div>
 
+      </>}
     </main >
   );
 }

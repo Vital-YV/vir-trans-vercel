@@ -34,9 +34,9 @@ export default function ScrollToTopButton() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed md:bottom-4 md:left-[190px] bottom-[75px] left-[15px] z-20 bg-orange-500 hover:bg-orange-600 text-white 
+      className={`fixed bottom-4 left-[190px] z-20 hidden bg-orange-500 hover:bg-orange-600 text-white
       font-semibold px-[14px] py-[14px] rounded-full shadow-xl transition-all duration-500 ease-in-out transform
-      hover:-translate-y-1 hover:scale-105
+      hover:-translate-y-1 hover:scale-105 lg:block
       ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0 pointer-events-none"}`}
     >
       <svg

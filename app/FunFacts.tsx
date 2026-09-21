@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const stories = [
   {
@@ -89,13 +90,15 @@ const stories = [
 ];
 
 export default function CornerFacts() {
+  const pathname = usePathname();
   const [activeStory, setActiveStory] = useState<typeof stories[0] | null>(null);
   const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting'>('entering');
 
   useEffect(() => {
+    if (pathname === '/') return;
+
     let animationTimeout: NodeJS.Timeout;
     let hideTimeout: NodeJS.Timeout;
-    let interval: NodeJS.Timeout;
 
     const showStory = () => {
       const randomStory = stories[Math.floor(Math.random() * stories.length)];
@@ -116,7 +119,7 @@ export default function CornerFacts() {
     };
 
     const firstTimer = setTimeout(showStory, 5000);
-    interval = setInterval(showStory, Math.floor(Math.random() * 30000) + 45000);
+    const interval = setInterval(showStory, Math.floor(Math.random() * 30000) + 45000);
 
     return () => {
       clearTimeout(firstTimer);
@@ -124,9 +127,9 @@ export default function CornerFacts() {
       clearTimeout(hideTimeout);
       clearInterval(interval);
     };
-  }, []);
+  }, [pathname]);
 
-  if (!activeStory) return null;
+  if (pathname === '/' || !activeStory) return null;
 
   return (
     <div

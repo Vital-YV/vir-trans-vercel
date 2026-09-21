@@ -145,6 +145,9 @@ export default function TopMenu() {
         }
     };
 
+    if (pathname === '/') {
+        return null;
+    }
 
     return (
         <div className="w-full h-24 fixed flex flex-col bg-gradient-to-b to-[#3b82f6] from-[#219EBC] font-sans font-semibold">
