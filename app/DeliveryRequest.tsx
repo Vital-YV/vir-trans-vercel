@@ -111,7 +111,7 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
       <button
         onClick={() => setIsModalOpen(true)}
         className={`
-    ${pathname === '/' || pathname === '/service' ? 'hidden' : ''}
+    ${pathname === '/' || pathname === '/service' || pathname === '/forClients' ? 'hidden' : ''}
     bg-gradient-to-r from-[#219EBC] to-[#3b82f6] 
     hover:from-[#1b7a91] hover:to-[#2563eb]
     text-white font-semibold 
