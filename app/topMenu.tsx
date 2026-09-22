@@ -145,9 +145,12 @@ export default function TopMenu() {
         }
     };
 
-    if (pathname === '/service' || pathname === '/forClients') {
+    if (pathname === '/service' || pathname === '/forClients' || pathname === '/vacancy') {
         const isClients = pathname === '/forClients';
-        const navigation = isClients
+        const isVacancy = pathname === '/vacancy';
+        const navigation = isVacancy
+            ? [['О вакансии', '#game-title'], ['Работа', '#work-title'], ['Условия', '#offer-title'], ['Откликнуться', '#vacancy-contact']]
+            : isClients
             ? [['Процесс', '#responsibilities'], ['Начало работы', '#start'], ['Вопросы', '#questions'], ['Контакты', '#client-contact']]
             : [['Перевозки', '#foundation-title'], ['Дополнительно', '#special-title'], ['Контакты', '#service-contact']];
         return (

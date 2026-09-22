@@ -95,7 +95,7 @@ export default function CornerFacts() {
   const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting'>('entering');
 
   useEffect(() => {
-    if (pathname === '/' || pathname === '/service' || pathname === '/forClients') return;
+    if (pathname === '/' || pathname === '/service' || pathname === '/forClients' || pathname === '/vacancy') return;
 
     let animationTimeout: NodeJS.Timeout;
     let hideTimeout: NodeJS.Timeout;
@@ -129,7 +129,7 @@ export default function CornerFacts() {
     };
   }, [pathname]);
 
-  if (pathname === '/' || pathname === '/service' || pathname === '/forClients' || !activeStory) return null;
+  if (pathname === '/' || pathname === '/service' || pathname === '/forClients' || pathname === '/vacancy' || !activeStory) return null;
 
   return (
     <div

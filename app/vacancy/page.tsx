@@ -1,168 +1,46 @@
-"use client"
-import { useState } from "react";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+const marketSteps = [
+  ['01', 'ЗАПРОС КЛИЕНТА', 'Самара → Казань', 'ответить сейчас'],
+  ['02', 'РЫНОК СЕЙЧАС', 'ориентир уточняется', 'ставка меняется'],
+  ['03', 'НАША СТАВКА', 'отправлена клиенту', 'заказ получен'],
+  ['04', 'ЗАКАЗ', 'получен', 'искать перевозчика'],
+  ['05', 'ПЕРЕВОЗЧИК', 'найден · проверен', 'рейс в работе'],
+]
+
+const game = [
+  ['Чувствовать ставку', 'Понимать рынок перевозчиков, а не искать цену с нуля после каждого запроса.'],
+  ['Успевать первым', 'Быстро оценивать запрос и вовремя давать клиенту предложение.'],
+  ['Уметь торговаться', 'И с клиентом, и с перевозчиком важны переговоры и чувство границы.'],
+  ['Доводить рейс', 'После сделки начинается обычная работа: перевозчик, документы, контроль и сопровождение.'],
+]
+
+const candidates = [
+  'быстро ориентируется в меняющейся информации;',
+  'интересуется рынком и запоминает реальные ставки;',
+  'любит переговоры и умеет искать выгодный вариант;',
+  'не бросает задачу после получения заказа, а доводит рейс до результата.',
+]
+
+const work = ['Следить за запросами клиентов', 'Быстро оценивать рынок и предлагать ставку', 'После получения заказа находить подходящего перевозчика', 'Оформлять и сопровождать рейс']
+const offer = ['небольшая команда без длинной управленческой цепочки;', 'самостоятельность в работе;', 'реальные коммерческие задачи;', 'возможность влиять на результат;', 'современные рабочие инструменты;', 'условия обсуждаются лично.']
+
+function MarketRibbon() {
+  return <div className="relative mx-auto w-full min-w-0 max-w-full border border-brand-border bg-brand-surface p-5 sm:max-w-[36rem] sm:p-7 xl:max-w-none" aria-label="Этапы работы логиста">
+    <div className="flex items-center justify-between gap-4"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-secondary">ЛЕНТА РЫНКА</p><span className="flex shrink-0 items-center gap-2 text-xs font-semibold text-brand-accent"><span className="h-2 w-2 animate-pulse rounded-full bg-brand-accent" />рынок активный</span></div>
+    <div className="relative mt-7 grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+      <span className="pointer-events-none absolute bottom-9 left-1/2 top-9 hidden border-l border-brand-border sm:block" />
+      {marketSteps.map(([number, label, value, status], index) => <article key={label} className={`relative min-w-0 border border-brand-border bg-brand-surface px-4 py-4 ${index === 4 ? 'sm:col-span-2 sm:w-[calc(50%-0.5rem)]' : ''} ${index === 4 ? 'sm:justify-self-end' : ''}`}><div className="flex items-start justify-between gap-3"><p className="text-[10px] font-extrabold tracking-[0.12em] text-brand-accent">{number}</p><span className={`max-w-[8rem] text-right text-[10px] font-bold leading-4 ${index === 0 || index === 1 || index === 3 ? 'text-brand-accent' : 'text-brand-secondary'}`}>{index === 0 && <span className="mr-1 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand-accent" />}{status}</span></div><p className="mt-3 text-xs font-extrabold tracking-[0.1em] text-brand-secondary">{label}</p><p className="mt-1 break-words text-base font-bold tracking-[-0.035em] text-brand-primary">{value}</p>{index === 1 && <div className="mt-4 flex items-center gap-1.5" aria-hidden="true"><span className="h-px flex-1 bg-brand-border" /><span className="h-1.5 w-1.5 rounded-full bg-brand-accent" /><span className="h-px flex-1 bg-brand-border" /></div>}</article>)}
+    </div>
+    <p className="mt-6 border-t border-brand-border pt-4 text-sm leading-6 text-[var(--color-text-secondary-content)]">Решение нужно принять до того, как рынок изменится.</p>
+  </div>
+}
 
 export default function Vacancy() {
-    const [expandedSections, setExpandedSections] = useState({
-        aboutCompany: false,
-        offer: false,
-        responsibilities: false,
-        candidate: false
-    });
-
-    const toggleSection = (section) => {
-        setExpandedSections(prev => ({
-            ...prev,
-            [section]: !prev[section]
-        }));
-    };
-
-    return (
-        <main className="overflow-x-clip pt-20">
-            <div id="вакансии" className="relative w-full min-h-[100svh] text-text1 flex flex-col items-center px-6 py-12 dark:text-text1Dark">
-                <div className="max-w-4xl w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 md:p-10">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-center ">ВАКАНСИИ</h1>
-
-                    <div className="mb-10 p-6 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                        <p className="mb-3 text-lg text-black">По вопросам вакансий пишите на почту: <a href="mailto:v-t@vir-trans.ru" className="font-medium text-blue-600 dark:text-blue-400 hover:underline">v-t@vir-trans.ru</a></p>
-                        <p className="text-lg text-black">Телефон для связи: <a href="tel:+78004440097" className="font-medium text-blue-600 dark:text-blue-400 hover:underline">+7(800)444-00-97</a>, доб. 704</p>
-                    </div>
-
-                    <div className="mb-10">
-                        <div
-                            onClick={() => toggleSection('aboutCompany')}
-                            className="flex items-center justify-between cursor-pointer group"
-                        >
-                            <h2 className="flex-1 text-center text-2xl md:text-3xl font-semibold text-[#FB8500] dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                                Присоединяйся к успешной команде ВИР-Транс!
-                            </h2>
-
-                            {expandedSections.aboutCompany ?
-                                <FiChevronUp className="text-blue-600 dark:text-blue-400 text-2xl" /> :
-                                <FiChevronDown className="text-gray-500 dark:text-gray-400 text-2xl group-hover:text-blue-600 dark:group-hover:text-blue-400" />
-                            }
-                        </div>
-                        {expandedSections.aboutCompany && (
-                            <div className="mt-6 space-y-4 text-gray-700 dark:text-gray-300">
-                                <p>Наша компания предоставляет транспортно-экспедиционные услуги по России, СНГ и Европе, используя все виды транспорта. Начав работу в 2008 году с небольшой командой единомышленников в Самарском офисе, сегодня мы активно развиваем филиальную сеть по всей России и занимаем лидирующие позиции в отрасли. Ежедневно мы перевозим разнообразные грузы, неизменно обеспечивая высокое качество и безопасность на каждом этапе.</p>
-                                <p>Нам доверяют крупнейшие компании из сфер нефтегазовой промышленности, металлургии, химического производства, электротехники и товаров народного потребления.</p>
-                                <p className="font-medium">Наши основные цели:</p>
-                                <ul className="list-disc pl-6 space-y-2">
-                                    <li>Обеспечивать устойчивый рост доходов как сотрудников, так и компании в целом.</li>
-                                    <li>Быть примером для отрасли, демонстрируя эффективную и взаимовыгодную работу со всеми контрагентами.</li>
-                                    <li>Делать рабочий процесс не только продуктивным, но и увлекательным, способствующим развитию новых компетенций у всех сотрудников.</li>
-                                </ul>
-                                <p>Наша команда — это сплочённый коллектив талантливых и целеустремлённых профессионалов, наши сотрудники — ключ к нашим успехам!</p>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="mb-10">
-                        <h2 className="text-xl md:text-2xl font-semibold mb-6 text-gray-800 dark:text-white">В связи с развитием филиальной сети приглашаем на работу во всех городах РФ:</h2>
-                        <ol className="list-decimal pl-6 space-y-3 text-gray-700 dark:text-gray-300">
-                            <li className="pl-2">Логистов</li>
-                            <li className="pl-2">Менеджеров по продажам</li>
-                            <li className="pl-2">Менеджеров по маркетингу</li>
-                            <li className="pl-2">Бизнес медиаторов</li>
-                            <li className="pl-2">Региональных представителей</li>
-                            <li className="pl-2">Специалистов со «своими клиентами» <span className="text-blue-600 dark:text-blue-400">(особые условия для сотрудничества!)</span></li>
-                        </ol>
-                    </div>
-
-                    <div className="mb-10">
-                        <p className="mb-6 text-gray-700 dark:text-gray-300">Коротко о предстоящих задачах: налаживать деловые связи, организовывать и контролировать грузоперевозки <span className="font-medium">ПРИВЛЕЧЁННЫМ</span> транспортом.</p>
-
-                        <div
-                            onClick={() => toggleSection('offer')}
-                            className="flex items-center justify-between cursor-pointer group mb-2"
-                        >
-                            <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                                Мы Вам предлагаем:
-                            </h2>
-                            {expandedSections.offer ?
-                                <FiChevronUp className="text-blue-600 dark:text-blue-400 text-2xl" /> :
-                                <FiChevronDown className="text-gray-500 dark:text-gray-400 text-2xl group-hover:text-blue-600 dark:group-hover:text-blue-400" />
-                            }
-                        </div>
-                        {expandedSections.offer && (
-                            <ul className="mt-4 list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
-                                <li className="pl-2">Оформление согласно ТК РФ, заработная плата - своевременно 2 раза в месяц на карту банка;</li>
-                                <li className="pl-2">Система мотивации: окладная часть + % от выполнения ежемесячного плана, "потолка" в заработке нет.</li>
-                                <li className="pl-2">Пятидневная рабочая неделя (пн.-пт.), с 10:00 до 17:00;</li>
-                                <li className="pl-2">Работа в комфортном офисе на оборудованном рабочем месте;</li>
-                                <li className="pl-2">Работа на дому с перспективой открытия офиса в вашей локации;</li>
-                                <li className="pl-2">Командировки в соответствии с бизнес планами, но только по желанию;</li>
-                                <li className="pl-2">Корпоративный смартфон, ноутбук;</li>
-                                <li className="pl-2">Стажировка и опытный наставник в течение испытательного срока;</li>
-                                <li className="pl-2">Подарки на день рождения и новогодние праздники;</li>
-                                <li className="pl-2">Регулярные поощрения за значимые достижения;</li>
-                                <li className="pl-2">Перспективы карьерного роста.</li>
-                            </ul>
-                        )}
-                    </div>
-
-                    <div className="mb-10">
-                        <div
-                            onClick={() => toggleSection('responsibilities')}
-                            className="flex items-center justify-between cursor-pointer group mb-2"
-                        >
-                            <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                                Описание некоторых обязанностей:
-                            </h2>
-                            {expandedSections.responsibilities ?
-                                <FiChevronUp className="text-blue-600 dark:text-blue-400 text-2xl" /> :
-                                <FiChevronDown className="text-gray-500 dark:text-gray-400 text-2xl group-hover:text-blue-600 dark:group-hover:text-blue-400" />
-                            }
-                        </div>
-                        {expandedSections.responsibilities && (
-                            <ul className="mt-4 list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
-                                <li className="pl-2">Работа с заказчиками услуг грузовых перевозок,</li>
-                                <li className="pl-2">Активный поиск новых заказчиков на перевозки;</li>
-                                <li className="pl-2">Согласование условий перевозок;</li>
-                                <li className="pl-2">Мониторинг и определение тарифов перевозок;</li>
-                                <li className="pl-2">Подбор необходимого ТС исходя из характера груза;</li>
-                                <li className="pl-2">Развитие и поддержание активной базы привлеченных перевозчиков, мониторинг работы перевозчиков, выстраивание долгосрочных отношений, работа на ATI.SU;</li>
-                                <li className="pl-2">Курирование процесса перевозки на каждом этапе;</li>
-                                <li className="pl-2">Выполнение плановых установок;</li>
-                                <li className="pl-2">Контроль своевременной оплаты по выполненным заказам;</li>
-                                <li className="pl-2">Урегулирование нестандартных, конфликтных ситуаций.</li>
-                            </ul>
-                        )}
-                    </div>
-
-                    <div className="mb-10">
-                        <div
-                            onClick={() => toggleSection('candidate')}
-                            className="flex items-center justify-between cursor-pointer group mb-2"
-                        >
-                            <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                                Ждём от кандидата:
-                            </h2>
-                            {expandedSections.candidate ?
-                                <FiChevronUp className="text-blue-600 dark:text-blue-400 text-2xl" /> :
-                                <FiChevronDown className="text-gray-500 dark:text-gray-400 text-2xl group-hover:text-blue-600 dark:group-hover:text-blue-400" />
-                            }
-                        </div>
-                        {expandedSections.candidate && (
-                            <ul className="mt-4 list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300">
-                                <li className="pl-2">Активность;</li>
-                                <li className="pl-2">Хорошо поставленную, грамотную речь;</li>
-                                <li className="pl-2">Рассудительность;</li>
-                                <li className="pl-2">Общительность и клиентоориентированность;</li>
-                                <li className="pl-2">Понимание и принятие процесса «холодных» контактов;</li>
-                                <li className="pl-2">Самоорганизацию;</li>
-                                <li className="pl-2">Умение расставлять приоритеты;</li>
-                                <li className="pl-2">Высокую личную мотивацию.</li>
-                            </ul>
-                        )}
-                    </div>
-
-                    <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-800">
-                        <p className="mb-4 text-lg text-center text-gray-800 dark:text-white">Присылайте резюме на <a href="mailto:v-t@vir-trans.ru" className="font-medium text-blue-600 dark:text-blue-400 hover:underline">v-t@vir-trans.ru</a></p>
-                        <p className="text-center text-gray-700 dark:text-gray-300">Не стесняйтесь в резюме или просто отдельным письмом излагать самые смелые вопросы и идеи, всё это только будет способствовать установлению взаимопонимания.</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-    );
+  return <main>
+    <section className="bg-brand-background" aria-labelledby="vacancy-title"><div className="content-container grid min-w-0 grid-cols-1 gap-12 py-16 sm:py-20 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)] xl:items-center xl:gap-14 xl:py-28"><div className="min-w-0 w-full max-w-3xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">ВАКАНСИИ</p><p className="mt-5 inline-flex border border-brand-accent px-3 py-1.5 text-xs font-extrabold tracking-[0.1em] text-brand-primary">ОТКРЫТА ВАКАНСИЯ · ЛОГИСТ</p><h1 id="vacancy-title" className="mt-5 max-w-full text-[2.25rem] font-extrabold leading-[0.92] tracking-[-0.065em] text-brand-primary sm:text-[clamp(3.6rem,8vw,4.6rem)] xl:text-[clamp(3.9rem,5vw,4.8rem)]">Ищем логиста,<br />который чувствует рынок</h1><p className="mt-7 max-w-xl text-lg leading-[1.5] text-[var(--color-text-secondary-content)] sm:text-xl">Клиент публикует запрос. Нужно быстро понять реальную ставку, предложить рабочую цену и успеть найти под неё подходящего перевозчика.</p><p className="mt-5 max-w-lg border-l-2 border-brand-accent pl-4 text-base font-semibold leading-7 text-brand-primary">Здесь недостаточно знать маршрут. Нужно понимать, сколько он стоит сегодня.</p><a href="#vacancy-contact" className="mt-9 inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Откликнуться</a></div><div className="min-w-0 w-full max-w-full"><MarketRibbon /></div></div></section>
+    <section className="bg-brand-graphite text-white" aria-labelledby="game-title"><div className="content-container section-spacing"><div className="max-w-2xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">В ЧЁМ ЗДЕСЬ ИГРА</p><h2 id="game-title" className="mt-4 text-[clamp(2.3rem,4.8vw,4.8rem)] font-extrabold leading-[0.96] tracking-[-0.06em]">Рынок не ждёт</h2><p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary-on-graphite)]">Ставки меняются, хорошие перевозчики быстро разбираются, а клиент не будет ждать ответа бесконечно.</p></div><div className="mt-14 grid border-t border-white/20 sm:grid-cols-2">{game.map(([title, text], index) => <article key={title} className={`border-b border-white/20 py-7 sm:px-7 sm:py-8 ${index % 2 === 0 ? 'sm:pl-0 sm:pr-10' : ''} ${index % 2 === 0 ? 'sm:border-r' : ''}`}><span className="mb-5 block h-1 w-9 bg-brand-accent" /><h3 className="text-xl font-bold tracking-[-0.04em] sm:text-2xl">{title}</h3><p className="mt-3 max-w-md text-base leading-7 text-[var(--color-text-secondary-on-graphite)]">{text}</p></article>)}</div></div></section>
+    <section className="bg-brand-surface" aria-labelledby="candidate-title"><div className="content-container section-spacing grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20"><div className="max-w-xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-secondary">КОГО ИЩЕМ</p><h2 id="candidate-title" className="mt-4 text-[clamp(2.3rem,4.4vw,4.25rem)] font-extrabold leading-[0.96] tracking-[-0.06em] text-brand-primary">Кому здесь будет интересно</h2><p className="mt-7 border-l-2 border-brand-accent pl-4 text-base leading-7 text-[var(--color-text-secondary-content)]">Если хочется просто получать готовую ставку и оформлять заявку — скорее всего, это не та работа.</p></div><ul className="border-t border-brand-border">{candidates.map((item, index) => <li key={item} className="grid gap-3 border-b border-brand-border py-5 sm:grid-cols-[3.5rem_1fr] sm:items-baseline sm:gap-5 sm:py-6"><span className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">0{index + 1}</span><span className="text-lg font-bold leading-snug tracking-[-0.04em] text-brand-primary sm:text-xl">{item}</span></li>)}</ul></div></section>
+    <section className="bg-[#eee9e1]" aria-labelledby="work-title"><div className="content-container section-spacing"><div className="max-w-2xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-secondary">РЕАЛЬНАЯ КАРТИНА</p><h2 id="work-title" className="mt-4 text-[clamp(2.3rem,4.4vw,4.25rem)] font-extrabold leading-[0.96] tracking-[-0.06em] text-brand-primary">Что будет в работе</h2></div><ol className="mt-12 grid border-t border-brand-border sm:grid-cols-2 lg:grid-cols-4">{work.map((item, index) => <li key={item} className={`border-b border-brand-border py-7 sm:px-7 lg:border-b-0 lg:py-1 ${index < 3 ? 'lg:border-r' : ''} ${index === 0 ? 'sm:pl-0' : ''} ${index === 3 ? 'lg:pr-0' : ''}`}><span className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">0{index + 1}</span><p className="mt-4 max-w-[15rem] text-xl font-bold leading-tight tracking-[-0.04em] text-brand-primary">{item}</p></li>)}</ol></div></section>
+    <section className="bg-brand-background" aria-labelledby="offer-title"><div className="content-container section-spacing grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20"><div className="max-w-xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">УСЛОВИЯ</p><h2 id="offer-title" className="mt-4 text-[clamp(2.3rem,4.4vw,4.25rem)] font-extrabold leading-[0.96] tracking-[-0.06em] text-brand-primary">Что предлагаем</h2></div><ul className="grid border-t border-brand-border sm:grid-cols-2">{offer.map((item, index) => <li key={item} className={`border-b border-brand-border py-5 text-base leading-7 text-[var(--color-text-secondary-content)] sm:px-7 sm:py-6 ${index % 2 === 0 ? 'sm:pl-0 sm:pr-9' : ''} ${index % 2 === 0 ? 'sm:border-r' : ''}`}><span className="mr-3 text-brand-accent">—</span>{item}</li>)}</ul></div></section>
+    <section id="vacancy-contact" className="bg-brand-graphite text-white" aria-labelledby="vacancy-contact-title"><div className="content-container section-spacing grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20"><div><p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">ОТКЛИКНУТЬСЯ</p><h2 id="vacancy-contact-title" className="mt-4 text-[clamp(2.4rem,4.6vw,4.8rem)] font-extrabold leading-[0.96] tracking-[-0.06em]">Узнали себя?</h2><p className="mt-7 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary-on-graphite)]">Напишите несколько слов о своём опыте. Резюме приветствуется, но длинное сопроводительное письмо не обязательно.</p></div><div className="border-t border-white/20 pt-7"><a href="mailto:v-t@vir-trans.ru?subject=Вакансия%20логиста" className="inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Обсудить вакансию</a><div className="mt-9 grid gap-5 text-base sm:grid-cols-2"><a href="mailto:v-t@vir-trans.ru" className="border-b border-white/20 pb-3 font-semibold transition-colors hover:text-brand-accent">v-t@vir-trans.ru</a><a href="tel:+78004440097" className="border-b border-white/20 pb-3 font-semibold transition-colors hover:text-brand-accent">+7 (800) 444-00-97, доб. 704</a></div></div></div></section>
+  </main>
 }
