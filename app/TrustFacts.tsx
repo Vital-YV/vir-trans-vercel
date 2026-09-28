@@ -57,12 +57,6 @@ export default function TrustFacts() {
               Проверить профиль ATI.SU <span aria-hidden="true">↗</span>
             </a>
           </article>
-          <article className="border-t border-[#e2dcd3] px-0 py-8 sm:py-10 md:col-span-2 md:px-10 md:py-10">
-            <p className="text-xs font-extrabold tracking-[0.12em] text-[var(--color-text-secondary-content)]">ФОТОДОКУМЕНТАЦИЯ</p>
-            <h3 className="mt-6 text-[clamp(3.6rem,6vw,6.5rem)] font-extrabold leading-[0.98] tracking-[-0.055em] text-brand-primary">0</h3>
-            <p className="mt-5 max-w-xl text-base leading-7 text-[var(--color-text-secondary-content)] md:leading-relaxed lg:text-lg">фотографий рукопожатий</p>
-            <p className="mt-1 text-sm leading-6 text-[var(--color-text-secondary-content)]">и пока держимся</p>
-          </article>
         </div>
       </div>
     </section>

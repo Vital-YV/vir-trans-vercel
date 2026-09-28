@@ -21,16 +21,13 @@ export default function WorkProcess() {
   return (
     <section className="bg-brand-graphite text-white" aria-labelledby="work-process-title">
       <div className="content-container main-section-spacing">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
           <div>
             <p className="text-xs font-extrabold tracking-[0.12em] text-white/55">ПОДХОД К РАБОТЕ</p>
             <h2 id="work-process-title" className="mt-4 text-[clamp(2.1rem,4vw,4.25rem)] font-extrabold leading-[0.98] tracking-[-0.055em] text-white">
               Как мы работаем
             </h2>
           </div>
-          <p className="max-w-md text-base leading-7 text-white/65 md:text-right md:leading-relaxed">
-            Заявка проходит понятный рабочий маршрут — от первой детали до завершения перевозки.
-          </p>
         </div>
 
         <div className="relative mt-14 md:mt-20">

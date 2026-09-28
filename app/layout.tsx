@@ -7,6 +7,7 @@ import { LayoutProvider } from './LayoutContext';
 import { DeliveryRequestForm } from './DeliveryRequest';
 import ScrollToTopButton from './ScrollToTopButton'
 import { InsideAccessProvider } from './InsideAccess'
+import { indexingRobots, siteUrl } from './site'
 
 const manrope = Manrope({
   subsets: ['cyrillic', 'latin'],
@@ -15,8 +16,10 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
+  metadataBase: siteUrl,
   title: 'Вир-Транс',
   description: 'Транспортно-экспедиторская компания',
+  robots: indexingRobots,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

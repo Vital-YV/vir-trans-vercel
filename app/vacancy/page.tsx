@@ -1,3 +1,12 @@
+import type { Metadata } from 'next'
+import { publicMetadata } from '../site'
+
+export const metadata: Metadata = publicMetadata({
+  title: 'Работа логистом в Вир-Транс — вакансии',
+  description: 'Вакансия логиста в Вир-Транс: работа со ставками, поиск перевозчиков и самостоятельное сопровождение автомобильных перевозок.',
+  path: '/vacancy',
+})
+
 const marketSteps = [
   ['01', 'ЗАПРОС КЛИЕНТА', 'Самара → Казань', 'ответить сейчас'],
   ['02', 'РЫНОК СЕЙЧАС', 'ориентир уточняется', 'ставка меняется'],

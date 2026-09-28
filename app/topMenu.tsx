@@ -153,7 +153,7 @@ export default function TopMenu() {
             : isVacancy
             ? [['О вакансии', '#game-title'], ['Работа', '#work-title'], ['Условия', '#offer-title'], ['Откликнуться', '#vacancy-contact']]
             : isClients
-            ? [['Процесс', '#responsibilities'], ['Начало работы', '#start'], ['Вопросы', '#questions'], ['Контакты', '#client-contact']]
+            ? [['Как работаем', '#responsibilities'], ['Контакты', '#client-contact']]
             : [['Перевозки', '#foundation-title'], ['Дополнительно', '#special-title'], ['Контакты', '#service-contact']];
         return (
             <header className="relative z-50 border-b border-black/10 bg-brand-background">

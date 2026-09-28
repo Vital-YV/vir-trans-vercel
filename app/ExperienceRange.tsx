@@ -31,22 +31,13 @@ export default function ExperienceRange() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,0.72fr)] md:gap-16">
-          <div>
-            <p className="text-xs font-extrabold tracking-[0.12em] text-[var(--color-text-secondary-content)]">02</p>
-            <h3 className="mt-4 text-2xl font-bold tracking-[-0.04em] text-brand-primary sm:text-3xl">
-              Крупногабаритные и тяжеловесные грузы
-            </h3>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-secondary-content)] md:leading-relaxed lg:text-lg">
-              Перевозки, где маршрут, транспорт и условия требуют отдельной проработки.
-            </p>
-          </div>
-
-          <div className="border-t border-brand-border pt-6 md:mt-1">
-            <p className="text-base leading-7 text-[var(--color-text-secondary-content)] md:leading-relaxed">
-              Также есть опыт работы с наливными и опасными грузами.
-            </p>
-          </div>
+        <div className="mt-10 max-w-2xl border-l-2 border-brand-accent pl-6 sm:pl-8">
+          <h3 className="text-2xl font-bold tracking-[-0.04em] text-brand-primary sm:text-3xl">
+            Грузы с особыми условиями
+          </h3>
+          <p className="mt-4 text-base leading-7 text-[var(--color-text-secondary-content)] md:leading-relaxed lg:text-lg">
+            Есть опыт с крупногабаритными, тяжеловесными и наливными грузами — там, где транспорт и маршрут требуют отдельной проработки.
+          </p>
         </div>
       </div>
     </section>

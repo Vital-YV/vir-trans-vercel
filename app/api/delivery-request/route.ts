@@ -7,13 +7,7 @@ type FormPayload = Record<string, unknown> & { source?: unknown; website?: unkno
 const MAX_LENGTHS: Record<string, number> = {
   name: 120,
   contact: 160,
-  route: 240,
-  loadingDate: 80,
-  unloadingDate: 80,
-  cargoDescription: 2000,
-  dimensions: 160,
-  weight: 80,
-  specialConditions: 2000,
+  message: 3000,
   situation: 3000,
 }
 
@@ -96,24 +90,14 @@ export async function POST(request: Request) {
       `Дата и время отправки: ${submittedAt}`,
     ]
   } else {
-    const route = field(payload, 'route')
-    const cargoDescription = field(payload, 'cargoDescription')
-    const loadingDate = field(payload, 'loadingDate')
-    if (!route || !cargoDescription || !loadingDate) return invalid('Заполните обязательные поля.')
+    const message = field(payload, 'message')
+    if (!message) return invalid('Заполните обязательные поля.')
 
     subject = 'Новая заявка с сайта Вир-Транс'
     lines = [
-      'Тип обращения: Заявка на перевозку',
-      `Юридическое лицо: ${text(payload.isLegalEntity, 40) || 'не указано'}`,
-      `Маршрут: ${route}`,
-      `Груз: ${cargoDescription}`,
-      `Дата / период: ${loadingDate}`,
-      `Дата выгрузки: ${field(payload, 'unloadingDate') || 'не указана'}`,
-      `Габариты: ${field(payload, 'dimensions') || 'не указаны'}`,
-      `Вес: ${field(payload, 'weight') || 'не указан'}`,
-      `Особые условия: ${field(payload, 'specialConditions') || 'не указаны'}`,
+      'Тип обращения: Заявка с сайта',
       `Контакт: ${contact}`,
-      'Страница: сайт Вир-Транс',
+      `Сообщение: ${message}`,
       `Дата и время отправки: ${submittedAt}`,
     ]
   }
