@@ -1,13 +1,15 @@
 'use client'
 import { useState } from 'react';
-import axios from 'axios';
 import { usePathname } from 'next/navigation';
 
 export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'floating' | 'inline' }) {
   const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [formData, setFormData] = useState({
+    source: 'delivery',
     isLegalEntity: 'нет',
     route: '',
     loadingDate: '',
@@ -16,7 +18,8 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
     dimensions: '',
     weight: '',
     specialConditions: '',
-    contact: ''
+    contact: '',
+    website: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -26,36 +29,55 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setSubmitError('');
+
     try {
-      const response = await axios.post('http://localhost:8000/api/delivery-request', formData, {
+      const response = await fetch('/api/delivery-request', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(formData),
       });
 
-      console.log('Успех:', response.data);
+      if (!response.ok) throw new Error('Delivery request failed');
+
       setIsSubmitted(true);
+      setFormData((previous) => ({
+        ...previous,
+        source: 'delivery',
+        route: '',
+        loadingDate: '',
+        unloadingDate: '',
+        cargoDescription: '',
+        dimensions: '',
+        weight: '',
+        specialConditions: '',
+        contact: '',
+        website: '',
+      }));
 
       setTimeout(() => {
         closeModal();
       }, 3000);
 
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error(
-          'Ошибка запроса:',
-          error.response?.data || error.message
-        );
-      } else {
-        console.error('Неизвестная ошибка:', error);
-      }
+    } catch {
+      setSubmitError('Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами по телефону.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setIsSubmitted(false);
+    setSubmitError('');
+    setIsSubmitting(false);
     setFormData({
+      source: 'delivery',
       isLegalEntity: 'нет',
       route: '',
       loadingDate: '',
@@ -64,7 +86,8 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
       dimensions: '',
       weight: '',
       specialConditions: '',
-      contact: ''
+      contact: '',
+      website: ''
     });
   };
 
@@ -81,6 +104,7 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
 
     return (
       <form onSubmit={handleSubmit} className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
+        <label className="sr-only" aria-hidden="true">Не заполняйте это поле<input name="website" value={formData.website} onChange={handleChange} tabIndex={-1} autoComplete="off" /></label>
         <label className="flex min-h-14 items-center border-b border-brand-primary/45 py-2 transition-colors focus-within:border-brand-primary sm:block sm:min-h-0 sm:border-[var(--color-form-border)] sm:py-3">
           <span className="sr-only">Маршрут</span>
           <input name="route" value={formData.route} onChange={handleChange} required placeholder="Откуда → куда" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/80 md:placeholder:text-[var(--color-text-secondary-content)]" />
@@ -98,10 +122,11 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
           <input name="contact" value={formData.contact} onChange={handleChange} required placeholder="Телефон, Telegram или e-mail" className="w-full bg-transparent text-base text-brand-primary outline-none placeholder:text-brand-primary/80 md:placeholder:text-[var(--color-text-secondary-content)]" />
         </label>
         <div className="pt-7 sm:col-span-2">
-          <button type="submit" className="inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-8 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:text-lg">
-            Обсудить перевозку
+          <button type="submit" disabled={isSubmitting} className="inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-8 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] disabled:cursor-not-allowed disabled:opacity-70 sm:text-lg">
+            {isSubmitting ? 'Отправляем…' : 'Обсудить перевозку'}
           </button>
         </div>
+        {submitError && <p className="sm:col-span-2 text-sm leading-6 text-brand-primary" role="alert">{submitError}</p>}
       </form>
     );
   }
@@ -111,7 +136,7 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
       <button
         onClick={() => setIsModalOpen(true)}
         className={`
-    ${pathname === '/' || pathname === '/service' || pathname === '/forClients' || pathname === '/vacancy' ? 'hidden' : ''}
+    ${pathname === '/' || pathname === '/service' || pathname === '/forClients' || pathname === '/vacancy' || pathname === '/etrn' || pathname === '/top-secret' || pathname === '/top-secret/digest' ? 'hidden' : ''}
     bg-gradient-to-r from-[#219EBC] to-[#3b82f6] 
     hover:from-[#1b7a91] hover:to-[#2563eb]
     text-white font-semibold 
@@ -150,6 +175,7 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
               <>
                 <h2 className="text-xl font-bold mb-4">Запрос стоимости доставки</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  <label className="sr-only" aria-hidden="true">Не заполняйте это поле<input name="website" value={formData.website} onChange={handleChange} tabIndex={-1} autoComplete="off" /></label>
                   <div>
                     <label className="block mb-2">Юридическое лицо</label>
                     <select
@@ -248,6 +274,7 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
                   </div>
 
                   <div className="flex justify-end gap-3 pt-4">
+                    {submitError && <p className="mr-auto text-sm text-red-700" role="alert">{submitError}</p>}
                     <button
                       type="button"
                       onClick={closeModal}
@@ -257,9 +284,10 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
                     </button>
                     <button
                       type="submit"
-                      className="px-4 py-2 bg-[#219EBC] text-white rounded hover:bg-[#3b457c]"
+                      disabled={isSubmitting}
+                      className="px-4 py-2 bg-[#219EBC] text-white rounded hover:bg-[#3b457c] disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                      Отправить запрос
+                      {isSubmitting ? 'Отправляем…' : 'Отправить запрос'}
                     </button>
                   </div>
                 </form>

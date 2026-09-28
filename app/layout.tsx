@@ -4,9 +4,9 @@ import './globals.css'
 import TopMenu from './topMenu'
 import Footer from './footer'
 import { LayoutProvider } from './LayoutContext';
-import FunFacts from './FunFacts';
 import { DeliveryRequestForm } from './DeliveryRequest';
 import ScrollToTopButton from './ScrollToTopButton'
+import { InsideAccessProvider } from './InsideAccess'
 
 const manrope = Manrope({
   subsets: ['cyrillic', 'latin'],
@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="absolute inset-0 bg-[url('/BG.png')] bg-cover bg-center bg-fixed z-[-1]" />
         <div className="absolute inset-0 bg-[#219EBC]/0 dark:bg-black/60 z-0" />
         <LayoutProvider>
+          <InsideAccessProvider>
           <div className="relative z-20">
             <TopMenu />
           </div>
@@ -41,11 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
           </div>
           <ScrollToTopButton />
-          {/* Компонент будет загружен только на десктопах */}
-          <div className="hidden md:block">
-            <FunFacts />
-          </div>
-
+          </InsideAccessProvider>
         </LayoutProvider>
       </body>
     </html>

@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin')
+import type { PluginAPI } from 'tailwindcss/types/config'
+import plugin from 'tailwindcss/plugin'
+
 module.exports = {
 	content: [
 		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -282,17 +284,17 @@ module.exports = {
 		},
 	},
 	plugins: [
-		plugin(function ({ matchUtilities, theme }) {
+		plugin(function ({ matchUtilities, theme }: PluginAPI) {
 			matchUtilities(
 				{
-					'text-shadow': (value) => ({
+					'text-shadow': (value: string) => ({
 						textShadow: value,
 					}),
 				},
 				{ values: theme('textShadow') }
 			)
 		}),
-		function ({ addUtilities }) {
+		function ({ addUtilities }: PluginAPI) {
 			const newUtilities = {
 				'.no-scrollbar::-webkit-scrollbar': {
 					display: 'none',

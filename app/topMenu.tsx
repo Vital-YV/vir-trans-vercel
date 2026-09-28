@@ -145,10 +145,12 @@ export default function TopMenu() {
         }
     };
 
-    if (pathname === '/service' || pathname === '/forClients' || pathname === '/vacancy') {
+    if (pathname === '/service' || pathname === '/forClients' || pathname === '/vacancy' || pathname === '/inside' || pathname === '/etrn') {
         const isClients = pathname === '/forClients';
         const isVacancy = pathname === '/vacancy';
-        const navigation = isVacancy
+        const navigation = pathname === '/etrn'
+            ? [['Схема рейса', '#etrn-chain'], ['Роли', '#etrn-roles'], ['Ситуации', '#etrn-problems'], ['Обращение', '#etrn-form']]
+            : isVacancy
             ? [['О вакансии', '#game-title'], ['Работа', '#work-title'], ['Условия', '#offer-title'], ['Откликнуться', '#vacancy-contact']]
             : isClients
             ? [['Процесс', '#responsibilities'], ['Начало работы', '#start'], ['Вопросы', '#questions'], ['Контакты', '#client-contact']]
@@ -173,7 +175,7 @@ export default function TopMenu() {
         )
     }
 
-    if (pathname === '/') {
+    if (pathname === '/' || pathname === '/team' || pathname === '/top-secret' || pathname === '/top-secret/digest') {
         return null;
     }
 

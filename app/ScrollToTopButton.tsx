@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function ScrollToTopButton() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -30,6 +32,8 @@ export default function ScrollToTopButton() {
 
     requestAnimationFrame(animate);
   };
+
+  if (pathname === '/top-secret' || pathname === '/top-secret/digest') return null;
 
   return (
     <button

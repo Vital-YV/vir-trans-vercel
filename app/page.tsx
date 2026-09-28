@@ -265,7 +265,7 @@ type FlagsProps = {
   size: string;
   sizeText: string;
   keyNumber: number;
-  activeIndexFlags: number;
+  activeIndexFlags: number | null;
   setActiveIndexFlags: (index: number) => void;
 };
 
@@ -504,7 +504,7 @@ type TransportIconProps = {
 
 function TransportIcon({ src, alt, label }: TransportIconProps) {
   const [animate, setAnimate] = useState(false);
-  const itemRef = useRef();
+  const itemRef = useRef<HTMLSpanElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -553,7 +553,7 @@ export default function Home() {
 
   const [isVisible, setIsVisible] = useState(false);
   const [OKompanii, setOKompanii] = useState('translate-x-full');
-  const targetRef = useRef();
+  const targetRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -583,7 +583,7 @@ export default function Home() {
 
   /* Функции из forClients */
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
-  const [activeIndexFalgs, setActiveIndexFlags] = useState<number | null>();
+  const [activeIndexFalgs, setActiveIndexFlags] = useState<number | null>(null);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -637,7 +637,7 @@ export default function Home() {
 
 
   /* Функции из service */
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobile, setMobile] = useState<boolean>(false);
   const [hoverBlock3, setHoverBlock3] = useState<number | null>(null);
   const [prevHoverBlock3, setPrevHoverBlock3] = useState<number | null>(null);
@@ -859,6 +859,8 @@ export default function Home() {
     },
   ]
 
+  const selectedMobileItem = hoveredIndex === null ? undefined : itemsMobile[hoveredIndex]
+  const selectedItem = hoveredIndex === null ? undefined : items[hoveredIndex]
 
   return (
     <main className="overflow-x-clip" >
@@ -1171,8 +1173,8 @@ export default function Home() {
               >
                 {hoveredIndex !== null && (
                   <>
-                    <h3 className="font-semibold">{itemsMobile[hoveredIndex]?.title}</h3>
-                    {itemsMobile[hoveredIndex]?.content}
+                    <h3 className="font-semibold">{selectedMobileItem?.title}</h3>
+                    {selectedMobileItem?.content}
                   </>
                 )}
               </div>
@@ -1221,8 +1223,8 @@ export default function Home() {
               >
                 {hoveredIndex !== null && (
                   <>
-                    <h3 className="font-semibold text-lg">{items[hoveredIndex]?.title}</h3>
-                    {items[hoveredIndex]?.content}
+                    <h3 className="font-semibold text-lg">{selectedItem?.title}</h3>
+                    {selectedItem?.content}
                   </>
                 )}
               </div>

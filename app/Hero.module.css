@@ -1,0 +1,86 @@
+.crate {
+  transform-origin: bottom center;
+  animation: crate-swap 9.325s ease-in-out infinite;
+}
+
+@keyframes crate-swap {
+  0%, 61.9303% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  66.2198%, 95.7105% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.flask {
+  position: absolute;
+  top: 50.5%;
+  left: 30.3%;
+  width: 43.35%;
+  max-width: none;
+  transform-origin: bottom center;
+  animation: flask-swap 9.325s ease-in-out infinite;
+}
+
+@keyframes flask-swap {
+  0%, 61.9303% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  66.2198%, 95.7105% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@media (max-width: 1023px) {
+  .flask {
+    top: 51.7%;
+    left: 31%;
+    width: 42%;
+  }
+}
+
+@media (max-width: 639px) {
+  .flask {
+    top: 51.7%;
+    left: 31%;
+    width: 42%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crate {
+    animation: crate-swap-reduced 9.325s steps(1, end) infinite;
+  }
+
+  .flask {
+    animation: flask-swap-reduced 9.325s steps(1, end) infinite;
+  }
+
+  @keyframes crate-swap-reduced {
+    0%, 61.9303% { opacity: 1; }
+    61.9304%, 95.7105% { opacity: 0; }
+    95.7106%, 100% { opacity: 1; }
+  }
+
+  @keyframes flask-swap-reduced {
+    0%, 61.9303% { opacity: 0; }
+    61.9304%, 95.7105% { opacity: 1; }
+    95.7106%, 100% { opacity: 0; }
+  }
+}

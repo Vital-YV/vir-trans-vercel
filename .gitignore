@@ -38,3 +38,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local browser profiles and visual QA artifacts
+/.chrome-etrn/
+/.edge-cdp-768/
+/.edge-etrn-full/
+/.edge-etrn/
+/.edge-star-check/
+/.etrn-768.png
+/.etrn-served.css
+/etrn-768-full.png
+/etrn-768.png
+/star-check.png

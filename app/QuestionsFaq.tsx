@@ -21,7 +21,7 @@ export default function QuestionsFaq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section className="bg-[#34332f] text-[var(--color-background)]" aria-labelledby="questions-faq-title">
+    <section id="вопросы---ответы" className="bg-[#34332f] text-[var(--color-background)]" aria-labelledby="questions-faq-title">
       <div className="content-container grid gap-12 py-[clamp(4rem,7vw,6.5rem)] lg:grid-cols-[minmax(16rem,0.65fr)_minmax(0,1.35fr)] lg:gap-20">
         <div className="max-w-2xl">
           <p className="text-xs font-extrabold tracking-[0.12em] text-[#c8c1b7]">FAQ</p>
