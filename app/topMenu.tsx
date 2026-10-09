@@ -1,6 +1,7 @@
 "use client";
 import './globals.css';
 import React, { useState, useEffect } from "react";
+import Link from 'next/link';
 import { useLayout } from './LayoutContext';
 import { useRouter, usePathname } from "next/navigation";
 
@@ -158,16 +159,16 @@ export default function TopMenu() {
         return (
             <header className="relative z-50 border-b border-black/10 bg-brand-background">
                 <div className="content-container flex min-w-0 min-h-[76px] items-center justify-between py-4 sm:min-h-[88px]">
-                    <a href="/" className="min-w-0 text-[1.5rem] font-extrabold tracking-[-0.06em] text-brand-primary sm:text-[2rem]" aria-label="ВИР-ТРАНС, главная">ВИР-ТРАНС</a>
+                    <Link href="/" className="min-w-0 text-[1.5rem] font-extrabold tracking-[-0.06em] text-brand-primary sm:text-[2rem]" aria-label="ВИР-ТРАНС, главная">ВИР-ТРАНС</Link>
                     <nav className="hidden items-center gap-7 text-sm font-semibold text-brand-primary md:flex" aria-label="Основная навигация">
-                        <a href="/" className="transition-colors hover:text-brand-accent">Главная</a>
+                        <Link href="/" className="transition-colors hover:text-brand-accent">Главная</Link>
                         {navigation.map(([label, href]) => <a key={href} href={href} className="transition-colors hover:text-brand-accent">{label}</a>)}
                     </nav>
                     <button type="button" className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/15 text-xl text-brand-primary md:hidden" aria-label={isMenuOpen ? 'Закрыть навигацию' : 'Открыть навигацию'} aria-expanded={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)}>
                         <span aria-hidden="true">{isMenuOpen ? '×' : '☰'}</span>
                     </button>
                     {isMenuOpen && <nav className="absolute right-[var(--content-padding)] top-[4.75rem] flex w-56 flex-col rounded-[var(--radius-md)] border border-black/10 bg-white p-3 text-sm font-semibold shadow-lg md:hidden" aria-label="Мобильная навигация">
-                        <a href="/" className="rounded px-3 py-2 hover:bg-black/5" onClick={() => setIsMenuOpen(false)}>Главная</a>
+                        <Link href="/" className="rounded px-3 py-2 hover:bg-black/5" onClick={() => setIsMenuOpen(false)}>Главная</Link>
                         {navigation.map(([label, href]) => <a key={href} href={href} className="rounded px-3 py-2 hover:bg-black/5" onClick={() => setIsMenuOpen(false)}>{label}</a>)}
                     </nav>}
                 </div>
