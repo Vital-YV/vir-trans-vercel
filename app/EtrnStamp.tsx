@@ -86,7 +86,7 @@ export default function EtrnStamp({ actionHref }: EtrnStampProps) {
       <div className="content-container">
         <div className={styles.inner}>
           <span className={styles.label}>Актуально</span>
-          <span className={styles.updated}>Обновлено 28 сентября 2026</span>
+          <span className={styles.updated}>Обновлено 12 октября 2026</span>
           <button
             type="button"
             className={styles.stamp}
