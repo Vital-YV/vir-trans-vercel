@@ -2,6 +2,7 @@
 import './globals.css';
 import React, { useState, useEffect } from "react";
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLayout } from './LayoutContext';
 import { useRouter, usePathname } from "next/navigation";
 
@@ -161,7 +162,7 @@ export default function TopMenu() {
         return (
             <header className="relative z-50 border-b border-black/10 bg-brand-background">
                 <div className="content-container flex min-w-0 min-h-[76px] items-center justify-between py-4 sm:min-h-[88px]">
-                    <Link href="/" className="min-w-0 text-[1.5rem] font-extrabold tracking-[-0.06em] text-brand-primary sm:text-[2rem]" aria-label="ВИР-ТРАНС, главная">ВИР-ТРАНС</Link>
+                    <Link href="/" className={pathname === '/inside' ? 'min-w-0 text-[1.5rem] font-extrabold tracking-[-0.06em] text-brand-primary sm:text-[2rem]' : 'flex min-h-10 w-[208px] shrink-0 items-center sm:min-h-11 sm:w-[288px]'} aria-label="ВИР-ТРАНС, главная">{pathname === '/inside' ? 'ВИР-ТРАНС' : <Image src="/brand/vir-trans-logo-cropped.png" alt="" width={2139} height={471} priority sizes="(min-width: 640px) 288px, 208px" className="block h-auto w-full" />}</Link>
                     <nav className="hidden items-center gap-7 text-sm font-semibold text-brand-primary md:flex" aria-label="Основная навигация">
                         <Link href="/" className="transition-colors hover:text-brand-accent">Главная</Link>
                         {navigation.map(([label, href]) => <a key={href} href={href} className="transition-colors hover:text-brand-accent">{label}</a>)}

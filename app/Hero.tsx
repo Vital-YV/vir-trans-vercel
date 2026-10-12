@@ -28,8 +28,8 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-[30%] bg-[linear-gradient(0deg,rgba(241,236,229,0.82),rgba(241,236,229,0))]" />
 
         <div className="content-container relative z-20 flex items-center justify-between pt-7 sm:pt-9 lg:!w-full lg:!px-[clamp(4.375rem,4.7vw,4.5rem)]">
-          <a href="#vir-trans" className="text-[1.5rem] font-extrabold tracking-[-0.06em] sm:text-[2rem]" aria-label="ВИР-ТРАНС">
-            ВИР-ТРАНС
+          <a href="#vir-trans" className="flex min-h-10 w-[208px] shrink-0 items-center sm:min-h-11 sm:w-[288px]" aria-label="ВИР-ТРАНС">
+            <Image src="/brand/vir-trans-logo-cropped.png" alt="" width={2139} height={471} priority sizes="(min-width: 640px) 288px, 208px" className="block h-auto w-full" />
           </a>
 
           <nav className="hidden items-center gap-7 text-sm font-medium text-white xl:flex xl:-translate-x-[clamp(3rem,5vw,5rem)]" aria-label="Основная навигация">
