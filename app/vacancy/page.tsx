@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { publicMetadata } from '../site'
 
 export const metadata: Metadata = publicMetadata({
@@ -7,49 +8,98 @@ export const metadata: Metadata = publicMetadata({
   path: '/vacancy',
 })
 
-const marketSteps = [
-  ['01', 'ЗАПРОС КЛИЕНТА', 'Самара → Казань', 'ответить сейчас'],
-  ['02', 'РЫНОК СЕЙЧАС', 'ориентир уточняется', 'ставка меняется'],
-  ['03', 'НАША СТАВКА', 'отправлена клиенту', 'заказ получен'],
-  ['04', 'ЗАКАЗ', 'получен', 'искать перевозчика'],
-  ['05', 'ПЕРЕВОЗЧИК', 'найден · проверен', 'рейс в работе'],
+const offer = [
+  'Офис в Самаре, для опытных логистов — возможность работать удалённо.',
+  'Самостоятельность и возможность влиять на свой заработок.',
+  'Небольшую команду, рабочие инструменты и поддержку коллег.',
+  'Оплату с премированием по результатам работы.',
 ]
-
-const game = [
-  ['Чувствовать ставку', 'Понимать рынок перевозчиков, а не искать цену с нуля после каждого запроса.'],
-  ['Успевать первым', 'Быстро оценивать запрос и вовремя давать клиенту предложение.'],
-  ['Уметь торговаться', 'И с клиентом, и с перевозчиком важны переговоры и чувство границы.'],
-  ['Доводить рейс', 'После сделки начинается обычная работа: перевозчик, документы, контроль и сопровождение.'],
-]
-
-const candidates = [
-  'быстро ориентируется в меняющейся информации;',
-  'интересуется рынком и запоминает реальные ставки;',
-  'любит переговоры и умеет искать выгодный вариант;',
-  'не бросает задачу после получения заказа, а доводит рейс до результата.',
-]
-
-const work = ['Следить за запросами клиентов', 'Быстро оценивать рынок и предлагать ставку', 'После получения заказа находить подходящего перевозчика', 'Оформлять и сопровождать рейс']
-const offer = ['небольшая команда без длинной управленческой цепочки;', 'самостоятельность в работе;', 'реальные коммерческие задачи;', 'возможность влиять на результат;', 'современные рабочие инструменты;', 'условия обсуждаются лично.']
-
-function MarketRibbon() {
-  return <div className="relative mx-auto w-full min-w-0 max-w-full border border-brand-border bg-brand-surface p-5 sm:max-w-[36rem] sm:p-7 xl:max-w-none" aria-label="Этапы работы логиста">
-    <div className="flex items-center justify-between gap-4"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-secondary">ЛЕНТА РЫНКА</p><span className="flex shrink-0 items-center gap-2 text-xs font-semibold text-brand-accent"><span className="h-2 w-2 animate-pulse rounded-full bg-brand-accent" />рынок активный</span></div>
-    <div className="relative mt-7 grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
-      <span className="pointer-events-none absolute bottom-9 left-1/2 top-9 hidden border-l border-brand-border sm:block" />
-      {marketSteps.map(([number, label, value, status], index) => <article key={label} className={`relative min-w-0 border border-brand-border bg-brand-surface px-4 py-4 ${index === 4 ? 'sm:col-span-2 sm:w-[calc(50%-0.5rem)]' : ''} ${index === 4 ? 'sm:justify-self-end' : ''}`}><div className="flex items-start justify-between gap-3"><p className="text-[10px] font-extrabold tracking-[0.12em] text-brand-accent">{number}</p><span className={`max-w-[8rem] text-right text-[10px] font-bold leading-4 ${index === 0 || index === 1 || index === 3 ? 'text-brand-accent' : 'text-brand-secondary'}`}>{index === 0 && <span className="mr-1 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-brand-accent" />}{status}</span></div><p className="mt-3 text-xs font-extrabold tracking-[0.1em] text-brand-secondary">{label}</p><p className="mt-1 break-words text-base font-bold tracking-[-0.035em] text-brand-primary">{value}</p>{index === 1 && <div className="mt-4 flex items-center gap-1.5" aria-hidden="true"><span className="h-px flex-1 bg-brand-border" /><span className="h-1.5 w-1.5 rounded-full bg-brand-accent" /><span className="h-px flex-1 bg-brand-border" /></div>}</article>)}
-    </div>
-    <p className="mt-6 border-t border-brand-border pt-4 text-sm leading-6 text-[var(--color-text-secondary-content)]">Решение нужно принять до того, как рынок изменится.</p>
-  </div>
-}
 
 export default function Vacancy() {
   return <main>
-    <section className="bg-brand-background" aria-labelledby="vacancy-title"><div className="content-container grid min-w-0 grid-cols-1 gap-12 py-16 sm:py-20 xl:grid-cols-[minmax(0,1.15fr)_minmax(22rem,0.85fr)] xl:items-center xl:gap-14 xl:py-28"><div className="min-w-0 w-full max-w-3xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">ВАКАНСИИ</p><p className="mt-5 inline-flex border border-brand-accent px-3 py-1.5 text-xs font-extrabold tracking-[0.1em] text-brand-primary">ОТКРЫТА ВАКАНСИЯ · ЛОГИСТ</p><h1 id="vacancy-title" className="mt-5 max-w-full text-[2.25rem] font-extrabold leading-[0.92] tracking-[-0.065em] text-brand-primary sm:text-[clamp(3.6rem,8vw,4.6rem)] xl:text-[clamp(3.9rem,5vw,4.8rem)]">Ищем логиста,<br />который чувствует рынок</h1><p className="mt-7 max-w-xl text-lg leading-[1.5] text-[var(--color-text-secondary-content)] sm:text-xl">Клиент публикует запрос. Нужно быстро понять реальную ставку, предложить рабочую цену и успеть найти под неё подходящего перевозчика.</p><p className="mt-5 max-w-lg border-l-2 border-brand-accent pl-4 text-base font-semibold leading-7 text-brand-primary">Здесь недостаточно знать маршрут. Нужно понимать, сколько он стоит сегодня.</p><a href="#vacancy-contact" className="mt-9 inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Откликнуться</a></div><div className="min-w-0 w-full max-w-full"><MarketRibbon /></div></div></section>
-    <section className="bg-brand-graphite text-white" aria-labelledby="game-title"><div className="content-container section-spacing"><div className="max-w-2xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">В ЧЁМ ЗДЕСЬ ИГРА</p><h2 id="game-title" className="mt-4 text-[clamp(2.3rem,4.8vw,4.8rem)] font-extrabold leading-[0.96] tracking-[-0.06em]">Рынок не ждёт</h2><p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary-on-graphite)]">Ставки меняются, хорошие перевозчики быстро разбираются, а клиент не будет ждать ответа бесконечно.</p></div><div className="mt-14 grid border-t border-white/20 sm:grid-cols-2">{game.map(([title, text], index) => <article key={title} className={`border-b border-white/20 py-7 sm:px-7 sm:py-8 ${index % 2 === 0 ? 'sm:pl-0 sm:pr-10' : ''} ${index % 2 === 0 ? 'sm:border-r' : ''}`}><span className="mb-5 block h-1 w-9 bg-brand-accent" /><h3 className="text-xl font-bold tracking-[-0.04em] sm:text-2xl">{title}</h3><p className="mt-3 max-w-md text-base leading-7 text-[var(--color-text-secondary-on-graphite)]">{text}</p></article>)}</div></div></section>
-    <section className="bg-brand-surface" aria-labelledby="candidate-title"><div className="content-container section-spacing grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20"><div className="max-w-xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-secondary">КОГО ИЩЕМ</p><h2 id="candidate-title" className="mt-4 text-[clamp(2.3rem,4.4vw,4.25rem)] font-extrabold leading-[0.96] tracking-[-0.06em] text-brand-primary">Кому здесь будет интересно</h2><p className="mt-7 border-l-2 border-brand-accent pl-4 text-base leading-7 text-[var(--color-text-secondary-content)]">Если хочется просто получать готовую ставку и оформлять заявку — скорее всего, это не та работа.</p></div><ul className="border-t border-brand-border">{candidates.map((item, index) => <li key={item} className="grid gap-3 border-b border-brand-border py-5 sm:grid-cols-[3.5rem_1fr] sm:items-baseline sm:gap-5 sm:py-6"><span className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">0{index + 1}</span><span className="text-lg font-bold leading-snug tracking-[-0.04em] text-brand-primary sm:text-xl">{item}</span></li>)}</ul></div></section>
-    <section className="bg-[#eee9e1]" aria-labelledby="work-title"><div className="content-container section-spacing"><div className="max-w-2xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-secondary">РЕАЛЬНАЯ КАРТИНА</p><h2 id="work-title" className="mt-4 text-[clamp(2.3rem,4.4vw,4.25rem)] font-extrabold leading-[0.96] tracking-[-0.06em] text-brand-primary">Что будет в работе</h2></div><ol className="mt-12 grid border-t border-brand-border sm:grid-cols-2 lg:grid-cols-4">{work.map((item, index) => <li key={item} className={`border-b border-brand-border py-7 sm:px-7 lg:border-b-0 lg:py-1 ${index < 3 ? 'lg:border-r' : ''} ${index === 0 ? 'sm:pl-0' : ''} ${index === 3 ? 'lg:pr-0' : ''}`}><span className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">0{index + 1}</span><p className="mt-4 max-w-[15rem] text-xl font-bold leading-tight tracking-[-0.04em] text-brand-primary">{item}</p></li>)}</ol></div></section>
-    <section className="bg-brand-background" aria-labelledby="offer-title"><div className="content-container section-spacing grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20"><div className="max-w-xl"><p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">УСЛОВИЯ</p><h2 id="offer-title" className="mt-4 text-[clamp(2.3rem,4.4vw,4.25rem)] font-extrabold leading-[0.96] tracking-[-0.06em] text-brand-primary">Что предлагаем</h2></div><ul className="grid border-t border-brand-border sm:grid-cols-2">{offer.map((item, index) => <li key={item} className={`border-b border-brand-border py-5 text-base leading-7 text-[var(--color-text-secondary-content)] sm:px-7 sm:py-6 ${index % 2 === 0 ? 'sm:pl-0 sm:pr-9' : ''} ${index % 2 === 0 ? 'sm:border-r' : ''}`}><span className="mr-3 text-brand-accent">—</span>{item}</li>)}</ul></div></section>
-    <section id="vacancy-contact" className="bg-brand-graphite text-white" aria-labelledby="vacancy-contact-title"><div className="content-container section-spacing grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20"><div><p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">ОТКЛИКНУТЬСЯ</p><h2 id="vacancy-contact-title" className="mt-4 text-[clamp(2.4rem,4.6vw,4.8rem)] font-extrabold leading-[0.96] tracking-[-0.06em]">Узнали себя?</h2><p className="mt-7 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary-on-graphite)]">Напишите несколько слов о своём опыте. Резюме приветствуется, но длинное сопроводительное письмо не обязательно.</p></div><div className="border-t border-white/20 pt-7"><a href="mailto:v-t@vir-trans.ru?subject=Вакансия%20логиста" className="inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Обсудить вакансию</a><div className="mt-9 grid gap-5 text-base sm:grid-cols-2"><a href="mailto:v-t@vir-trans.ru" className="border-b border-white/20 pb-3 font-semibold transition-colors hover:text-brand-accent">v-t@vir-trans.ru</a><a href="tel:+78004440097" className="border-b border-white/20 pb-3 font-semibold transition-colors hover:text-brand-accent">+7 (800) 444-00-97, доб. 704</a></div></div></div></section>
+    <section className="bg-brand-background" aria-labelledby="vacancy-title">
+      <div className="content-container grid min-w-0 gap-7 py-10 sm:gap-9 sm:py-14 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-center lg:gap-10 lg:py-16">
+        <div className="min-w-0 max-w-4xl">
+          <p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">ВАКАНСИИ</p>
+          <p className="mt-5 inline-flex border border-brand-accent px-3 py-1.5 text-xs font-extrabold tracking-[0.1em] text-brand-primary">Открыта вакансия — логист</p>
+          <h1 id="vacancy-title" className="mt-5 max-w-full text-[2.25rem] font-extrabold leading-[0.92] tracking-[-0.065em] text-brand-primary sm:text-[clamp(3.6rem,8vw,4.6rem)] xl:text-[clamp(3.9rem,5vw,4.8rem)]">Ищем логиста, который <span className="text-brand-accent">чувствует рынок</span></h1>
+          <div className="mt-6 max-w-2xl space-y-4 text-lg leading-[1.5] text-[var(--color-text-secondary-content)] sm:text-xl">
+            <p>Любите находить выгодные решения, умеете договариваться и быстро ориентироваться в меняющейся ситуации? Возможно, нам по пути.</p>
+
+          </div>
+          <p className="mt-5 max-w-2xl border-l-2 border-brand-accent pl-4 text-base font-semibold leading-7 text-brand-primary">Самара — офис. Опытным логистам — удалённо из любого города России.</p>
+          <a href="#vacancy-contact" className="mt-7 inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Откликнуться</a>
+        </div>
+        <Image
+          src="/vacancy/vir-trans-vacancy-team.webp"
+          alt="Два сотрудника ВИР-ТРАНС в офисе с видом на Волгу; на столе модель грузовика с логотипом компании"
+          width={1100}
+          height={825}
+          priority
+          sizes="(min-width: 1280px) 432px, (min-width: 1024px) 37vw, 288px"
+          className="mx-auto block h-auto w-full max-w-[288px] rounded-[var(--radius-sm)] lg:mx-0 lg:max-w-none"
+        />
+      </div>
+    </section>
+
+    <section className="bg-[#EEEAE2] text-brand-primary" aria-labelledby="game-title">
+      <div className="content-container py-10 sm:py-12">
+        <div className="max-w-3xl">
+          <h2 id="game-title" className="text-[clamp(2.3rem,4.8vw,4.8rem)] font-extrabold leading-[0.96] tracking-[-0.06em] text-brand-primary">Суть <span className="text-brand-accent">работы</span></h2>
+          <p className="mt-5 text-xl font-semibold leading-snug tracking-[-0.04em] text-brand-primary sm:text-2xl">Сначала ставка. Потом машина.</p>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary-content)]">Клиенту нужна перевозка — и нередко решение требуется быстро. Нужно оценить реальные ставки рынка, предложить конкурентную цену, а после получения заказа подобрать перевозчика и довести рейс до завершения.</p>
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary-content)]">Здесь важно не просто выиграть заказ, а выполнить его на согласованных условиях и с разумной экономикой.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="work-title" className="bg-brand-surface" aria-labelledby="candidate-title">
+      <div className="content-container grid gap-8 py-12 sm:py-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+        <div className="min-w-0 max-w-xl">
+          <p className="text-xs font-extrabold tracking-[0.12em] text-brand-secondary">КОГО МЫ ИЩЕМ</p>
+          <h2 id="candidate-title" className="mt-4 text-[clamp(2.3rem,4.4vw,4.25rem)] font-extrabold leading-[0.96] tracking-[-0.06em] text-brand-primary">Кому будет интересно</h2>
+        </div>
+        <div className="min-w-0">
+          <p className="text-lg leading-relaxed text-brand-primary">Тем, кто быстро соображает, любит переговоры, умеет искать выгодные решения и самостоятельно отвечать за результат.</p>
+          <p className="mt-5 text-base leading-7 text-[var(--color-text-secondary-content)]">Не обязательно знать все ставки наизусть. Важнее понимать рынок и уметь быстро находить нужную информацию.</p>
+          <div className="mt-7 border-l-2 border-brand-accent pl-5">
+            <h3 className="text-xl font-bold tracking-[-0.04em] text-brand-primary">А если опыта пока нет?</h3>
+            <p className="mt-3 text-base leading-7 text-[var(--color-text-secondary-content)]">Тоже откликайтесь! Если прочитали описание работы и подумали «Это могло бы быть моим делом» — будем рады знакомству. Иногда способности и желание разобраться важнее строчки в резюме.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="bg-brand-background" aria-labelledby="offer-title">
+      <div className="content-container grid gap-8 py-12 sm:py-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+        <div className="min-w-0 max-w-xl">
+          <p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">УСЛОВИЯ</p>
+          <h2 id="offer-title" className="mt-4 text-[clamp(2.3rem,4.4vw,4.25rem)] font-extrabold leading-[0.96] tracking-[-0.06em] text-brand-primary">Что предлагаем</h2>
+        </div>
+        <div className="min-w-0">
+          <ul className="border-t border-brand-border">
+            {offer.map((item, index) => <li key={item} className={`border-b border-brand-border py-4 text-base leading-7 ${index === 0 ? 'font-semibold text-brand-primary' : 'text-[var(--color-text-secondary-content)]'}`}>{item}</li>)}
+          </ul>
+          <p className="mt-5 text-base leading-7 text-[var(--color-text-secondary-content)]">Конкретные условия обсудим с учётом опыта.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="vacancy-contact" className="bg-[#EEEAE2] text-brand-primary" aria-labelledby="vacancy-contact-title">
+      <div className="content-container grid gap-10 py-10 sm:py-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+        <div className="min-w-0">
+          <p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">ОТКЛИКНУТЬСЯ</p>
+          <h2 id="vacancy-contact-title" className="mt-4 text-[clamp(2.4rem,4.6vw,4.8rem)] font-extrabold leading-[0.96] tracking-[-0.06em]">Узнали себя?</h2>
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary-content)]">Напишите пару слов о своём опыте или о том, почему вам интересна такая работа. Резюме приветствуется, но необязательно.</p>
+        </div>
+        <div className="min-w-0 border-t border-brand-border pt-7">
+          <a href="mailto:v-t@vir-trans.ru?subject=Вакансия%20логиста" className="inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Обсудить вакансию</a>
+          <div className="mt-9 grid gap-5 text-base sm:grid-cols-2">
+            <a href="mailto:v-t@vir-trans.ru" className="border-b border-brand-border pb-3 font-semibold transition-colors hover:text-brand-accent">v-t@vir-trans.ru</a>
+            <a href="tel:+78004440097" className="border-b border-brand-border pb-3 font-semibold transition-colors hover:text-brand-accent">+7 (800) 444-00-97, доб. 704</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 }
