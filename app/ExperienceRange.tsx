@@ -39,6 +39,21 @@ export default function ExperienceRange() {
             Есть опыт с крупногабаритными, тяжеловесными и наливными грузами — там, где транспорт и маршрут требуют отдельной проработки.
           </p>
         </div>
+        <div className="mt-8 border-t border-brand-border pt-6 sm:mt-10 sm:pt-8">
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+            <h3 className="max-w-sm text-xl font-bold leading-tight tracking-[-0.04em] text-brand-accent sm:text-2xl">
+              Не все маршруты заканчиваются асфальтом
+            </h3>
+            <div className="max-w-2xl space-y-3 text-base leading-7 text-[var(--color-text-secondary-content)]">
+              <p>
+                Есть маршруты, где одной дороги недостаточно. Например, доставка промышленного оборудования из Самары в Мирный: автомобилем до речного порта Осетрово (Усть-Кут), затем по Лене до Ленска и снова автотранспортом до получателя.
+              </p>
+              <p>
+                Здесь важно не только преодолеть расстояние, но и состыковать этапы перевозки с коротким сезоном речной навигации.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
