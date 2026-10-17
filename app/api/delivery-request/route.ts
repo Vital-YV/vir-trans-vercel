@@ -54,6 +54,8 @@ export async function POST(request: Request) {
     return invalid('Некорректные данные формы.')
   }
 
+  if (payload.consent !== true) return invalid('Необходимо согласие на обработку персональных данных.')
+
   if (text(payload.website, 200)) {
     return NextResponse.json({ message: 'Спасибо. Сообщение отправлено.' })
   }
@@ -88,6 +90,7 @@ export async function POST(request: Request) {
       `Описание ситуации: ${situation}`,
       'Страница: /etrn',
       `Дата и время отправки: ${submittedAt}`,
+      'Согласие на обработку персональных данных: предоставлено; документ /consent/request, редакция из утверждённого архива от 14.10.2026.',
     ]
   } else {
     const message = field(payload, 'message')
@@ -99,6 +102,7 @@ export async function POST(request: Request) {
       `Контакт: ${contact}`,
       `Сообщение: ${message}`,
       `Дата и время отправки: ${submittedAt}`,
+      'Согласие на обработку персональных данных: предоставлено; документ /consent/request, редакция из утверждённого архива от 14.10.2026.',
     ]
   }
 

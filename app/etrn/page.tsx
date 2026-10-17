@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from 'react'
 import styles from './page.module.css'
+import RequestConsent from '../RequestConsent'
 
 const roles = [
   { tab: 'Отправитель', title: 'До приезда машины определите три вещи', items: ['Кто создаёт ЭТрН.', 'Кто фактически отвечает за погрузку и сможет подписать документ.', 'Работает ли обмен между операторами участников.'], note: 'Особенно важно для сторонних складов, ночных и выходных погрузок.' },
@@ -31,10 +32,15 @@ export default function EtrnPage() {
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault(); if (sending) return
-    const form = new FormData(e.currentTarget); setSending(true); setError('')
+    const formElement = e.currentTarget
+    if (!formElement.reportValidity()) return
+    const form = new FormData(formElement)
+    const consent = form.get('consent') === 'on'
+    if (!consent) return
+    setSending(true); setError('')
     try {
-      const r = await fetch('/api/delivery-request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...Object.fromEntries(form), source: 'etrn' }) })
-      if (!r.ok) throw new Error(); setSent(true); e.currentTarget.reset()
+      const r = await fetch('/api/delivery-request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...Object.fromEntries(form), source: 'etrn', consent }) })
+      if (!r.ok) throw new Error(); setSent(true); formElement.reset()
     } catch { setError('Не удалось отправить обращение. Попробуйте ещё раз или свяжитесь с нами по телефону.') } finally { setSending(false) }
   }
 
@@ -63,7 +69,7 @@ export default function EtrnPage() {
 
     <section className={`${styles.checkSection} ${styles.container}`}><p className={styles.eyebrow}>Перед стартом</p><h2>5 проверок до первого рейса</h2><ol className={styles.checks}>{checks.map(([title, text], i) => <li key={title}><b>{String(i + 1).padStart(2, '0')}</b><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></section>
     <section className={`${styles.support} ${styles.container}`}><div><p className={styles.eyebrow}>Вир-Транс</p><h2>Не оставляем клиента разбираться одного</h2></div><div><p>Мы сами проходим этот переход вместе с рынком. Проверяем рабочие схемы на реальных перевозках, собираем решения и помогаем связать действия клиента, склада и перевозчика.</p><p className={styles.strong}>Если чего-то ещё не знаем наверняка — сначала проверяем, потом советуем.</p><a href="#etrn-form" className={styles.cta}>Разобрать ситуацию по ЭТрН</a></div></section>
-    <section id="etrn-form" className={`${styles.formSection} ${styles.container}`}><p className={styles.eyebrow}>Обращение</p><h2>Что произошло?</h2>{sent ? <p className={styles.success}>Обращение принято. Скоро свяжемся с вами.</p> : <form onSubmit={submit}><label>Имя<input name="name" required /></label><label>Телефон или e-mail<input name="contact" required /></label><label className={styles.full}>Коротко опишите ситуацию<textarea name="situation" required placeholder="Например: груз выгрузили, склад принял, но ЭТрН не подписана, водитель уже уехал." /></label><label className={styles.honeypot}>Не заполняйте это поле<input name="website" autoComplete="off" tabIndex={-1} /></label><button className={styles.cta} disabled={sending}>{sending ? 'Отправляем…' : 'Разобрать ситуацию'}</button>{error && <p className={styles.error} role="alert">{error}</p>}</form>}</section>
+    <section id="etrn-form" className={`${styles.formSection} ${styles.container}`}><p className={styles.eyebrow}>Обращение</p><h2>Что произошло?</h2>{sent ? <p className={styles.success}>Обращение принято. Скоро свяжемся с вами.</p> : <form onSubmit={submit}><label>Имя<input name="name" required /></label><label>Телефон или e-mail<input name="contact" required /></label><label className={styles.full}>Коротко опишите ситуацию<textarea name="situation" required placeholder="Например: груз выгрузили, склад принял, но ЭТрН не подписана, водитель уже уехал." /></label><label className={styles.honeypot}>Не заполняйте это поле<input name="website" autoComplete="off" tabIndex={-1} /></label><div className={styles.full}><RequestConsent /></div><button className={styles.cta} disabled={sending}>{sending ? 'Отправляем…' : 'Разобрать ситуацию'}</button>{error && <p className={styles.error} role="alert">{error}</p>}</form>}</section>
     <section className={`${styles.sources} ${styles.container}`}><details><summary>Источники и нормативная база <span>+</span></summary><ul><li><a href="https://mintrans.gov.ru/activities/376/453">Ответы Минтранса по ЭПД</a></li><li><a href="https://mintrans.gov.ru/activities/376/453/455">Автомобильные перевозки и ЭТрН</a></li><li><a href="https://mintrans.gov.ru/activities/376/453/457">Экспедиторские документы</a></li><li><a href="https://mintrans.gov.ru/activities/376/453/456">Подписание документов</a></li><li><a href="https://mintrans.gov.ru/activities/376/377/378/419">Методические материалы</a></li><li><a href="https://mintrans.gov.ru/activities/214/376/377/378/416">Приказы Минтранса</a></li></ul></details><p>Информация на странице носит справочный характер. Для спорной ситуации проверяем актуальные правила и конкретную схему перевозки.</p></section>
   </main>
 }
