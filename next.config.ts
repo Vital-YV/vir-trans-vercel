@@ -1,16 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
-module.exports = {
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
-  },
+  // A production build must not overwrite resources served by next dev.
+  distDir: process.env.NODE_ENV === 'development' ? '.next-dev' : '.next',
 }
 
-export default nextConfig;
+export default nextConfig

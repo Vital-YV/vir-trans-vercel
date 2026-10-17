@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Manrope } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import TopMenu from './topMenu'
 import Footer from './footer'
@@ -9,8 +9,10 @@ import ScrollToTopButton from './ScrollToTopButton'
 import { InsideAccessProvider } from './InsideAccess'
 import { indexingRobots, siteUrl } from './site'
 
-const manrope = Manrope({
-  subsets: ['cyrillic', 'latin'],
+const manrope = localFont({
+  src: './fonts/manrope/Manrope-Variable.ttf',
+  weight: '200 800',
+  style: 'normal',
   variable: '--font-manrope',
   display: 'swap',
 })

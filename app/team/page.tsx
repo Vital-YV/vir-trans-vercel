@@ -1,5 +1,6 @@
 ﻿'use client'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import styles from './team.module.css'
 
@@ -64,8 +65,8 @@ export default function TeamPage() {
     <div className={styles.backgroundRoute} aria-hidden="true" />
     <div className={styles.backgroundNote} aria-hidden="true">внутренняя линия</div>
     <header className={styles.teamHeader}>
-      <a href="/" className={styles.teamBrand} aria-label="ВИР-ТРАНС, главная"><Image src="/brand/vir-trans-logo-cropped.png" alt="" width={2139} height={471} priority sizes="(min-width: 768px) 220px, 175px" /></a>
-      <a href="/" className={styles.backLink}>← Вернуться на сайт</a>
+      <Link href="/" className={styles.teamBrand} aria-label="ВИР-ТРАНС, главная"><Image src="/brand/vir-trans-logo-cropped.png" alt="" width={2139} height={471} priority sizes="(min-width: 768px) 220px, 175px" /></Link>
+      <Link href="/" className={styles.backLink}>← Вернуться на сайт</Link>
     </header>
     <section className={styles.intro} aria-labelledby="team-title">
       <p className={styles.eyebrow}>режим: внутренний</p>
