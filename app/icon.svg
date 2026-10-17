@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="#f7f5f1" stroke="#282825" stroke-width="2"/>
+  <style>.compact{display:none}@media(max-width:16px){.regular{display:none}.compact{display:inline}}</style>
+  <g class="regular">
+  <path d="m29 12 23 18-9 23" fill="none" stroke="#282825" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m29 12 23 18-9 23" fill="none" stroke="#e86f1c" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 59v-3c0-4 6-6 12-6s12 2 12 6v3Z" fill="#e86f1c" stroke="#282825" stroke-width="2" stroke-linejoin="round"/>
+  <g transform="translate(23 20) rotate(-28)">
+    <path d="M-8-6c0-10 16-10 16 0L13 6h-26Z" fill="#e86f1c" stroke="#282825" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M-10 5h20" stroke="#fff5d9" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <circle cx="52" cy="30" r="3.5" fill="#e86f1c" stroke="#282825" stroke-width="1.5"/>
+  </g>
+  <g class="compact" fill="#e86f1c" stroke="#282825" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m28 10 26 20-11 24" fill="none" stroke-width="9"/>
+    <path d="m28 10 26 20-11 24" fill="none" stroke="#e86f1c" stroke-width="6"/>
+    <path d="M30 59v-5c0-4 7-6 14-6s14 2 14 6v5Z" stroke-width="2"/>
+    <path d="M6 26 11 12Q17 1 27 8l10 12Z" stroke-width="2.5"/>
+  </g>
+</svg>

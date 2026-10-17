@@ -27,7 +27,20 @@ type PublicMetadata = {
   path: string
 }
 
+export const consentRobots: Metadata['robots'] = isProduction
+  ? { index: false, follow: true }
+  : indexingRobots
+
+const socialImage = {
+  url: '/brand/vir-trans-og.png',
+  width: 1200,
+  height: 630,
+  alt: 'ВИР-ТРАНС — Ваш груз — в центре внимания. Оранжевая лампа освещает деревянный ящик.',
+}
+const socialPaths = new Set(['/', '/service', '/forClients', '/vacancy', '/etrn'])
+
 export function publicMetadata({ title, description, path }: PublicMetadata): Metadata {
+  const hasSocialImage = socialPaths.has(path)
   return {
     title,
     description,
@@ -40,6 +53,15 @@ export function publicMetadata({ title, description, path }: PublicMetadata): Me
       siteName: 'Вир-Транс',
       locale: 'ru_RU',
       type: 'website',
+      ...(hasSocialImage ? { images: [socialImage] } : {}),
     },
+    ...(hasSocialImage ? {
+      twitter: {
+        card: 'summary_large_image' as const,
+        title,
+        description,
+        images: [{ url: socialImage.url, alt: socialImage.alt }],
+      },
+    } : {}),
   }
 }
