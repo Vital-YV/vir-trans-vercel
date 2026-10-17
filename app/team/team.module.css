@@ -143,6 +143,7 @@
   line-height: 0.96;
   letter-spacing: -0.065em;
 }
+.greetingLamp { display: inline-block; width: 2.24em; height: 2em; margin-left: .08em; vertical-align: -.4em; overflow: visible; transform: scaleX(-1); }
 
 .lead {
   max-width: 38rem;
@@ -188,6 +189,28 @@
 .photo10 { --tilt: 2deg; width: 94%; }
 .photo11 { --tilt: -2deg; width: 85%; justify-self: end; margin-top: 2rem; }
 .photo12 { --tilt: 1.2deg; width: min(100%, 58rem); justify-self: center; }
+@media (min-width: 768px) {
+  .group:nth-child(-n + 4) {
+    display: flex;
+    justify-content: center;
+  }
+
+  .group:nth-child(-n + 4) .photo {
+    flex: 0 1 auto;
+    width: min(var(--balanced-width), var(--balanced-fluid));
+  }
+
+  .photo6 { --balanced-width: 560px; --balanced-fluid: 39vw; }
+  .photo5 { --balanced-width: 486px; --balanced-fluid: 33.8vw; }
+  .photo2 { --balanced-width: 305px; --balanced-fluid: 21.2vw; }
+  .photo3 { --balanced-width: 350px; --balanced-fluid: 24.3vw; }
+  .photo4 { --balanced-width: 375px; --balanced-fluid: 26vw; }
+  .photo7 { --balanced-width: 320px; --balanced-fluid: 22.2vw; }
+  .photo9 { --balanced-width: 390px; --balanced-fluid: 27.1vw; }
+  .photo8 { --balanced-width: 368px; --balanced-fluid: 25.6vw; }
+  .photo10 { --balanced-width: 520px; --balanced-fluid: 36.1vw; }
+  .photo11 { --balanced-width: 440px; --balanced-fluid: 30.6vw; }
+}
 .pin { position: absolute; z-index: 2; top: -.35rem; left: 50%; width: .85rem; aspect-ratio: 1; border: 2px solid #fff8eb; border-radius: 50%; background: #e86f1c; box-shadow: 0 .16rem .2rem rgba(36,53,58,.4); pointer-events: none; }
 .photoButton { display: block; width: 100%; padding: 0; border: 0; background: #f9f6ed; cursor: zoom-in; }
 .photoButton img { display: block; width: 100%; height: auto; }
@@ -219,6 +242,14 @@
   .photo { width: 96%; justify-self: center; margin: 0; }
   .photo1, .photo5, .photo6, .photo12 { width: 100%; }
   .photo3, .photo8, .photo11 { width: 93%; justify-self: end; }
+  .group:nth-child(-n + 4) .photo { width: min(100%, var(--mobile-width)); }
+  .photo6, .photo8 { --mobile-width: 350px; }
+  .photo5, .photo3, .photo7 { --mobile-width: 320px; }
+  .photo10 { --mobile-width: 345px; }
+  .photo4 { --mobile-width: 340px; }
+  .photo2 { --mobile-width: 285px; }
+  .photo9 { --mobile-width: 350px; }
+  .photo11 { --mobile-width: 296px; }
   .viewer { grid-template-columns: 48px minmax(0,1fr) 48px; grid-template-rows: 48px minmax(0,1fr) 48px auto; }
   .largeImage { grid-column: 1 / -1; }
   .previous { grid-row: 3; }

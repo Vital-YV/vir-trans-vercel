@@ -5,20 +5,20 @@ import { useEffect, useRef, useState } from 'react'
 import styles from './team.module.css'
 
 const photos = [
-  { file: '02-kati.webp', width: 1122, height: 1402, caption: 'Должность обязывает рулить аккуратно' },
-  { file: '03-ulya.webp', width: 1254, height: 1254, caption: 'Ну-ка, ну-ка… кого тут ещё посчитать и зафиксировать?!' },
-  { file: '04-sveta.webp', width: 1254, height: 1254 },
-  { file: '05-prospector.webp', width: 1254, height: 1254 },
   { file: '06-fishing.webp', width: 1448, height: 1086 },
+  { file: '05-prospector.webp', width: 1254, height: 1254 },
+  { file: '02-kati.webp', width: 1122, height: 1402, caption: 'Должность обязывает рулить аккуратно' },
+  { file: '04-sveta.webp', width: 1254, height: 1254 },
+  { file: '03-ulya.webp', width: 1254, height: 1254, caption: 'Ну-ка, ну-ка… кого тут ещё посчитать и зафиксировать?!' },
+  { file: '09-sergei.webp', width: 1536, height: 1024 },
   { file: '07-sasha.webp', width: 1254, height: 1254 },
   { file: '08-yar.webp', width: 1448, height: 1086 },
-  { file: '09-sergei.webp', width: 1536, height: 1024 },
   { file: '10-norik.webp', width: 1254, height: 1254 },
   { file: '11-dany.webp', width: 1151, height: 1366 },
   { file: '12-sovet.webp', width: 1448, height: 1086 },
   { file: '01-vir.webp', width: 1122, height: 1402, caption: 'ВИР - Как ни крути буквы — дело одно.' },
 ]
-const groups = [[0, 1, 2], [3, 4], [5, 6, 7], [8, 9], [10], [11]]
+const groups = [[0, 1], [2, 3, 4], [5, 6, 7], [8, 9], [10], [11]]
 
 export default function TeamPage() {
   const [active, setActive] = useState<number | null>(null)
@@ -69,9 +69,27 @@ export default function TeamPage() {
       <Link href="/" className={styles.backLink}>← Вернуться на сайт</Link>
     </header>
     <section className={styles.intro} aria-labelledby="team-title">
-      <p className={styles.eyebrow}>режим: внутренний</p>
-      <h1 id="team-title">Ну раз вы <span className={styles.orange}>всё-таки</span> вошли…</h1>
-      <p className={styles.lead}>Те, кто обычно остаются за кадром — люди, на которых всё держится.</p>
+      <p className={styles.eyebrow}><span className={styles.orange}>За кулисами</span> ВИР-ТРАНС</p>
+      <h1 id="team-title">Всем привет! <svg className={styles.greetingLamp} viewBox="0 0 112 100" role="img" aria-label="Дружелюбная оранжевая лампа приветствует вас">
+        <g stroke="#282825" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M48 84 29 54 57 31" fill="none" strokeWidth="6" />
+          <path d="M48 84 29 54 57 31" fill="none" stroke="#E86F1C" strokeWidth="3" />
+          <circle cx="29" cy="54" r="4.5" fill="#E86F1C" />
+          <path d="M27 90c1-9 11-13 22-13s21 4 22 13Z" fill="#E86F1C" />
+          <path d="M58 23c5-13 27-16 36-3 5 7 7 18 7 28-14 7-34 7-49 0 0-10 1-18 6-25Z" fill="#E86F1C" />
+          <path d="M53 48c13 5 33 5 47 0" fill="none" stroke="#AE4C13" />
+          <circle cx="67" cy="32" r="6.5" fill="#FFFCF2" strokeWidth="1.7" />
+          <circle cx="86" cy="32" r="6.5" fill="#FFFCF2" strokeWidth="1.7" />
+          <path d="m62 26-3-3m8 2-1-4m24 5 3-3m-8 2 1-4" fill="none" strokeWidth="1.7" />
+          <circle cx="68.5" cy="33" r="3" fill="#282825" stroke="none" />
+          <circle cx="87.5" cy="33" r="3" fill="#282825" stroke="none" />
+          <circle cx="69.5" cy="31.8" r="1.1" fill="white" stroke="none" />
+          <circle cx="88.5" cy="31.8" r="1.1" fill="white" stroke="none" />
+          <path d="M71 43q6 7 12 0" fill="none" strokeWidth="2" />
+          <path d="M60 17q8-6 16-4" fill="none" stroke="#FFC58F" strokeWidth="3" />
+        </g>
+      </svg></h1>
+      <p className={styles.lead}><span className={styles.orange}>Знакомьтесь</span>, это <strong>те, кто обычно остаются за кадром — люди, на которых всё держится.</strong></p>
     </section>
     <section className={styles.members} aria-label="Коллектив Вир-Транс">
       <div ref={wall} className={styles.wall}>{groups.map((group, groupIndex) => <div key={groupIndex} data-group className={`${styles.group} ${group.length === 1 ? styles.solo : group.length === 3 ? styles.trio : styles.pair}`}>
