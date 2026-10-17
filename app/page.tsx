@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Hero from './Hero'
+import AboutSection from './about/AboutSection'
 import InquirySituations from './InquirySituations'
 import WorkProcess from './WorkProcess'
 import ExperienceRange from './ExperienceRange'
-import TrustFacts from './TrustFacts'
 import QuestionsFaq from './QuestionsFaq'
 import FinalContact from './FinalContact'
 import { publicMetadata } from './site'
@@ -18,12 +18,12 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <InquirySituations />
       <WorkProcess />
+      <InquirySituations />
       <ExperienceRange />
-      <TrustFacts />
       <QuestionsFaq />
       <FinalContact />
+      <AboutSection />
     </main>
   )
 }

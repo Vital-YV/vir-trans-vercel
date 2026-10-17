@@ -1,8 +1,9 @@
 import { DeliveryRequestForm } from './DeliveryRequest'
+import styles from './HomeSections.module.css'
 
 export default function FinalContact() {
   return (
-    <section id="контакты" className="bg-brand-background" aria-labelledby="final-contact-title">
+    <section id="контакты" className={styles.graphite} aria-labelledby="final-contact-title">
       <div className="content-container section-spacing grid gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <div>
           <p className="text-xs font-extrabold tracking-[0.12em] text-brand-accent">НАЧАТЬ РАЗГОВОР</p>
@@ -17,11 +18,7 @@ export default function FinalContact() {
         <div className="border-t-2 border-brand-accent pt-7 lg:pt-9">
           <DeliveryRequestForm variant="inline" />
           <div className="mt-12 border-t border-brand-border pt-7">
-            <p className="text-lg font-semibold text-brand-primary">Удобнее сразу поговорить?</p>
-            <div className="mt-4 flex flex-col gap-2 text-base text-[var(--color-text-secondary-content)]">
-              <a href="tel:+78004440097" className="w-fit border-b border-brand-accent pb-1 font-semibold text-brand-primary transition-colors hover:text-brand-accent">+7 (800) 444-00-97, доб. 704</a>
-              <a href="mailto:v-t@vir-trans.ru" className="w-fit border-b border-brand-accent pb-1 font-semibold text-brand-primary transition-colors hover:text-brand-accent">v-t@vir-trans.ru</a>
-            </div>
+            <p className="text-base font-semibold text-brand-primary sm:whitespace-nowrap">Удобнее по телефону? Звоните: <a href="tel:+78004440097" className="border-b border-brand-accent transition-colors hover:text-brand-accent">+7 (800) 444-00-97</a></p>
           </div>
         </div>
       </div>

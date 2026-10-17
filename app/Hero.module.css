@@ -1,3 +1,9 @@
+.hero a:focus-visible,
+.hero button:focus-visible {
+  outline: 2px solid var(--color-accent-orange);
+  outline-offset: 4px;
+}
+
 .crate {
   transform-origin: bottom center;
   animation: crate-swap 9.325s ease-in-out infinite;

@@ -1,0 +1,24 @@
+.graphite {
+  --color-text-primary: #f7f5f1;
+  --color-text-secondary: #d8d2c9;
+  --color-text-secondary-content: #d8d2c9;
+  --color-border: #69645c;
+  --color-form-border: #969086;
+  background: var(--color-graphite);
+  color: var(--color-text-primary);
+  color-scheme: dark;
+}
+
+.gray {
+  background: #eeedeb;
+  color: var(--color-text-primary);
+}
+
+.moreRegions { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .15em .3em; max-width: 100%; }
+.regionButton { display: inline-flex; flex: 0 0 .8em; align-items: center; height: 1.15em; color: #e86f1c; text-align: left; }
+.regionSlot { display: inline-block; flex: 0 0 4.3em; min-height: 1.15em; color: #e86f1c; overflow-wrap: anywhere; }
+.regionButton svg { width: .8em; height: 1.05em; color: #f7f5f1; }
+.regionValue { display: inline-block; animation: regionIn .18s ease-out; }
+.regionButton:focus-visible { outline: 2px solid #e86f1c; outline-offset: 4px; border-radius: 4px; }
+@keyframes regionIn { from { opacity: 0; transform: translateY(.08em); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .regionValue { animation: none; } }
