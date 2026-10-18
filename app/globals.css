@@ -149,3 +149,7 @@ h2 {
 .animate-progress {
   animation: progress 25s linear forwards;
 }
+
+/* Primary actions: preserve the orange palette while keeping white labels readable. */
+.primary-cta { background-color: #b94e0b; color: #fff; }
+.primary-cta:hover { background-color: #a34308; }

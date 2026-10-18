@@ -90,3 +90,20 @@
     95.7106%, 100% { opacity: 0; }
   }
 }
+
+.hero { display: flex; flex-direction: column; background: #e9e3da; }
+.leftPanel { display: contents; }
+.copy { order: 1; }
+.scene { order: 2; }
+.floor { height: 30%; background: linear-gradient(0deg, #e9e3da, rgba(233,227,218,0)); }
+@media (min-width: 1280px) {
+  /* The left panel flows independently of the original image stage. */
+  .hero { min-height: 45rem; height: 100svh; }
+  .leftPanel { display: flex; flex: 1; flex-direction: column; justify-content: center; gap: 40px; padding-block: 32px 40px; }
+  .copy { min-height: 0; flex: none; padding-block: 0; }
+  .illustration { height: 92%; }
+}
+
+@media (min-width: 1280px) and (max-height: 740px) {
+  .leftPanel { padding-block: 16px 64px; gap: 32px; }
+}

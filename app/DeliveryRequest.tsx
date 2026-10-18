@@ -77,7 +77,7 @@ export function DeliveryRequestForm({ variant = 'floating' }: { variant?: 'float
 
   if (variant === 'inline') {
     if (isSubmitted) return <p className="border-l-2 border-brand-accent py-3 pl-4 text-base leading-relaxed text-brand-primary">Ваша заявка принята. Скоро с вами свяжутся.</p>
-    return <form onSubmit={handleSubmit} className="grid min-w-0 gap-5"><>{fields}</><button type="submit" disabled={isSubmitting} className="inline-flex min-h-14 w-full items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-8 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto sm:text-lg">{isSubmitting ? 'Отправляем…' : 'Написать нам'}</button>{submitError && <p className="text-sm leading-6 text-brand-primary" role="alert">{submitError}</p>}</form>
+    return <form onSubmit={handleSubmit} className="grid min-w-0 gap-5"><>{fields}</><button type="submit" disabled={isSubmitting} className="inline-flex min-h-14 w-full items-center justify-center rounded-[var(--radius-sm)] primary-cta bg-brand-accent px-8 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto sm:text-lg">{isSubmitting ? 'Отправляем…' : 'Написать нам'}</button>{submitError && <p className="text-sm leading-6 text-brand-primary" role="alert">{submitError}</p>}</form>
   }
 
   const hidden = pathname === '/' || pathname === '/about' || pathname === '/service' || pathname === '/forClients' || pathname === '/vacancy' || pathname === '/etrn' || pathname === '/top-secret' || pathname === '/top-secret/digest' || pathname === '/privacy' || pathname.startsWith('/consent/')

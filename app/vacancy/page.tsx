@@ -28,7 +28,7 @@ export default function Vacancy() {
 
           </div>
           <p className="mt-5 max-w-2xl border-l-2 border-brand-accent pl-4 text-base font-semibold leading-7 text-brand-primary">Самара — офис. Опытным логистам — удалённо из любого города России.</p>
-          <a href="#vacancy-contact" className="mt-7 inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Откликнуться</a>
+          <a href="#vacancy-contact" className="mt-7 inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] primary-cta bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Откликнуться</a>
         </div>
         <Image
           src="/vacancy/vir-trans-vacancy-team.webp"
@@ -93,7 +93,7 @@ export default function Vacancy() {
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-[var(--color-text-secondary-content)]">Напишите пару слов о своём опыте или о том, почему вам интересна такая работа. Резюме приветствуется, но необязательно.</p>
         </div>
         <div className="min-w-0 border-t border-brand-border pt-7">
-          <a href="mailto:v-t@vir-trans.ru?subject=Вакансия%20логиста" className="inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Обсудить вакансию</a>
+          <a href="mailto:v-t@vir-trans.ru?subject=Вакансия%20логиста" className="inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] primary-cta bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Обсудить вакансию</a>
           <div className="mt-9 grid gap-5 text-base sm:grid-cols-2">
             <a href="mailto:v-t@vir-trans.ru" className="border-b border-brand-border pb-3 font-semibold transition-colors hover:text-brand-accent">v-t@vir-trans.ru</a>
             <a href="tel:+78004440097" className="border-b border-brand-border pb-3 font-semibold transition-colors hover:text-brand-accent">+7 (800) 444-00-97, доб. 704</a>

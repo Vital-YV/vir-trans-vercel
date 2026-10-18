@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import styles from './HomeSections.module.css'
 
 const questions = [
@@ -27,6 +27,7 @@ const questions = [
 ]
 
 export default function QuestionsFaq() {
+  const instanceId = useId()
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
@@ -42,29 +43,31 @@ export default function QuestionsFaq() {
         <div className="border-y border-brand-border">
           {questions.map((item, index) => {
             const isOpen = openIndex === index
-            const answerId = `faq-answer-${index}`
+            const answerId = `${instanceId}-answer-${index}`
+            const questionId = `${instanceId}-question-${index}`
 
             return (
               <div key={item.question} className={index === 0 ? '' : 'border-t border-brand-border'}>
                 <button
                   type="button"
                   className="grid w-full grid-cols-[auto_1fr_auto] items-start gap-x-5 py-7 text-left sm:gap-x-7 md:grid-cols-[4.5rem_minmax(0,0.95fr)_minmax(0,1.05fr)_auto] md:py-8 lg:py-6"
+                  aria-labelledby={questionId}
                   aria-expanded={isOpen}
                   aria-controls={answerId}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
                   <span className={`mt-1 h-2.5 w-2.5 rounded-full ${isOpen ? 'bg-brand-accent' : 'bg-[#817b72]'}`} aria-hidden="true" />
-                  <span className="text-xl font-bold leading-snug tracking-[-0.035em] text-brand-primary md:text-2xl">
+                  <span id={questionId} className="text-xl font-bold leading-snug tracking-[-0.035em] text-brand-primary md:text-2xl">
                     {item.question}
                   </span>
-                  <span className="col-start-2 mt-4 text-base leading-relaxed text-[#514d47] md:col-start-3 md:mt-0 md:self-center">
+                  <span aria-hidden="true" className="col-start-2 mt-4 text-base leading-relaxed text-[#514d47] md:col-start-3 md:mt-0 md:self-center">
                     {isOpen ? item.answer : ''}
                   </span>
                   <span className={`col-start-3 row-start-1 text-2xl leading-none md:col-start-4 ${isOpen ? 'text-brand-accent' : 'text-[var(--color-text-secondary-content)]'}`} aria-hidden="true">
                     {isOpen ? '−' : '+'}
                   </span>
                 </button>
-                <div id={answerId} className="sr-only">{item.answer}</div>
+                <div id={answerId} hidden={!isOpen} className="sr-only">{item.answer}</div>
               </div>
             )
           })}

@@ -95,7 +95,7 @@ export function InsideAccessProvider({ children }: { children: ReactNode }) {
                 placeholder="Введите пароль"
                 className="min-h-14 w-full rounded-[var(--radius-sm)] border border-black/20 bg-white px-4 text-base outline-none transition-colors placeholder:text-brand-primary/45 focus:border-brand-accent"
               />
-              <button type="submit" className="mt-3 inline-flex min-h-14 w-full items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-6 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)]">Войти</button>
+              <button type="submit" className="mt-3 inline-flex min-h-14 w-full items-center justify-center rounded-[var(--radius-sm)] primary-cta bg-brand-accent px-6 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)]">Войти</button>
             </form>
 
             {message === 'error' && <p className="mt-4 text-sm text-brand-secondary">Не тот пароль.</p>}

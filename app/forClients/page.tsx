@@ -20,7 +20,7 @@ export default function ForClients() {
             <p>От согласования условий до выгрузки и документов у вас один ответственный сотрудник. Он контролирует весь ход рейса и остаётся на связи.</p>
             <p>Изменилось время загрузки, появились новые условия или возник вопрос в пути? Вам не придётся выяснять, кто этим занимается, — есть к кому обратиться.</p>
           </div>
-          <a href="#client-contact" className="mt-9 inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Обсудить задачу</a>
+          <a href="#client-contact" className="mt-9 inline-flex min-h-14 items-center justify-center rounded-[var(--radius-sm)] primary-cta bg-brand-accent px-7 text-base font-semibold text-white transition-colors hover:bg-[var(--color-accent-orange-hover)] sm:px-8 sm:text-lg">Обсудить задачу</a>
         </div>
       </div>
     </section>
