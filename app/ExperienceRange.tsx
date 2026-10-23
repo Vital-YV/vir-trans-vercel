@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './HomeSections.module.css'
 
 const regions = ['ЯНАО', 'ХМАО', 'Норильск', 'Бодайбо', 'Якутия', 'Воркута']
@@ -8,6 +8,49 @@ const regions = ['ЯНАО', 'ХМАО', 'Норильск', 'Бодайбо', '
 const extraRegions = ['Дудинка', 'Тикси', 'Певек', 'Анадырь', 'Диксон', 'Сабетта', 'Мирный', 'Ленск', 'Игарка', 'Усинск']
 
 export default function ExperienceRange() {
+  const hintRef = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    const el = hintRef.current
+    if (!el) return
+    const media = matchMedia('(prefers-reduced-motion: reduce)')
+    let stopped = false, visible = false
+    let timer: ReturnType<typeof setTimeout> | undefined
+    let pulseEnd: ReturnType<typeof setTimeout> | undefined
+    const pause = () => {
+      clearTimeout(timer)
+      clearTimeout(pulseEnd)
+      el.removeAttribute('data-demo')
+    }
+    const eligible = () => !stopped && visible && !document.hidden && !media.matches
+    const pulse = () => {
+      if (!eligible()) return
+      el.setAttribute('data-demo', 'true')
+      pulseEnd = setTimeout(() => el.removeAttribute('data-demo'), 700)
+      timer = setTimeout(pulse, 3000)
+    }
+    const schedule = () => {
+      pause()
+      if (eligible()) timer = setTimeout(pulse, 1000)
+    }
+    const cancel = () => { stopped = true; pause() }
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting && entry.intersectionRatio >= .95
+      schedule()
+    }, { threshold: [0, .95] })
+    observer.observe(el)
+    const events = ['pointerdown', 'focus', 'keydown', 'click'] as const
+    events.forEach(event => el.addEventListener(event, cancel))
+    media.addEventListener('change', schedule)
+    document.addEventListener('visibilitychange', schedule)
+    return () => {
+      observer.disconnect()
+      pause()
+      events.forEach(event => el.removeEventListener(event, cancel))
+      media.removeEventListener('change', schedule)
+      document.removeEventListener('visibilitychange', schedule)
+    }
+  }, [])
+
   const [regionIndex, setRegionIndex] = useState(-1)
   const [visible, setVisible] = useState(false)
   useEffect(() => {
@@ -43,7 +86,7 @@ export default function ExperienceRange() {
             ))}
             <span className={styles.moreRegions}>
               <span className="text-[var(--color-text-secondary-content)]">и ещё</span>
-              <button type="button" className={styles.regionButton}
+              <button type="button" ref={hintRef} className={styles.regionButton}
                 aria-label={visible ? `${extraRegions[regionIndex]}. Следующий город` : 'Другие города'}
                 onClick={() => { setRegionIndex(index => (index + 1) % extraRegions.length); setVisible(true) }}>
                   <svg viewBox="0 0 48 56" aria-hidden="true">

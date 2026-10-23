@@ -116,3 +116,10 @@
 .clockReveal { animation: clockIn .18s ease-out; }
 @keyframes clockIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .clockReveal { animation: none; } }
+
+.clockPlus { position: relative; }
+.clockPlus[data-demo] { animation: demoTouch 700ms cubic-bezier(.2,.7,.3,1) both; }
+.clockPlus[data-demo]::after { content: ''; position: absolute; inset: -4px; border: 1px solid #e86f1c; border-radius: 14px; pointer-events: none; animation: demoRing 540ms ease-out 160ms both; }
+@keyframes demoTouch { 0%,100% { scale: 1; } 23% { scale: .93; } 65% { scale: 1; } }
+@keyframes demoRing { 0% { opacity: 0; transform: scale(.94); } 20% { opacity: .55; } 100% { opacity: 0; transform: scale(1.13); } }
+@media (prefers-reduced-motion: reduce) { .clockPlus[data-demo], .clockPlus[data-demo]::after { animation: none; } .clockPlus[data-demo]::after { content: none; } }

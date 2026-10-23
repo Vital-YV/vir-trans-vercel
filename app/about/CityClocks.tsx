@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './page.module.css'
 
 const cities = [
@@ -27,6 +27,49 @@ const cities = [
 const extraCities = cities.filter(city => !['Europe/Kaliningrad', 'Asia/Vladivostok'].includes(city.zone))
 
 export default function CityClocks() {
+  const hintRef = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    const el = hintRef.current
+    if (!el) return
+    const media = matchMedia('(prefers-reduced-motion: reduce)')
+    let stopped = false, visible = false
+    let timer: ReturnType<typeof setTimeout> | undefined
+    let pulseEnd: ReturnType<typeof setTimeout> | undefined
+    const pause = () => {
+      clearTimeout(timer)
+      clearTimeout(pulseEnd)
+      el.removeAttribute('data-demo')
+    }
+    const eligible = () => !stopped && visible && !document.hidden && !media.matches
+    const pulse = () => {
+      if (!eligible()) return
+      el.setAttribute('data-demo', 'true')
+      pulseEnd = setTimeout(() => el.removeAttribute('data-demo'), 700)
+      timer = setTimeout(pulse, 3000)
+    }
+    const schedule = () => {
+      pause()
+      if (eligible()) timer = setTimeout(pulse, 1000)
+    }
+    const cancel = () => { stopped = true; pause() }
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting && entry.intersectionRatio >= .95
+      schedule()
+    }, { threshold: [0, .95] })
+    observer.observe(el)
+    const events = ['pointerdown', 'focus', 'keydown', 'click'] as const
+    events.forEach(event => el.addEventListener(event, cancel))
+    media.addEventListener('change', schedule)
+    document.addEventListener('visibilitychange', schedule)
+    return () => {
+      observer.disconnect()
+      pause()
+      events.forEach(event => el.removeEventListener(event, cancel))
+      media.removeEventListener('change', schedule)
+      document.removeEventListener('visibilitychange', schedule)
+    }
+  }, [])
+
   // Сервер и первый клиентский рендер совпадают; время появляется после mount.
   const [now, setNow] = useState<Date | null>(null)
   useEffect(() => {
@@ -64,7 +107,7 @@ export default function CityClocks() {
   return <div className={styles.clocks} aria-label="Местное время">
     {renderClock(cities[0])}
     <div className={styles.clockMore}>
-      <button type="button" className={styles.clockPlus} aria-label="Следующий часовой пояс" aria-expanded={extraVisible} aria-controls="extra-city-clock"
+      <button type="button" ref={hintRef} className={styles.clockPlus} aria-label="Следующий часовой пояс" aria-expanded={extraVisible} aria-controls="extra-city-clock"
         onClick={() => { setExtraIndex(index => (index + 1) % extraCities.length); setExtraVisible(true) }}>
         <svg viewBox="0 0 64 64" className={styles.clockFace} aria-hidden="true">
           <rect x="3.5" y="3.5" width="57" height="57" rx="16.5" fill="#fff" stroke="#282825" strokeWidth="5" />

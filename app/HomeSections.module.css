@@ -22,3 +22,10 @@
 .regionButton:focus-visible { outline: 2px solid #e86f1c; outline-offset: 4px; border-radius: 4px; }
 @keyframes regionIn { from { opacity: 0; transform: translateY(.08em); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .regionValue { animation: none; } }
+
+.regionButton { position: relative; }
+.regionButton[data-demo] { animation: demoTouch 700ms cubic-bezier(.2,.7,.3,1) both; }
+.regionButton[data-demo]::after { content: ''; position: absolute; inset: -4px; border: 1px solid #e86f1c; border-radius: 50%; pointer-events: none; animation: demoRing 540ms ease-out 160ms both; }
+@keyframes demoTouch { 0%,100% { scale: 1; } 23% { scale: .93; } 65% { scale: 1; } }
+@keyframes demoRing { 0% { opacity: 0; transform: scale(.94); } 20% { opacity: .55; } 100% { opacity: 0; transform: scale(1.5); } }
+@media (prefers-reduced-motion: reduce) { .regionButton[data-demo], .regionButton[data-demo]::after { animation: none; } .regionButton[data-demo]::after { content: none; } }
