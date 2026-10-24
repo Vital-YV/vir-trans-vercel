@@ -24,6 +24,8 @@
 @media (prefers-reduced-motion: reduce) { .regionValue { animation: none; } }
 
 .regionButton { position: relative; }
+/* Keep the invisible target above 44px even at the pulse's .93 scale. */
+.regionButton::before { content: ''; position: absolute; left: 50%; top: 50%; width: max(100%, 48px); height: max(100%, 48px); transform: translate(-50%, -50%); }
 .regionButton[data-demo] { animation: demoTouch 700ms cubic-bezier(.2,.7,.3,1) both; }
 .regionButton[data-demo]::after { content: ''; position: absolute; inset: -4px; border: 1px solid #e86f1c; border-radius: 50%; pointer-events: none; animation: demoRing 540ms ease-out 160ms both; }
 @keyframes demoTouch { 0%,100% { scale: 1; } 23% { scale: .93; } 65% { scale: 1; } }
