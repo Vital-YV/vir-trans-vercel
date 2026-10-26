@@ -205,9 +205,9 @@
   .photo2 { --balanced-width: 305px; --balanced-fluid: 21.2vw; }
   .photo3 { --balanced-width: 350px; --balanced-fluid: 24.3vw; }
   .photo4 { --balanced-width: 375px; --balanced-fluid: 26vw; }
-  .photo7 { --balanced-width: 320px; --balanced-fluid: 22.2vw; }
-  .photo9 { --balanced-width: 390px; --balanced-fluid: 27.1vw; }
-  .photo8 { --balanced-width: 368px; --balanced-fluid: 25.6vw; }
+  .photo7 { --balanced-width: 310px; --balanced-fluid: 21.53vw; }
+  .photo9 { --balanced-width: 394px; --balanced-fluid: 27.36vw; }
+  .photo8 { --balanced-width: 374px; --balanced-fluid: 25.97vw; margin-top: 0; }
   .photo10 { --balanced-width: 520px; --balanced-fluid: 36.1vw; }
   .photo11 { --balanced-width: 440px; --balanced-fluid: 30.6vw; }
 }
