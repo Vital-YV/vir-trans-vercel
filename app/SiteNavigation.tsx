@@ -40,7 +40,7 @@ export default function SiteNavigation({ hero = false }: { hero?: boolean }) {
     </>
   }
   return <div ref={root} className={`content-container relative z-20 flex min-w-0 flex-wrap items-center justify-between gap-x-4 ${hero ? 'pt-7 sm:pt-9 lg:!pt-3 lg:!w-full lg:!px-[clamp(4.375rem,4.7vw,4.5rem)]' : 'min-h-[76px] py-4 sm:min-h-[88px]'}`}>
-    <Link href="/" className="flex min-h-10 w-[208px] shrink-0 items-center sm:min-h-11 sm:w-[288px]" aria-label="ВИР-ТРАНС, главная"><BrandLogo animated={hero && pathname === '/'} /></Link>
+    <Link href="/" className="flex min-h-10 w-[208px] shrink-0 items-center sm:min-h-11 sm:w-[288px]" aria-label="ВИР-ТРАНС, главная"><BrandLogo /></Link>
     <nav className="hidden shrink-0 items-center gap-5 whitespace-nowrap rounded-[var(--radius-sm)] bg-[rgba(247,245,241,0.78)] px-3 py-3 text-sm font-medium text-[#282825] backdrop-blur-[10px] xl:flex" aria-label="Основная навигация">{items(false)}</nav>
     <button ref={toggle} type="button" className="relative z-30 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/15 bg-white/60 text-xl xl:hidden" aria-label={open ? 'Закрыть навигацию' : 'Открыть навигацию'} aria-controls="mobile-navigation" aria-expanded={open} onClick={() => setOpen(!open)}><span aria-hidden="true">{open ? '×' : '☰'}</span></button>
     <div ref={panelHost} className="hidden basis-full xl:block" />

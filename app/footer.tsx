@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
+import BrandLogo from './BrandLogo'
 import { usePathname } from 'next/navigation'
 import CurrentTopic from './CurrentTopic'
 import FooterInsideAccess from './FooterInsideAccess'
@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="flex flex-col gap-7 border-b border-white/15 pb-7 md:flex-row md:items-start md:justify-between md:gap-10">
           <div>
             <Link href="/" aria-label="ВИР-ТРАНС, главная" className="block w-[232px] max-w-full rounded-[var(--radius-sm)] bg-brand-background px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-accent">
-              <Image src="/brand/vir-trans-logo-cropped.png" alt="" width={2139} height={471} sizes="208px" className="block h-auto w-full" />
+              <BrandLogo sizes="208px" priority={false} />
             </Link>
             <p className="mt-2 max-w-sm text-[0.9375rem] leading-6 text-[var(--color-text-secondary-on-graphite)] sm:text-sm sm:leading-relaxed">
               Автомобильные перевозки и экспедирование по России.
