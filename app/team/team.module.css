@@ -166,17 +166,43 @@
 .photo1 .photoButton { position: relative; aspect-ratio: 1122 / 1060; overflow: hidden; }
 .photo1 .photoButton img { position: absolute; top: 0; left: 0; width: 100%; height: auto; }
 .virPhrase { justify-self: center; text-align: center; max-width: 39rem; }
-.letters { display: flex; justify-content: center; gap: .25em; font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; line-height: 1.15; }
-.letters span { display: inline-block; width: 1em; color: #282825; }
+.letters { position: relative; width: 4.4em; height: 3.3em; margin-inline: auto; font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; line-height: 1.15; }
+.dancer { position: absolute; bottom: .1em; left: .2em; display: block; width: 1em; transform-origin: 50% 100%; }
+.dancer:nth-child(2) { transform: translateX(1.5em); }
+.dancer:nth-child(3) { transform: translateX(3em); }
+.glyph { display: block; color: #282825; }
 .virPhrase p { margin: .65rem 0 0; font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 750; line-height: 1.3; }
-@keyframes letterAccent {
-  0%,100% { color: #282825; transform: rotate(0); }
-  35%,55% { color: #E86F1C; transform: rotate(-12deg); }
+/* One route, three phases: the left letter clears the row before its neighbours hop.
+   Each landing is followed by a small squash/rebound. Only the glyphs move. */
+@keyframes letterDance {
+  0%, 10%, 100% { transform: translate(0, 0); }
+  15% { transform: translate(0, -1.65em) rotate(-9deg); }
+  19% { transform: translate(1.5em, -1.85em) rotate(5deg); }
+  23% { transform: translate(3em, -1.65em) rotate(9deg); }
+  28% { transform: translate(3em, 0); }
+  29.5% { transform: translate(3em, 0) scale(1.08, .88); }
+  31% { transform: translate(3em, -.07em) scale(.97, 1.04); }
+  33.333333%, 48.333333% { transform: translate(3em, 0); }
+  52.333333% { transform: translate(2.25em, -.24em) rotate(-7deg); }
+  56.333333% { transform: translate(1.5em, 0); }
+  57.833333% { transform: translate(1.5em, 0) scale(1.07, .9); }
+  59.333333% { transform: translate(1.5em, -.06em) scale(.98, 1.04); }
+  61.666667%, 81.666667% { transform: translate(1.5em, 0); }
+  85.666667% { transform: translate(.75em, -.24em) rotate(7deg); }
+  89.666667% { transform: translate(0, 0); }
+  91.166667% { transform: translate(0, 0) scale(1.07, .9); }
+  92.666667% { transform: translate(0, -.06em) scale(.98, 1.04); }
+  95%, 99% { transform: translate(0, 0); }
+}
+@keyframes letterCheer {
+  0%, 10%, 100% { color: #282825; }
+  .75%, 9.25% { color: #E86F1C; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .revealed .letters span { animation: letterAccent 600ms ease-in-out 650ms 1; }
-  .revealed .letters span:nth-child(2) { animation-delay: 1250ms; }
-  .revealed .letters span:nth-child(3) { animation-delay: 1850ms; }
+  .revealed .dancer { animation: letterDance 9.6s ease-in-out infinite; }
+  .revealed .dancer:nth-child(2) { animation-delay: -6.4s; }
+  .revealed .dancer:nth-child(3) { animation-delay: -3.2s; }
+  .revealed .glyph { animation: letterCheer 9.6s ease-in-out 9.12s infinite; }
 }
 .photo2 { --tilt: 2deg; }
 .photo3 { --tilt: -2.4deg; margin-top: 3rem; }

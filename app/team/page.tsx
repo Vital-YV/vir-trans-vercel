@@ -94,7 +94,7 @@ export default function TeamPage() {
     <section className={styles.members} aria-label="Коллектив Вир-Транс">
       <div ref={wall} className={styles.wall}>{groups.map((group, groupIndex) => <div key={groupIndex} data-group className={`${styles.group} ${group.length === 1 ? styles.solo : group.length === 3 ? styles.trio : styles.pair}`}>
         {groupIndex === groups.length - 1 && <div className={styles.virPhrase} aria-label="ВИР - Как ни крути буквы — дело одно.">
-          <div className={styles.letters} aria-hidden="true"><span>В</span><span>И</span><span>Р</span></div>
+          <div className={styles.letters} aria-hidden="true">{['В', 'И', 'Р'].map(letter => <span className={styles.dancer} key={letter}><span className={styles.glyph}>{letter}</span></span>)}</div>
           <p aria-hidden="true">Как ни <span className={styles.orange}>крути</span> буквы — дело одно.</p>
         </div>}
         {group.map(index => <figure key={photos[index].file} className={`${styles.photo} ${styles[`photo${Number(photos[index].file.slice(0, 2))}`]}`}>
