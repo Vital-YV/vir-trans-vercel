@@ -31,12 +31,12 @@ export default function SiteNavigation({ hero = false }: { hero?: boolean }) {
   const items = (mobile: boolean) => {
     const link = mobile ? 'block rounded px-3 py-3 transition-colors hover:bg-black/5' : 'transition-colors hover:text-brand-accent'
     return <>
-      <Link href="/" className={link} onClick={() => setOpen(false)}>Главная</Link>
       <Link href={pathname === '/' ? '#about' : '/#about'} className={link} onClick={() => setOpen(false)}>О компании</Link>
       <Link href="/forClients" className={link} onClick={() => setOpen(false)}>Клиентам</Link>
       <CurrentTopic placement="inline" panelHost={mobile ? undefined : panelHost} className={mobile ? link + ' w-full text-left' : link} onNavigate={() => setOpen(false)} />
+      <Link href="/vacancy" className={link} onClick={() => setOpen(false)}>Вакансии</Link>
       <InsideAccessLink className={link} onOpen={() => setOpen(false)}>Только сотрудникам</InsideAccessLink>
-      <Link href="/#контакты" className={link} onClick={() => setOpen(false)}>Связаться</Link>
+      <Link href="/#контакты" className={`${link} rounded-[var(--radius-sm)] bg-brand-accent px-4 py-3 text-center font-semibold text-white hover:!bg-[var(--color-accent-orange-hover)] hover:!text-white`} onClick={() => setOpen(false)}>Связаться</Link>
     </>
   }
   return <div ref={root} className={`content-container relative z-20 flex min-w-0 flex-wrap items-center justify-between gap-x-4 ${hero ? 'pt-7 sm:pt-9 lg:!pt-3 lg:!w-full lg:!px-[clamp(4.375rem,4.7vw,4.5rem)]' : 'min-h-[76px] py-4 sm:min-h-[88px]'}`}>

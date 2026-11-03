@@ -14,6 +14,13 @@ export default function LegalDocument({ document }: { document: keyof typeof app
       {approvedTexts[document].trim().split(/\r?\n\s*\r?\n/).map((block, index) => {
         if (block.startsWith('# ')) return <h1 key={index} className="mb-7 whitespace-pre-line text-[clamp(1.75rem,3.5vw,2.7rem)] font-extrabold leading-[1.15] tracking-[-0.035em]">{block.slice(2)}</h1>
         if (block.startsWith('## ')) return <h2 key={index} className="mb-4 mt-9 text-xl font-bold leading-[1.3] sm:text-2xl">{block.slice(3)}</h2>
+        if (document === 'privacy.md' && block.startsWith('1.2. Реквизиты Оператора:')) {
+          return <p key={index} className="mb-4 whitespace-pre-line text-left [word-spacing:normal]">
+            {block.split(/(г\. Самара)/g).map((part, partIndex) => part === 'г. Самара'
+              ? <span key={partIndex} className="whitespace-nowrap">{part}</span>
+              : inline(part))}
+          </p>
+        }
         return <p key={index} className="mb-4 whitespace-pre-line">{inline(block)}</p>
       })}
       {document !== 'privacy.md' && <nav aria-label="Документы по обработке данных" className="mt-8 border-t border-brand-border pt-5"><Link href="/privacy" className="underline decoration-brand-accent underline-offset-4 hover:text-brand-accent">Политика обработки персональных данных</Link></nav>}

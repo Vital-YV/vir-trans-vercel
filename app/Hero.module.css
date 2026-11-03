@@ -106,4 +106,5 @@
 
 @media (min-width: 1280px) and (max-height: 740px) {
   .leftPanel { padding-block: 16px 64px; gap: 32px; }
+  .leftPanel .copy { padding-bottom: 0; }
 }

@@ -225,7 +225,7 @@
     width: min(var(--balanced-width), var(--balanced-fluid));
   }
 
-  .photo6 { --balanced-width: 560px; --balanced-fluid: 39vw; }
+  .photo6 { --balanced-width: 486px; --balanced-fluid: 33.8vw; }
   .photo5 { --balanced-width: 486px; --balanced-fluid: 33.8vw; }
   .photo2 { --balanced-width: 305px; --balanced-fluid: 21.2vw; }
   .photo3 { --balanced-width: 350px; --balanced-fluid: 24.3vw; }
@@ -268,8 +268,8 @@
   .photo1, .photo5, .photo6, .photo12 { width: 100%; }
   .photo3, .photo8, .photo11 { width: 93%; justify-self: end; }
   .group:nth-child(-n + 4) .photo { width: min(100%, var(--mobile-width)); }
-  .photo6, .photo8 { --mobile-width: 350px; }
-  .photo5, .photo3, .photo7 { --mobile-width: 320px; }
+  .photo8 { --mobile-width: 350px; }
+  .photo5, .photo6, .photo3, .photo7 { --mobile-width: 320px; }
   .photo10 { --mobile-width: 345px; }
   .photo4 { --mobile-width: 340px; }
   .photo2 { --mobile-width: 285px; }

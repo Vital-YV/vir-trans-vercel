@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import styles from './team.module.css'
 
 const photos = [
-  { file: '06-fishing.webp', width: 1448, height: 1086 },
+  { file: '06-fishing.webp', width: 1254, height: 1254 },
   { file: '05-prospector.webp', width: 1254, height: 1254 },
   { file: '02-kati.webp', width: 1122, height: 1402, caption: 'Должность обязывает рулить аккуратно' },
   { file: '04-sveta.webp', width: 1254, height: 1254 },
