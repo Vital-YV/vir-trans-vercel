@@ -3,11 +3,12 @@
 import { FormEvent, useRef, useState } from 'react'
 import styles from './page.module.css'
 import RequestConsent from '../RequestConsent'
+import ForwarderScenarios from './ForwarderScenarios'
 
 const roles = [
   { tab: 'Отправитель', title: 'До приезда машины определите три вещи', items: ['Кто создаёт ЭТрН.', 'Кто фактически отвечает за погрузку и сможет подписать документ.', 'Работает ли обмен между операторами участников.'], note: 'Особенно важно для сторонних складов, ночных и выходных погрузок.' },
   { tab: 'Получатель / склад', title: 'Главное — кто подпишет приёмку на месте', items: ['Назначьте сотрудника, который принимает груз.', 'Дайте ему рабочий способ подписания ЭТрН.', 'Не рассчитывайте, что офис подпишет документ «потом».'], note: 'Если получатель не завершил свой шаг, водитель может не получить возможность штатно подтвердить выгрузку.' },
-  { tab: 'Экспедитор', title: 'Сначала определите свою роль в конкретном рейсе', items: ['Приняли груз во владение или только организуете перевозку?', 'Экспедитор, только организующий перевозку, не становится автоматически грузоотправителем. Указание экспедитора в этой роли зависит от принятия груза во владение и установленных правил оформления, включая предусмотренные исключения.', 'Кто является фактическим перевозчиком.'], note: 'При транспортной экспедиции оформляется поручение экспедитору; экспедиторская расписка — при принятии груза во владение, складская — при соответствующем приёме на хранение.' },
+  { tab: 'Экспедитор', title: 'Кто за что отвечает в рейсе?', items: [], note: '' },
   { tab: 'Перевозчик / водитель', title: 'До выезда водитель должен понимать три вещи', items: ['Где он увидит ЭТрН.', 'Как подтвердить приём и сдачу груза.', 'Перед выездом проверьте, что водитель может открыть ЭТрН и QR-код в своём приложении. При проверке покажите QR-код с экрана либо бумажную копию ЭТрН с отметкой электронной подписи.'], note: 'Обычный скриншот QR-кода лучше не использовать: код может обновляться.' },
 ]
 
@@ -67,7 +68,7 @@ export default function EtrnPage() {
         setRole(next)
         tabRefs.current[next]?.focus()
       }} aria-selected={role === i} className={role === i ? styles.active : ''} key={item.tab} onClick={() => setRole(i)}>{item.tab}</button>)}</div>
-      {roles.map((item, i) => <div key={item.tab} hidden={role !== i} className={styles.rolePanel} role="tabpanel" id={`etrn-panel-${i}`} aria-labelledby={`etrn-tab-${i}`} tabIndex={0}><h3>{item.title}</h3><ul>{item.items.map(x => <li key={x}>{x}</li>)}</ul><p>{item.note}</p></div>)}
+      {roles.map((item, i) => <div key={item.tab} hidden={role !== i} className={`${styles.rolePanel}${i === 2 ? ` ${styles.forwarderPanel}` : ''}`} role="tabpanel" id={`etrn-panel-${i}`} aria-labelledby={`etrn-tab-${i}`} tabIndex={0}>{i === 2 ? <ForwarderScenarios /> : <><h3>{item.title}</h3><ul>{item.items.map(x => <li key={x}>{x}</li>)}</ul><p>{item.note}</p></>}</div>)}
     </section>
 
     <section id="etrn-problems" className={styles.problemSection}><div className={`${styles.container} ${styles.problemContent}`}><p className={styles.quickLabel}>Быстрый ответ</p><p className={styles.eyebrow}>Практика</p><h2>Если что-то пошло не так</h2><p className={styles.subhead}>Выберите ситуацию. Без длинных инструкций.</p>

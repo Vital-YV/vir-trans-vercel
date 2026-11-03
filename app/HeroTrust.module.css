@@ -8,12 +8,18 @@
 .facts a:focus-visible { outline: 2px solid var(--color-accent-orange); outline-offset: 4px; }
 .etrn dt a { color: var(--color-accent-orange); }
 .etrn dd { animation: etrnAdviceColor 3.5s ease-in-out infinite; }
+.etrnAttention { display: inline-block; color: var(--color-accent-orange); font-weight: 900; animation: etrnAttentionBlink 2s ease-in-out infinite; }
+@keyframes etrnAttentionBlink {
+  0%, 72%, 100% { opacity: 1; }
+  80%, 92% { opacity: 0; }
+}
 @keyframes etrnAdviceColor {
   0%, 35%, 100% { color: #625e58; }
   60%, 72% { color: #a34308; }
 }
 @media (prefers-reduced-motion: reduce) {
   .etrn dd { animation: none; }
+  .etrnAttention { animation: none; opacity: 1; }
 }
 @media (min-width: 1280px) {
   .strip { background: transparent; width: min(40vw, 576px); margin-left: clamp(4.375rem,4.7vw,4.5rem); padding-bottom: 0; }
