@@ -6,6 +6,15 @@
 .facts a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; margin-block: -9px; transition: color .2s; }
 .facts a:hover { color: #a34308; }
 .facts a:focus-visible { outline: 2px solid var(--color-accent-orange); outline-offset: 4px; }
+.etrn dt a { color: var(--color-accent-orange); }
+.etrn dd { animation: etrnAdviceColor 3.5s ease-in-out infinite; }
+@keyframes etrnAdviceColor {
+  0%, 35%, 100% { color: #625e58; }
+  60%, 72% { color: #a34308; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .etrn dd { animation: none; }
+}
 @media (min-width: 1280px) {
   .strip { background: transparent; width: min(40vw, 576px); margin-left: clamp(4.375rem,4.7vw,4.5rem); padding-bottom: 0; }
   .facts { width: 100%; max-width: none; padding: 0; gap: 20px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
